@@ -1,8 +1,0 @@
-@Library(['AC-library@latest_v17', 'jenkins-shared-library@latest']) _
-
-servicePersistH2BuildPipeline(
-        PROJECT_KEY: "AC",
-        TEAM_CHANEL: "#AC-jenkins",
-        RUN_PACT_TESTS: true
-
-)

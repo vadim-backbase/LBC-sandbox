@@ -1,7 +1,0 @@
-databaseChangeLog:
-- changeSet:
-    id: 1
-    author: gorjanp
-    changes:
-      - sqlFile:
-          path: classpath:db/sql/h2/create/access-control.sql
