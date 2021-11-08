@@ -1,0 +1,216 @@
+{
+  "items": [
+    {
+      "arrangementId": "1cdb2224-8926-4b4d-a99f-1c9dfbbb4699",
+      "balanceHistory": [
+        {
+          "dateFrom": "2017-02-11T00:00:00+0000",
+          "dateTo": "2017-04-01T00:00:00+0000",
+          "value": {
+            "currency": "EUR",
+            "balance": "12340000"
+          },
+          "valuePtc": "12340000"
+        },
+        {
+          "dateFrom": "2017-02-17T00:00:00+0000",
+          "dateTo": "2017-05-01T00:00:00+0000",
+          "value": {
+            "currency": "EUR",
+            "balance": "1098000"
+          },
+          "valuePtc": "10980000"
+        },
+        {
+          "dateFrom": "2017-02-22T00:00:00+0000",
+          "dateTo": "2017-06-01T00:00:00+0000",
+          "value": {
+            "currency": "EUR",
+            "balance": "-10000000"
+          },
+          "valuePtc": "-10000000"
+        },
+        {
+          "dateFrom": "2017-03-04T00:00:00+0000",
+          "dateTo": "2017-07-01T00:00:00+0000",
+          "value": {
+            "currency": "EUR",
+            "balance": "19380000"
+          },
+          "valuePtc": "19380000"
+        },
+        {
+          "dateFrom": "2017-03-12T00:00:00+0000",
+          "dateTo": "2017-08-01T00:00:00+0000",
+          "value": {
+            "currency": "EUR",
+            "balance": "10000000"
+          },
+          "valuePtc": "10000000"
+        },
+        {
+          "dateFrom": "2017-03-21T00:00:00+0000",
+          "dateTo": "2017-09-01T00:00:00+0000",
+          "value": {
+            "currency": "EUR",
+            "balance": "12000000"
+          },
+          "valuePtc": "12000000"
+        },
+        {
+          "dateFrom": "2017-03-27T00:00:00+0000",
+          "dateTo": "2017-10-01T00:00:00+0000",
+          "value": {
+            "currency": "EUR",
+            "balance": "1098000"
+          },
+          "valuePtc": "1098000"
+        },
+        {
+          "dateFrom": "2017-04-01T00:00:00+0000",
+          "dateTo": "2017-11-01T00:00:00+0000",
+          "value": {
+            "currency": "EUR",
+            "balance": "0"
+          },
+          "valuePtc": "0"
+        },
+        {
+          "dateFrom": "2017-02-11T00:00:00+0000",
+          "dateTo": "2017-12-01T00:00:00+0000",
+          "value": {
+            "currency": "EUR",
+            "balance": "7650000"
+          },
+          "valuePtc": "7650000"
+        },
+        {
+          "dateFrom": "2017-02-17T00:00:00+0000",
+          "dateTo": "2018-01-01T00:00:00+0000",
+          "value": {
+            "currency": "EUR",
+            "balance": "6500006"
+          },
+          "valuePtc": "6500006"
+        },
+        {
+          "dateFrom": "2017-02-22T00:00:00+0000",
+          "dateTo": "2018-02-01T00:00:00+0000",
+          "value": {
+            "currency": "EUR",
+            "balance": "74000050"
+          },
+          "valuePtc": "74000050"
+        },
+        {
+          "dateFrom": "2017-03-04T00:00:00+0000",
+          "dateTo": "2018-03-01T00:00:00+0000",
+          "value": {
+            "currency": "EUR",
+            "balance": "60000540"
+          },
+          "valuePtc": "60000540"
+        },
+        {
+          "dateFrom": "2017-03-12T00:00:00+0000",
+          "dateTo": "2018-04-01T00:00:00+0000",
+          "value": {
+            "currency": "EUR",
+            "balance": "98000070"
+          },
+          "valuePtc": "98000070"
+        },
+        {
+          "dateFrom": "2017-03-21T00:00:00+0000",
+          "dateTo": "2018-05-01T00:00:00+0000",
+          "value": {
+            "currency": "EUR",
+            "balance": "-300004500"
+          },
+          "valuePtc": "-300004500"
+        },
+        {
+          "dateFrom": "2017-03-27T00:00:00+0000",
+          "dateTo": "2018-06-01T00:00:00+0000",
+          "value": {
+            "currency": "EUR",
+            "balance": "230000400"
+          },
+          "valuePtc": "230000400"
+        },
+        {
+          "dateFrom": "2017-04-01T00:00:00+0000",
+          "dateTo": "2018-07-01T00:00:00+0000",
+          "value": {
+            "currency": "EUR",
+            "balance": "120000000"
+          },
+          "valuePtc": "120000000"
+        },
+        {
+          "dateFrom": "2017-05-10T00:00:00+0000",
+          "dateTo": "2018-08-01T00:00:00+0000",
+          "value": {
+            "currency": "EUR",
+            "balance": "100002000"
+          },
+          "valuePtc": "100002000"
+        },
+        {
+          "dateFrom": "2017-05-11T00:00:00+0000",
+          "dateTo": "2018-09-01T00:00:00+0000",
+          "value": {
+            "currency": "EUR",
+            "balance": "220000000"
+          },
+          "valuePtc": "220000000"
+        },
+        {
+          "dateFrom": "2017-05-23T00:00:00+0000",
+          "dateTo": "2018-10-01T00:00:00+0000",
+          "value": {
+            "currency": "EUR",
+            "balance": "300002000"
+          },
+          "valuePtc": "300002000"
+        },
+        {
+          "dateFrom": "2017-06-01T00:00:00+0000",
+          "dateTo": "2018-11-01T00:00:00+0000",
+          "value": {
+            "currency": "EUR",
+            "balance": "-54000000"
+          },
+          "valuePtc": "-54000000"
+        },
+        {
+          "dateFrom": "2017-06-02T00:00:00+0000",
+          "dateTo": "2018-12-01T00:00:00+0000",
+          "value": {
+            "currency": "EUR",
+            "balance": "300004000"
+          },
+          "valuePtc": "300004000"
+        },
+        {
+          "dateFrom": "2017-06-12T00:00:00+0000",
+          "dateTo": "2019-01-01T00:00:00+0000",
+          "value": {
+            "currency": "EUR",
+            "balance": "400000000"
+          },
+          "valuePtc": "400000000"
+        },
+        {
+          "dateFrom": "2017-06-18T00:00:00+0000",
+          "dateTo": "2019-02-01T00:00:00+0000",
+          "value": {
+            "currency": "EUR",
+            "balance": "540000000"
+          },
+          "valuePtc": "540000000"
+        }
+      ]
+    }
+  ]
+}

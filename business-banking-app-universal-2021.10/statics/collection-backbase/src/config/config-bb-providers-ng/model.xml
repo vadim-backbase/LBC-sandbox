@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog>
+    <feature>
+        <name>config-bb-providers-ng</name>
+        <properties>
+            <property name="title" label="Title" viewHint="admin,designModeOnly">
+                <value type="string">Global Angular decorators module.</value>
+            </property>
+            <property name="version" label="Version" readonly="true" viewHint="admin,designModeOnly">
+                <value type="string">1.0.0</value>
+            </property>
+        </properties>
+    </feature>
+</catalog>

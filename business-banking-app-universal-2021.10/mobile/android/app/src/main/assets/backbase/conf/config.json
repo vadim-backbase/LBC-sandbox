@@ -1,0 +1,22 @@
+{
+  "development": {
+    "debugEnable": false
+  },
+  "backbase": {
+    "serverURL": "https://edge.universal-latest.business.backbase.eu",
+    "experience": "",
+    "localModelPath": "$(contextRoot)/conf/localModel.json",
+    "version": "6.2.3.1",
+    "identity": {
+      "baseURL": "https://identity.universal-latest.business.backbase.eu",
+      "clientId": "mobile-client",
+      "realm": "backbase",
+      "applicationKey": "business"
+    }
+  },
+  "security": {
+    "allowedDomains": [
+      "*"
+    ]
+  }
+}

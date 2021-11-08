@@ -1,0 +1,45 @@
+importMappings:
+  ApiError: com.backbase.buildingblocks.presentation.errors.ApiErrorException
+  BadRequestError: com.backbase.buildingblocks.presentation.errors.BadRequestException
+  ConflictError: com.backbase.buildingblocks.presentation.errors.ConflictErrorException
+  ErrorAwareApi: com.backbase.buildingblocks.presentation.errors.ErrorAwareApiException
+  ErrorItem: com.backbase.buildingblocks.presentation.errors.Error
+  ForbiddenError: com.backbase.buildingblocks.presentation.errors.ForbiddenException
+  InternalServerError: com.backbase.buildingblocks.presentation.errors.InternalServerErrorException
+  NotAcceptableError: com.backbase.buildingblocks.presentation.errors.NotAcceptableException
+  NotFoundError: com.backbase.buildingblocks.presentation.errors.NotFoundException
+  UnauthorizedError: com.backbase.buildingblocks.presentation.errors.UnauthorizedException
+  UnsupportedMediaTypeError: com.backbase.buildingblocks.presentation.errors.UnsupportedMediaTypeException
+
+  AdditionalProperties: com.backbase.dbs.arrangement.commons.model.AdditionalPropertiesDto
+  CurrencyType: com.backbase.dbs.arrangement.commons.model.CurrencyTypeDto
+
+  AbstractArrangementItemBase: com.backbase.dbs.arrangement.commons.model.AbstractArrangementItemBaseDto
+  AbstractCardDetails: com.backbase.dbs.arrangement.commons.model.AbstractCardDetailsDto
+  AbstractDebitCardItem: com.backbase.dbs.arrangement.commons.model.AbstractDebitCardItemDto
+  AbstractLimitedArrangement: com.backbase.dbs.arrangement.commons.model.AbstractLimitedArrangementDto
+  AbstractProductSummaryItem: com.backbase.dbs.arrangement.commons.model.AbstractProductSummaryItemDto
+  AbstractSearchAccountsRequest: com.backbase.dbs.arrangement.commons.model.AbstractSearchAccountsRequestDto
+  AbstractSearchAccountsResponse: com.backbase.dbs.arrangement.commons.model.AbstractSearchAccountsResponseDto
+  AggregatedBalance: com.backbase.dbs.arrangement.commons.model.AggregatedBalanceDto
+  AggregatedBalances: com.backbase.dbs.arrangement.commons.model.AggregatedBalancesDto
+  BatchResponseStatusCode: com.backbase.dbs.arrangement.commons.model.BatchResponseStatusCodeDto
+  DebitCardItem: com.backbase.dbs.arrangement.commons.model.DebitCardItemDto
+  ExternalProductItem: com.backbase.dbs.arrangement.commons.model.ExternalProductItemDto
+  ExternalProductKindItem: com.backbase.dbs.arrangement.commons.model.ExternalProductKindItemDto
+  LocaleTranslationItem: com.backbase.dbs.arrangement.commons.model.LocaleTranslationItemDto
+  MaskableAttribute: com.backbase.dbs.arrangement.commons.model.MaskableAttributeDto
+  OrderByField: com.backbase.dbs.arrangement.commons.model.OrderByFieldDto
+  PaginationTrait: com.backbase.dbs.arrangement.commons.model.PaginationTraitDto
+  PaginationDefTrait: com.backbase.dbs.arrangement.commons.model.PaginationDefTraitDto
+  ProductItem: com.backbase.dbs.arrangement.commons.model.ProductItemDto
+  ProductKindItem: com.backbase.dbs.arrangement.commons.model.ProductKindItemDto
+  ProductKindsResult: com.backbase.dbs.arrangement.commons.model.ProductKindsResultDto
+  SortDirection: com.backbase.dbs.arrangement.commons.model.SortDirectionDto
+  StateItem: com.backbase.dbs.arrangement.commons.model.StateItemDto
+  SummaryProductKindItem: com.backbase.dbs.arrangement.commons.model.SummaryProductKindItemDto
+  Subscription: com.backbase.dbs.arrangement.commons.model.SubscriptionDto
+  TimePeriod: com.backbase.dbs.arrangement.commons.model.TimePeriodDto
+  TimeUnit: com.backbase.dbs.arrangement.commons.model.TimeUnitDto
+  TranslationItem: com.backbase.dbs.arrangement.commons.model.TranslationItemDto
+  UserPreferences: com.backbase.dbs.arrangement.commons.model.UserPreferencesDto

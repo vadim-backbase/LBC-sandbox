@@ -1,0 +1,8 @@
+identity:
+  serverUrl: http://localhost:8180/auth
+  masterAdmin:
+    realmName: master
+    username: admin
+    password: admin
+    clientId: admin-cli
+  enableUser: true

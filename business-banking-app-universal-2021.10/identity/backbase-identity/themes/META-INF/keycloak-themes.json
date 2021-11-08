@@ -1,0 +1,6 @@
+{
+    "themes": [{
+        "name" : "business",
+        "types": [ "admin", "account", "login", "common", "email", "welcome" ]
+    }]
+}

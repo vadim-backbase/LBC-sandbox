@@ -1,0 +1,23 @@
+---
+### workaround for an issue in 2.18.0 release. Remove after 2.18.1
+spring:
+  profiles:
+    active: live
+---
+### Live profile
+spring:
+  profiles: live
+  datasource:
+    driver-class-name: ${spring.datasource.driver-class-name}
+    username: ${spring.datasource.username.loan}
+    password: ${spring.datasource.password.loan}
+    url: ${spring.datasource.url.loan}
+
+backbase:
+  products:
+    resource-name: Product Summary
+    business-function: Product Summary
+    privilege: view
+    loan-product-kind-name: Loan
+    order-by: name
+    sort-direction: ASC

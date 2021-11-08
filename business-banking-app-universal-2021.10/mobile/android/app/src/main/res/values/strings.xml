@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Business Banking</string>
+    <string name="custom_menu_more_title">More</string>
+    <string name="custom_menu_cards_title">Cards</string>
+    <string name="bb_more_menu_section_communication">Communication</string>
+    <string name="bb_more_menu_item_title_messages">Messages</string>
+    <string name="bb_more_menu_item_subtitle_messages">View and send messages</string>
+    <string name="bb_more_menu_section_security">Security</string>
+    <string name="bb_more_menu_item_title_logout">Log out</string>
+</resources>

@@ -1,0 +1,52 @@
+{
+  "extends": "container-bb-manageable-area",
+  "children": [
+    {
+      "extends": "bb-business-banking-app-ang",
+      "children": [
+        {
+          "classId": "PanelContainerComponent",
+          "children": [
+            {
+              "classId": "BackgroundContainerComponent",
+              "backgroundImageCollection": {
+                "kind": "content",
+                "path": "backgrounds-login-collection.json"
+              },
+              "children": [],
+              "cssClasses": "bb-login__background-container--fill"
+            },
+            {
+              "classId": "PanelContainerComponent",
+              "cssClasses": "position-absolute fixed-top",
+              "children": [
+                {
+                  "classId": "PanelContainerComponent",
+                  "appearance": "card",
+                  "cssClasses": "card-lg bb-login__select-context",
+                  "children": [
+                    {
+                      "classId": "PanelContainerComponent",
+                      "cssClasses": "card-body",
+                      "children": [
+                        {
+                          "classId": "SelectContextWidgetComponent",
+                          
+                          "output.back": "navigation-url:redirect",
+                          
+                          "title": "View and change context",
+                          "selectContextRedirectPage": "abs:business-banking-app"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+

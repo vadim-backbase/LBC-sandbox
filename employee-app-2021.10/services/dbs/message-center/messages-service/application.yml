@@ -1,0 +1,12 @@
+---
+### Live profile
+spring:
+  profiles: live
+  datasource:
+    driver-class-name: ${spring.datasource.driver-class-name}
+    username: ${spring.datasource.username.messages-service}
+    password: ${spring.datasource.password.messages-service}
+    url: ${spring.datasource.url.messages-service}
+
+messaging:
+  password: password

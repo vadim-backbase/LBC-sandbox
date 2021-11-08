@@ -1,0 +1,6 @@
+{
+  "extends": "container-bb-manageable-area",
+  "title": "Manageable Area",
+  "area": "0",
+  "children": []
+}

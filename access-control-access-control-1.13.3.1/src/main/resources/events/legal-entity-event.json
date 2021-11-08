@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Internal id"
+    },
+    "action": {
+      "$ref": "definition.json#/definitions/action"
+    }
+  }
+}

@@ -1,0 +1,376 @@
+{
+  "$schema": "../../../node_modules/@backbase/sdlc-convert/node_modules/@backbase/sdlc-schema/experience.schema.json",
+  "name": "business-banking-app",
+  "title": "Business Banking App",
+  "locales": ["en-GB"],
+  "properties": {
+    "AccessDeniedPage": "business-banking-app/login?error=accessdenied",
+    "DefaultLandingPage": "business-banking-app/select-context",
+    "ErrorPage": "business-banking-app/error",
+    "LoginPage": "business-banking-app/redirect",
+    "thumbnailUrl": "/Business Banking App/"
+  },
+  "contentDirs": {
+    "default": "apps/business-banking-app/sdlc/content",
+    "shared": "shared"
+  },
+  "cxSources": [
+    "node_modules/@backbase",
+    "apps/business-banking-app/sdlc/models",
+    "dist/provisioning-packages/cx6/business-banking-app.zip",
+    "collections/collection-bb-web-sdk-1.16.3.zip"
+  ],
+  "environments": {
+    "default": {
+      "authorization": {
+      
+        "authUrl":"http://localhost:8180/auth",
+        "clientId": "bb-web-client",
+        "scope": "openid",
+        "kind": "hybrid",
+        "realm": "backbase",
+        "landingPageUrl": "business-banking-app/select-context",
+        "loginPageUrl": "business-banking-app/redirect",
+        "maxInactivityDuration": 300
+      
+      },
+      "provisioning": {
+        "type": "cx",
+        "permissions": {
+          "anonymousConsumer": {
+            "ROLE_group_user": "CONSUMER",
+            "ROLE_group_admin": "ADMIN",
+            "ROLE_group_manager": "ADMIN",
+            "ROLE_group_master page designer": "ADMIN",
+            "ROLE_ANONYMOUS": "CONSUMER"
+          },
+          "userConsumer": {
+            "ROLE_group_user": "CONSUMER",
+            "ROLE_group_manager": "ADMIN",
+            "ROLE_group_admin": "ADMIN",
+            "ROLE_group_master page designer": "ADMIN"
+          }
+        },
+        "outputDir": "dist/experiences/business-banking-app/remote",
+        "linkRoot": ""
+      },
+      "entitlements": {
+        "enable": true,
+        "uri": "/access-control/client-api/v2/accessgroups/users/permissions/summary"
+      }
+    },
+    "docker": {
+      "provisioning": {
+        "type": "nginx",
+        "outputDir": "dist/experiences/business-banking-app/docker",
+        "baseHref": "http://localhost:8080/business-banking-app",
+        "apiRoot": "https://localhost/api"
+      },
+      "entitlements": {
+        "enable": true,
+        "uri": "/access-control/client-api/v2/accessgroups/users/permissions/summary"
+      },
+      "authorization": {
+        "kind": "hybrid",
+        "authUrl": "https://localhost/auth",
+        "clientId": "bb-web-client",
+        "realm": "backbase",
+        "scope": "openid",
+        "landingPageUrl": "select-context",
+        "loginPageUrl": "redirect"
+      }
+    }
+  },
+  "menus": {
+    "main": [
+      {
+        "type": "menu",
+        "section": "navigation",
+        "permission": "userConsumer",
+        "children": [
+          {
+            "type": "menu",
+            "section": "accounts-cards",
+            "title": "ACCOUNTS & CARDS",
+            "permission": "userConsumer",
+            "children": [{
+              "type": "deep",
+              "title": "Accounts",
+              "deepPath": "accounts",
+              "icon": "accounts",
+              "permission": "userConsumer",
+              "properties": {
+                "config.canView": "ProductSummary.ProductSummary.view OR ProductSummary.ProductSummaryLimitedView.view"
+              }
+            }, {
+              "type": "deep",
+              "title": "Cards",
+              "deepPath": "cards",
+              "icon": "credit-card",
+              "permission": "userConsumer"
+            }, {
+              "type": "deep",
+              "title": "Loans",
+              "deepPath": "loans",
+              "icon": "loans",
+              "permission": "userConsumer",
+              "properties": {
+                "config.canView": "ProductSummary.ProductSummary.view OR ProductSummary.ProductSummaryLimitedView.view"
+              }
+            }, {
+              "type": "deep",
+              "title": "Account Statements",
+              "deepPath": "account-statements",
+              "icon": "description",
+              "permission": "userConsumer",
+              "properties": {
+                "config.canView": "AccountStatements.ManageStatements.view"
+              }
+            }, {
+              "type": "deep",
+              "title": "Transactions",
+              "deepPath": "transactions",
+              "icon": "transactions",
+              "permission": "userConsumer",
+              "properties": {
+                "config.canView": "Transactions.Transactions.view"
+              }
+            }
+          ],
+          "properties": {
+            "config.canView": "ProductSummary.ProductSummary.view OR ProductSummary.ProductSummaryLimitedView.view OR AccountStatements.ManageStatements.view OR Transactions.Transactions.view"
+          }
+          }, {
+            "type":"divider",
+            "properties": {
+              "config.canView": "ProductSummary.ProductSummary.view OR ProductSummary.ProductSummaryLimitedView.view OR AccountStatements.ManageStatements.view OR Transactions.Transactions.view"
+            }
+          }, {
+            "type": "menu",
+            "section": "move-money",
+            "title": "MOVE MONEY",
+            "permission": "userConsumer",
+              "children": [{
+                "type": "deep",
+                "title": "Payments",
+                "deepPath": "payments",
+                "icon": "payments",
+                "permission": "userConsumer",
+                "properties": {
+                  "config.canView": "Payments.SEPACT.view OR Payments.SEPACTClosed.view OR Payments.SEPACTIntracompany.view"
+                }
+              }, {
+                "type": "deep",
+                "title": "Batches",
+                "deepPath": "batches",
+                "icon": "batches",
+                "permission": "userConsumer",
+                "properties": {
+                  "config.canView": "Batch.Batch-SEPACT.view"
+                }
+              }, {
+                "type": "deep",
+                "title": "Stop Check Payments",
+                "deepPath": "stop-check-payments",
+                "icon": "cancel-presentation",
+                "permission": "userConsumer",
+                "properties": {
+                  "config.canView": "Payments.StopChecks.view"
+                }
+              }, {
+                "type": "deep",
+                "title": "Templates",
+                "deepPath": "templates",
+                "icon": "contacts",
+                "permission": "userConsumer",
+                "properties": {
+                  "config.canView": "Payments.PaymentTemplates.view"
+                }
+              }, {
+                "type": "deep",
+                "title": "Contacts",
+                "deepPath": "contacts",
+                "icon": "contacts",
+                "permission": "userConsumer",
+                "properties": {
+                  "config.canView": "Contacts.Contacts.view"
+                }
+              }],
+              "properties": {
+                "config.canView": "Payments.SEPACT.view OR Payments.SEPACTClosed.view OR Payments.SEPACTIntracompany.view OR Batch.Batch-SEPACT.view OR Payments.StopChecks.view OR Contacts.Contacts.view OR Payments.PaymentTemplates.view"
+              }
+            }, {
+              "type":"divider",
+              "properties": {
+                "config.canView": "Payments.SEPACT.view OR Payments.SEPACTClosed.view OR Payments.SEPACTIntracompany.view OR Batch.Batch-SEPACT.view OR Payments.StopChecks.view OR Contacts.Contacts.view OR Payments.PaymentTemplates.view"
+              }
+          }, {
+            "type": "menu",
+            "section": "finance-management",
+            "title": "FINANCE MANAGEMENT",
+            "permission": "userConsumer",
+            "children": [{
+              "type": "deep",
+              "title": "Cash Flow",
+              "deepPath": "cash-flow",
+              "icon": "currency-trade",
+              "permission": "userConsumer"
+            }, {
+              "type": "deep",
+              "title": "Sweeping",
+              "deepPath": "sweeping",
+              "icon": "vertical-align-center",
+              "permission": "userConsumer"
+            }, {
+              "type": "deep",
+              "title": "Forex",
+              "deepPath": "forex",
+              "icon": "monetization-on",
+              "permission": "userConsumer"
+            }]
+          }, {
+            "type":"divider"
+          }, {
+            "type": "menu",
+            "section": "personal",
+            "title": "PERSONAL",
+            "permission": "userConsumer",
+            "children": [{
+              "type": "deep",
+              "title": "Inbox",
+              "deepPath": "messages",
+              "icon": "local-post-office",
+              "permission": "userConsumer"
+            }, {
+              "type": "deep",
+              "title": "My Profile",
+              "deepPath": "my-profile",
+              "icon": "profile",
+              "permission": "userConsumer",
+              "properties": {
+                "config.canView": "Actions.ManageActionRecipes.view"
+              }
+            }, {
+              "type": "deep",
+              "title": "Find ATM or Branch",
+              "deepPath": "find-atm-branch",
+              "icon": "location-on",
+              "permission": "userConsumer"
+            }]
+          }, {
+            "type":"divider"
+          }, {
+            "type": "menu",
+            "section": "company-administration",
+            "title": "COMPANY ADMINISTRATION",
+            "permission": "userConsumer",
+            "children": [{
+              "type": "deep",
+              "title": "Audit",
+              "deepPath": "audit",
+              "icon": "audit",
+              "permission": "userConsumer",
+              "properties": {
+                "config.canView": "Audit.Audit.view"
+              }
+            }, {
+              "type": "deep",
+              "title": "Company Permissions",
+              "deepPath": "company-permissions",
+              "icon": "users",
+              "permission": "userConsumer",
+              "properties": {
+                "config.canView": "ServiceAgreement.AssignPermissions.view OR Entitlements.ManageFunctionGroups.view OR Entitlements.ManageDataGroups.view OR Approvals.AssignApprovalPolicies.view"
+              }
+            }, {
+              "type": "deep",
+              "title": "Service Agreements",
+              "deepPath": "service-agreements",
+              "icon": "ballot",
+              "permission": "userConsumer",
+              "properties": {
+                "config.canView": "ServiceAgreement.ManageServiceAgreements.view"
+              }
+            }, {
+              "type": "deep",
+              "title": "Global limits",
+              "deepPath": "global-limits",
+              "icon": "apps",
+              "permission": "userConsumer",
+              "properties": {
+              "config.canView": "Limits.ManageGlobalLimits.view"
+              }
+            }
+            ],
+            "properties": {
+              "config.canView": "Audit.Audit.view OR ServiceAgreement.AssignPermissions.view OR Entitlements.ManageFunctionGroups.view OR Entitlements.ManageDataGroups.view OR Approvals.AssignApprovalPolicies.view OR ServiceAgreement.ManageServiceAgreements.view OR Limits.ManageGlobalLimits.view"
+            }
+          }
+        ]
+      }
+    ],
+    "master-pages": [
+      {
+        "section": "LeanMasterPage",
+        "title": "LeanMasterPage",
+        "page": {
+          "name": "LeanMasterPage",
+          "extends": "page-bb-default",
+          "children": [
+            {
+              "fragment": "apps/business-banking-app/sdlc/pages/lean-master-page.json"
+            }
+          ],
+          "properties": {
+            "innerWrapperClass": "bg-gray-light-300"
+          }
+        }
+      }
+    ],
+    "special-pages": [
+      {
+        "type":"page",
+        "section": "index",
+        "title": "Home",
+        "permission": "userConsumer",
+        "friendlyUrl": "business-banking-app",
+        "page": {
+          "extends": "LeanMasterPage",
+          "permission": "userConsumer",
+          "children": [
+            {
+              "fragment": "apps/business-banking-app/sdlc/pages/home.json"
+            }
+          ]
+        }
+      },  {
+        "section": "redirect",
+        "permission": "anonymousConsumer",
+        "page": {
+          "extends": "LeanMasterPage",
+          "permission": "anonymousConsumer",
+          "children": [
+            {
+              "fragment": "apps/business-banking-app/sdlc/pages/redirect.json"
+            }
+          ]
+        }
+      },  {
+        "type": "page",
+        "section": "select-context",
+        "title": "Select Context",
+        "permission": "anonymousConsumer",
+        "friendlyUrl": "business-banking-app/select-context",
+        "page": {
+          "extends": "LeanMasterPage",
+          "permission": "anonymousConsumer",
+          "children": [
+            {
+              "fragment": "apps/business-banking-app/sdlc/pages/select-context.json"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

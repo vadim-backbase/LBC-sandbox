@@ -1,0 +1,28 @@
+info:
+  application:
+    version: @project.version@
+server:
+  port: 8187
+eureka:
+  instance:
+    metadata-map:
+      public: true
+      role: live
+  client:
+    serviceUrl:
+      defaultZone: http://${REGISTRY_HOST:localhost}:${REGISTRY_PORT:8080}/registry/eureka/
+### Common app properties
+spring:
+  profiles:
+    active: live
+  jmx:
+    default-domain: ${spring.application.name}
+  jackson:
+    default-property-inclusion: non-null
+
+backbase:
+  security:
+    public:
+      paths: /**
+    http:
+      authorized-configurer-enabled: false

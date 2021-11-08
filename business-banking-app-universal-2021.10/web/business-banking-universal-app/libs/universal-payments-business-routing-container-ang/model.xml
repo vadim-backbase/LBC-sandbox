@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<catalog>
+  <container>
+    <name>bb-universal-payments-business-routing-container</name>
+    <properties>
+      <property name="classId">
+        <value>UniversalPaymentsBusinessRoutingContainerAngComponent</value>
+      </property>
+      <property name="src">
+        <value>$(itemRoot)/index.html</value>
+      </property>
+      <property name="render.requires">
+        <value>render-bb-widget-3</value>
+      </property>
+      <property name="title" label="Title" readonly="true" viewHint="admin,designModeOnly">
+        <value type="string">PaymentsRoutingContainer Widget</value>
+      </property>
+      <property name="thumbnailUrl">
+        <value>$(itemRoot)/icon.png</value>
+      </property>
+      <property name="label">
+        <value>Angular PaymentsRoutingContainer Widget</value>
+      </property>
+      <property
+        name="input.selectedPaymentTemplate"
+        label="Takes routing metadata"
+        viewHint="text-input,admin,designModeOnly">
+        <value>memory</value>
+      </property>
+      <property
+        name="output.viewAchPayment"
+        label="View conversation event with id"
+        viewHint="text-input,admin,designModeOnly">
+        <value>memory</value>
+      </property>
+      <property
+        name="output.viewPaymentWizard"
+        label="View transaction event with id"
+        viewHint="text-input,admin,designModeOnly">
+        <value>memory</value>
+      </property>
+      <property
+        name="output.viewWirePayment"
+        label="View arrangement event with id"
+        viewHint="text-input,admin,designModeOnly">
+        <value>memory</value>
+      </property>
+    </properties>
+  </container>
+</catalog>

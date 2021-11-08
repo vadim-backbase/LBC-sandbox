@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.backbase</groupId>
+    <artifactId>dbs</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>Backbase DBS :: Parent</name>
+
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <sig.secret.key>JWTSecretKeyDontUseInProduction!</sig.secret.key>
+        <user.context.key>JWTSecretKeyDontUseInProduction!</user.context.key>
+
+        <messaging.password>password</messaging.password>
+
+        <dbs.version>2021.10</dbs.version>
+
+        <jdbc.driver.groupId>mysql</jdbc.driver.groupId>
+        <jdbc.driver.artifactId>mysql-connector-java</jdbc.driver.artifactId>
+        <jdbc.driver.version>5.1.41</jdbc.driver.version>
+        <spring.datasource.username>root</spring.datasource.username>
+        <spring.datasource.password>root</spring.datasource.password>
+
+        <blade.openBrowserOnStartup>true</blade.openBrowserOnStartup>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.backbase</groupId>
+                <artifactId>backbase-bom</artifactId>
+                <version>${dbs.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <modules>
+        <module>access-control</module>
+        <module>account-statements</module>
+        <module>actions</module>
+        <module>approvals</module>
+        <module>audit</module>
+        <module>billpay</module>
+        <module>cash-flow</module>
+        <module>contacts</module>
+        <module>employee</module>
+        <module>limits</module>
+        <module>loans</module>
+        <module>message-center</module>
+        <module>notifications</module>
+        <module>payments</module>
+        <module>batches</module>
+        <module>product-summary</module>
+        <module>transactions</module>
+    </modules>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>com.backbase.oss</groupId>
+                    <artifactId>blade-maven-plugin</artifactId>
+                    <version>4.20.0</version>
+                    <configuration>
+                        <multiThreaded>true</multiThreaded>
+                        <!--<backbaseConfigDir>${project.build.directory}/config/backbase</backbaseConfigDir>-->
+                        <!--<contextFileDir>${project.build.directory}/config/tomcat/conf/Catalina/localhost/</contextFileDir>-->
+                        <!-- Generic System Properties for all services -->
+                        <masterBladeAddress>http://localhost:8080</masterBladeAddress>
+                        <systemProperties>
+                            <SIG_SECRET_KEY>${sig.secret.key}</SIG_SECRET_KEY>
+                            <USERCTX_KEY>${user.context.key}</USERCTX_KEY>
+                            <MESSAGING_PASSWORD>${messaging.password}</MESSAGING_PASSWORD>
+                            <messaging.password>${messaging.password}</messaging.password>
+
+                            <!-- Eureka Configuration -->
+                            <eureka.client.serviceUrl.defaultZone>http://localhost:8080/registry/eureka/</eureka.client.serviceUrl.defaultZone>
+                            <eureka.instance.hostname>localhost</eureka.instance.hostname>
+                            <eureka.instance.preferIpAddress>false</eureka.instance.preferIpAddress>
+
+                            <!-- Active MQ Configuration -->
+                            <spring.activemq.broker-url>tcp://localhost:61616</spring.activemq.broker-url>
+                            <spring.activemq.user>admin</spring.activemq.user>
+                            <spring.activemq.password>admin</spring.activemq.password>
+
+                            <!-- Disable logging encoding -->
+                            <logging.secured.enabled>false</logging.secured.enabled>
+
+                            <!-- Limit sizing of consumers -->
+                            <backbase.communication.consumer-options.maxConcurrentConsumers>5</backbase.communication.consumer-options.maxConcurrentConsumers>
+                            <backbase.communication.consumer-options.concurrentConsumers>1</backbase.communication.consumer-options.concurrentConsumers>
+                            <backbase.communication.consumer-options.maxMessagesPerTask>100</backbase.communication.consumer-options.maxMessagesPerTask>
+
+                            <spring.datasource.username>${spring.datasource.username}</spring.datasource.username>
+                            <spring.datasource.password>${spring.datasource.password}</spring.datasource.password>
+
+                        </systemProperties>
+
+                    </configuration>
+                    <dependencies>
+                        <dependency>
+                            <groupId>${jdbc.driver.groupId}</groupId>
+                            <artifactId>${jdbc.driver.artifactId}</artifactId>
+                            <version>${jdbc.driver.version}</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>3.0.0</version>
+                    <executions>
+                        <execution>
+                            <id>copy-war-files</id>
+                            <phase>process-resources</phase>
+                            <goals>
+                                <goal>copy-dependencies</goal>
+                            </goals>
+                            <configuration>
+                                <outputDirectory>${project.build.directory}</outputDirectory>
+                                <overWriteReleases>false</overWriteReleases>
+                                <overWriteSnapshots>false</overWriteSnapshots>
+                                <overWriteIfNewer>true</overWriteIfNewer>
+                                <stripVersion>true</stripVersion>
+                                <includeTypes>war,jar</includeTypes>
+                                <excludeScope>provided</excludeScope>
+                                <excludeTransitive>true</excludeTransitive>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>2.7</version>
+                    <configuration>
+                        <skip>true</skip>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>3.2.2</version>
+                    <configuration>
+                        <failOnMissingWebXml>false</failOnMissingWebXml>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+</project>

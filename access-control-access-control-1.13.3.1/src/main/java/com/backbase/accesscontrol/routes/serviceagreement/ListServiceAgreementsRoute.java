@@ -1,0 +1,24 @@
+package com.backbase.accesscontrol.routes.serviceagreement;
+
+import static com.backbase.accesscontrol.util.constants.EndpointConstants.DIRECT_BUSINESS_LIST_SERVICE_AGREEMENTS;
+import static com.backbase.accesscontrol.util.constants.EndpointConstants.DIRECT_DEFAULT_LIST_SERVICE_AGREEMENTS;
+
+import com.backbase.buildingblocks.backend.communication.extension.SimpleExtensibleRouteBuilder;
+import org.springframework.stereotype.Component;
+
+/**
+ * Configures the Camel route listening on direct component business.listServiceAgreements endpoint. This route forwards
+ * the received exchange to direct:listServiceAgreementsRequestedInternal.
+ */
+@Component
+public class ListServiceAgreementsRoute extends SimpleExtensibleRouteBuilder {
+
+    private static final String ROUTE_ID = "ListServiceAgreementsRoute";
+
+    /**
+     * Route for listing service agreements.
+     */
+    public ListServiceAgreementsRoute() {
+        super(ROUTE_ID, DIRECT_BUSINESS_LIST_SERVICE_AGREEMENTS, DIRECT_DEFAULT_LIST_SERVICE_AGREEMENTS);
+    }
+}

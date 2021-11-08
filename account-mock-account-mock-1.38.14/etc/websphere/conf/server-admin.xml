@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server description="defaultServer">
+    <featureManager>
+        <feature>servlet-4.0</feature>
+        <feature>adminCenter-1.0</feature>
+    </featureManager>
+    <basicRegistry id="basic">
+        <user name="admin" password="backbase" />
+    </basicRegistry>
+    <administrator-role>
+        <user>admin</user>
+    </administrator-role>
+    <remoteFileAccess>
+        <writeDir>${server.config.dir}</writeDir>
+    </remoteFileAccess>
+    <httpEndpoint host="*" httpPort="8080" httpsPort="8443" id="defaultHttpEndpoint" />
+    <webApplication contextRoot="/" location="root.war">
+        <classloader delegation="parentLast" />
+    </webApplication>
+</server>

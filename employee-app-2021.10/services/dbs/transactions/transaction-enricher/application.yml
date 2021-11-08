@@ -1,0 +1,17 @@
+---
+### Live profile
+spring:
+  profiles: live
+  datasource:
+    driver-class-name: ${spring.datasource.driver-class-name.transaction-enricher}
+    username: ${spring.datasource.username.transaction-enricher}
+    password: ${spring.datasource.password.transaction-enricher}
+    url: ${spring.datasource.url.transaction-enricher}
+
+backbase:
+  transaction:
+    enrichment:
+      provider: mock
+      mock:
+        errorMode: false
+

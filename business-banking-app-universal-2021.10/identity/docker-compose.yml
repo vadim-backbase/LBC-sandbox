@@ -1,0 +1,28 @@
+version: '3.5'
+services:
+  identity:
+#     image: harbor.backbase.eu/staging/backbase-identity:IDENTITY-1.9.3
+    image: repo.backbase.com/backbase-docker-releases/backbase-identity:IDENTITY-1.9.3
+    container_name: identity
+    environment:
+      KEYCLOAK_BACKBASE_EVENT_LISTENERS_AUDIT_INTEGRATIONSERVICEURL: "http://host.docker.internal:8092/audit-service"
+      KEYCLOAK_BACKBASE_DEVICE_URL: "http://host.docker.internal:8181/device-management-service"
+      KEYCLOAK_BACKBASE_FIDO_URL: "http://host.docker.internal:8181/fido-service"
+      KEYCLOAK_BACKBASE_OIDC_TOKEN_CONVERTER_URL: "http://host.docker.internal:8181/oidc-token-converter-service"
+      QUARKUS_DATASOURCE_URL: "jdbc:mysql://host.docker.internal:3306/backbase_identity?useSSL=false"
+      QUARKUS_DATASOURCE_USERNAME: "bbiam"
+      QUARKUS_DATASOURCE_PASSWORD: "bb1am:PW"
+      QUARKUS_DATASOURCE_DRIVER: "com.mysql.jdbc.Driver"
+      QUARKUS_LOG_FILE_ENABLE: "false"
+      KEYCLOAK_ADMIN: "admin"
+      KEYCLOAK_ADMIN_PASSWORD: "admin"
+      KEYCLOAK_CONNECTIONSJPA_QUARKUS_INITIALIZEEMPTY: "true"
+      KEYCLOAK_CONNECTIONSJPA_QUARKUS_MIGRATIONSTRATEGY: "update"
+      JAVA_TOOL_OPTIONS: "-Dkeycloak.migration.strategy=IGNORE_EXISTING -Dkeycloak.migration.action=import -Dkeycloak.profile.feature.upload_scripts=enabled"
+    ports:
+      - '8180:8080'
+      - '10090:10090'
+    volumes:
+      - ./backbase-identity/themes:/themes
+      - ./backbase-identity/providers:/providers
+      - ./backbase-identity/json:/tmp/keycloak-export

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.backbase</groupId>
+        <artifactId>batches</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>payment-batch</artifactId>
+
+    <packaging>pom</packaging>
+
+    <name>Backbase DBS :: Batches :: payment-batch</name>
+
+    <properties>
+        <spring.datasource.driver-class-name>com.mysql.jdbc.Driver</spring.datasource.driver-class-name>
+        <spring.datasource.url.payment-batch>jdbc:mysql://localhost:3306/payment_batch?useSSL=false</spring.datasource.url.payment-batch>
+        <spring.datasource.username.payment-batch>root</spring.datasource.username.payment-batch>
+        <spring.datasource.password.payment-batch>root</spring.datasource.password.payment-batch>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.backbase.batch</groupId>
+            <artifactId>payment-batch</artifactId>
+            <type>war</type>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.backbase.oss</groupId>
+                <artifactId>blade-maven-plugin</artifactId>
+
+                <configuration>
+                    <openBrowserOnStartup>false</openBrowserOnStartup>
+                    <detectAndConfigureSpringConfigLocation>true</detectAndConfigureSpringConfigLocation>
+                    <systemProperties>
+                        <spring.datasource.driver-class-name>${spring.datasource.driver-class-name}</spring.datasource.driver-class-name>
+                        <spring.datasource.url.payment-batch>${spring.datasource.url.payment-batch}</spring.datasource.url.payment-batch>
+                        <spring.datasource.username.payment-batch>${spring.datasource.username.payment-batch}</spring.datasource.username.payment-batch>
+                        <spring.datasource.password.payment-batch>${spring.datasource.password.payment-batch}</spring.datasource.password.payment-batch>
+                    </systemProperties>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

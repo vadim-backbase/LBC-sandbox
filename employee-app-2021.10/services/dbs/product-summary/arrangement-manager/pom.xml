@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <parent>
+        <groupId>com.backbase.apps</groupId>
+        <artifactId>product-summary</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>arrangement-manager</artifactId>
+    <packaging>pom</packaging>
+
+    <name>Backbase DBS :: Product Summary :: arrangement-manager</name>
+
+    <properties>
+        <spring.datasource.driver-class-name>com.mysql.jdbc.Driver</spring.datasource.driver-class-name>
+        <spring.datasource.url.arrangement-manager>jdbc:mysql://localhost:3306/arrangement_manager?useSSL=false</spring.datasource.url.arrangement-manager>
+        <spring.datasource.username.arrangement-manager>root</spring.datasource.username.arrangement-manager>
+        <spring.datasource.password.arrangement-manager>root</spring.datasource.password.arrangement-manager>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.backbase.dbs.arrangement</groupId>
+            <artifactId>arrangement-manager</artifactId>
+            <type>war</type>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.backbase.oss</groupId>
+                <artifactId>blade-maven-plugin</artifactId>
+
+                <configuration>
+                    <openBrowserOnStartup>false</openBrowserOnStartup>
+                    <detectAndConfigureSpringConfigLocation>true</detectAndConfigureSpringConfigLocation>
+                    <systemProperties>
+                        <spring.datasource.driver-class-name>${spring.datasource.driver-class-name}</spring.datasource.driver-class-name>
+                        <spring.datasource.url.arrangement-manager>${spring.datasource.url.arrangement-manager}</spring.datasource.url.arrangement-manager>
+                        <spring.datasource.username.arrangement-manager>${spring.datasource.username.arrangement-manager}</spring.datasource.username.arrangement-manager>
+                        <spring.datasource.password.arrangement-manager>${spring.datasource.password.arrangement-manager}</spring.datasource.password.arrangement-manager>
+                    </systemProperties>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

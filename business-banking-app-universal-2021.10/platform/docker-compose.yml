@@ -1,0 +1,39 @@
+version: "3.1"
+# https://docs.docker.com/compose/compose-file/
+
+services:
+
+  proxy:
+    image: nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - "8085:5555"
+      - "9085:6666"
+
+  activemq:
+    image: rmohr/activemq:5.14.0
+    container_name: backbase_activemq
+    ports:
+      - "61616:61616"
+      - "8161:8161"
+      - "5672:5672"
+      - "61613:61613"
+      - "1883:1883"
+      - "61614:61614"
+
+  mysql:
+    image: mysql:5.7.18
+    # Set max_allowed_packet to 512M for provisioning
+    command: --max-allowed-packet=512M --performance-schema=FALSE --transaction-isolation=READ-COMMITTED --init-connect='SET collation_connection=utf8mb4_unicode_ci' --init-connect='SET NAMES utf8mb4;' --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --lower-case-table-names=2 --max-connections=500
+    container_name: backbase_mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+     - "3306:3306"
+    volumes:
+      - ./mysql/config:/etc/mysql/conf.d
+      - backbase_mysql_data:/var/lib/mysql
+
+volumes:
+  backbase_mysql_data:

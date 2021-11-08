@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.backbase</groupId>
+    <artifactId>cx6-targeting</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+
+    <packaging>pom</packaging>
+
+    <name>Backbase CXS :: Parent</name>
+
+    <properties>
+        <project.root>${basedir}</project.root>
+        <data.dir>${project.root}/data</data.dir>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <mysql-connector.version>5.1.41</mysql-connector.version>
+
+        <port>9080</port>
+        <sig.secret.key>JWTSecretKeyDontUseInProduction!</sig.secret.key>
+        <user.context.key>JWTSecretKeyDontUseInProduction!</user.context.key>
+
+        <blade.openBrowserOnStartup>true</blade.openBrowserOnStartup>
+        <blade.multiThreaded>true</blade.multiThreaded>
+        <manager.url>http://localhost:7777/cxp-manager</manager.url>
+
+        <cx-bom.version>2021.10</cx-bom.version>
+
+        <liquibase.enabled>false</liquibase.enabled>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.backbase</groupId>
+                <artifactId>backbase-bom</artifactId>
+                <version>${cx-bom.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <modules>
+        <module>portal</module>
+        <module>contentservices</module>
+        <module>provisioning</module>
+        <module>targeting</module>
+        <module>auditing</module>
+        <module>renditionservice</module>
+        <module>thumbnailservice</module>
+        <module>push-integration-service</module>
+        <module>space-controller-service</module>
+    </modules>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.backbase.oss</groupId>
+                <artifactId>blade-maven-plugin</artifactId>
+                <version>4.20.0</version>
+                <inherited>false</inherited>
+                <configuration>
+                    <port>${port}</port>
+                    <name>Customer Experience Services</name>
+                    <backbaseConfigDir>${project.build.directory}/config/backbase</backbaseConfigDir>
+                    <contextFileDir>${project.build.directory}/config/tomcat/conf/Catalina/localhost/</contextFileDir>
+                    <masterBladeAddress>http://localhost:8080</masterBladeAddress>
+                    <systemProperties>
+                        <!-- File System directory CX6 will write too -->
+                        <BACKBASE_HOME>${project.basedir}/target/cx/</BACKBASE_HOME>
+
+                        <!-- Eureka Configuration -->
+                        <eureka.client.serviceUrl.defaultZone>http://localhost:8080/registry/eureka/</eureka.client.serviceUrl.defaultZone>
+                        <eureka.instance.hostname>localhost</eureka.instance.hostname>
+                        <eureka.instance.nonSecurePort>${port}</eureka.instance.nonSecurePort>
+                        <eureka.instance.preferIpAddress>false</eureka.instance.preferIpAddress>
+                        <server.port>${port}</server.port>
+
+                        <!-- Active MQ Configuration -->
+                        <spring.activemq.broker-url>tcp://localhost:61616</spring.activemq.broker-url>
+                        <spring.activemq.user>admin</spring.activemq.user>
+                        <spring.activemq.password>admin</spring.activemq.password>
+
+                        <!-- Disable logging encoding -->
+                        <logging.secured.enabled>false</logging.secured.enabled>
+
+                        <!-- Shared Secret key to validate Internal JWT signature -->
+                        <SIG_SECRET_KEY>${sig.secret.key}</SIG_SECRET_KEY>
+
+                        <!-- Turning on liquibase in CX6 services for local development -->
+                        <spring.liquibase.enabled>${liquibase.enabled}</spring.liquibase.enabled>
+
+                        <!-- Space-Controller -->
+
+                        <!-- Identity configuration -->
+                        <portal.experiences.configuration.authUrl>http://localhost:8180/auth</portal.experiences.configuration.authUrl>
+                        <portal.experiences.configuration.clientId>bb-web-client</portal.experiences.configuration.clientId>
+                        <portal.experiences.configuration.scope>openid</portal.experiences.configuration.scope>
+                        <portal.experiences.configuration.response_type>"code id_token token"</portal.experiences.configuration.response_type>
+                        <portal.experiences.configuration.kind>hybrid</portal.experiences.configuration.kind>
+                        <portal.experiences.configuration.realm>backbase</portal.experiences.configuration.realm>
+                    </systemProperties>
+                    <stages>
+                        <stage>
+                            <id>portal</id>
+                            <name>Portal Rendering Services</name>
+                            <autoStart>true</autoStart>
+                            <multiThreaded>${blade.multiThreaded}</multiThreaded>
+                            <webApps>
+                                <webApp>
+                                    <module>portal</module>
+                                </webApp>
+                                <webApp>
+                                    <module>contentservices</module>
+                                </webApp>
+                                <webApp>
+                                    <module>provisioning</module>
+                                </webApp>
+                                <webApp>
+                                    <module>space-controller-service</module>
+                                </webApp>
+                            </webApps>
+                        </stage>
+                        <stage>
+                            <id>editorial</id>
+                            <name>Editorial Services</name>
+                            <autoStart>true</autoStart>
+                            <multiThreaded>${blade.multiThreaded}</multiThreaded>
+                            <url>${manager.url}</url>
+                            <webApps>
+                                <webApp>
+                                    <module>auditing</module>
+                                </webApp>
+                                <webApp>
+                                    <module>renditionservice</module>
+                                </webApp>
+                                <webApp>
+                                    <module>thumbnailservice</module>
+                                </webApp>
+                            </webApps>
+                        </stage>
+                        <stage>
+                            <id>targeting</id>
+                            <name>Targeting Services</name>
+                            <autoStart>true</autoStart>
+                            <multiThreaded>${blade.multiThreaded}</multiThreaded>
+                            <webApps>
+                                <webApp>
+                                    <module>targeting</module>
+                                </webApp>
+                            </webApps>
+                        </stage>
+                        <stage>
+                            <id>mobile</id>
+                            <name>Mobile Services</name>
+                            <autoStart>false</autoStart>
+                            <multiThreaded>${blade.multiThreaded}</multiThreaded>
+                            <webApps>
+                                <webApp>
+                                    <module>push-integration-service</module>
+                                </webApp>
+                            </webApps>
+                        </stage>
+                    </stages>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>${mysql-connector.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.google.code.findbugs</groupId>
+                        <artifactId>jsr305</artifactId>
+                        <version>3.0.2</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>2.7</version>
+                    <configuration>
+                        <skip>true</skip>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>3.0.0</version>
+                    <executions>
+                        <execution>
+                            <id>copy-war-files</id>
+                            <phase>process-resources</phase>
+                            <goals>
+                                <goal>copy-dependencies</goal>
+                            </goals>
+                            <configuration>
+                                <outputDirectory>${project.build.directory}</outputDirectory>
+                                <overWriteReleases>false</overWriteReleases>
+                                <overWriteSnapshots>false</overWriteSnapshots>
+                                <overWriteIfNewer>true</overWriteIfNewer>
+                                <stripVersion>true</stripVersion>
+                                <includeTypes>jar</includeTypes>
+                                <excludeScope>provided</excludeScope>
+                                <excludeTransitive>true</excludeTransitive>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>sql-maven-plugin</artifactId>
+                    <version>1.5</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <profiles>
+
+        <profile>
+            <id>dist</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <version>3.0.0</version>
+                        <executions>
+                            <execution>
+                                <id>copy-war-files</id>
+                                <phase>process-resources</phase>
+                                <goals>
+                                    <goal>copy-dependencies</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>../target/dist</outputDirectory>
+                                    <overWriteReleases>false</overWriteReleases>
+                                    <overWriteSnapshots>false</overWriteSnapshots>
+                                    <overWriteIfNewer>true</overWriteIfNewer>
+                                    <stripVersion>true</stripVersion>
+                                    <includeTypes>war,jar</includeTypes>
+                                    <excludeScope>provided</excludeScope>
+                                    <excludeTransitive>true</excludeTransitive>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+</project>

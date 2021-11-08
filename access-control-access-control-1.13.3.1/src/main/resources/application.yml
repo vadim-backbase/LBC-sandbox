@@ -1,0 +1,72 @@
+### Common app properties
+spring:
+  profiles:
+    active: ${DBS_ACTIVE_PROFILE:live}
+  jmx:
+    default-domain: ${spring.application.name}
+  liquibase:
+    change-log: "classpath:db/changelog/db.changelog-persistence.xml"
+
+sso:
+  jwt:
+    internal:
+      signature:
+        key:
+          type: ENV
+          value: SIG_SECRET_KEY
+
+server:
+  error:
+    include-message: always
+
+backbase:
+  legalentity:
+    externalSearch:
+      validateOnPersistence: true
+  accesscontrol:
+    timezone: UTC
+    masterserviceagreement:
+      fallback:
+        enabled: true
+  accessgroup:
+    audit:
+      size: 100
+    timezone: UTC
+  usercontext:
+    jwtTokenExpiration: 300
+    signatureAndEncryption:
+      key:
+        type: ENV
+        value: USERCTX_KEY
+  communication:
+    consumer-options:
+      maxConcurrentConsumers: 25
+      concurrentConsumers: 5
+      maxMessagesPerTask: 100
+  eventsourcing:
+    commands-and-events-storage-enabled: false
+  data-group:
+    validation:
+      enabled: false
+    types:
+      - ARRANGEMENTS
+      - CONTACTS
+      - CUSTOMERS
+      - PAYEES
+  approval:
+    validation:
+      enabled: false
+    level:
+      enabled: false
+accesscontrol:
+  security:
+    cookies:
+      secure:
+        value: false
+      httpOnly:
+        value: false
+# Logging
+logging:
+  level:
+    com.backbase: INFO
+    org.springframework: WARN

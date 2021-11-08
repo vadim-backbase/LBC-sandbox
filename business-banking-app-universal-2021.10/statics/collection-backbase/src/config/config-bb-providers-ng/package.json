@@ -1,0 +1,6 @@
+{
+  "name": "cx6-config-bb-providers-ng",
+  "version": "1.0.0",
+  "description": "Global Angular config",
+  "main": "scripts/config-bb-providers-ng.js"
+}

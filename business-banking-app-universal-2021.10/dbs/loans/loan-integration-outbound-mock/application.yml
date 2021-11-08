@@ -1,0 +1,9 @@
+---
+### workaround for an issue in 2.18.0 release. Remove after 2.18.1
+spring:
+  profiles:
+    active: live
+---
+### Live profile
+spring:
+  profiles: live

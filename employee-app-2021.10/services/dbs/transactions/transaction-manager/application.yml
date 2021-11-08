@@ -1,0 +1,9 @@
+---
+### Live profile
+spring:
+  profiles: live
+  datasource:
+    driver-class-name: ${spring.datasource.driver-class-name.transaction-manager}
+    username: ${spring.datasource.username.transaction-manager}
+    password: ${spring.datasource.password.transaction-manager}
+    url: ${spring.datasource.url.transaction-manager}

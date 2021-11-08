@@ -1,0 +1,44 @@
+<catalog>
+    <page>
+        <name>employee-web-app-page</name>
+        <tags>
+            <tag type="regular" manageable="true">SPA</tag>
+        </tags>
+        <lockState>UNLOCKED</lockState>
+        <properties>
+            <property name="Description">
+                <value type="string">Master page for the Employee Web App single page application</value>
+            </property>
+            <property name="title">
+                <value type="string">Employee Web App SPA</value>
+            </property>
+            <property name="thumbnailUrl" manageable="true">
+                <value type="string">$(itemRoot)/icon.png</value>
+            </property>
+            <property name="src" manageable="true">
+                <value type="string">$(itemRoot)/employee-web-app.hbs</value>
+            </property>
+            <property name="maxInactivityDurationInSeconds" manageable="true" label="Idle time (in seconds) before an employee session is automatically logged out" viewHint="role=manager,designModeOnly" type="long">
+                <value>300</value>
+            </property>
+            <property name="identityAdminHref" manageable="true" label="Link to Backbase Identity admin console" viewHint="role=manager,designModeOnly">
+                <value type="string"></value>
+            </property>
+            <property name="paymentAdminHref" manageable="true" label="Link to Payment admin portal" viewHint="role=manager,designModeOnly">
+                <value type="string"></value>
+            </property>
+            <property name="productsPagePreferences:showSearchAfter" manageable="true" label="Show service agreement search only if the total number of service agreements is larger than the specified value on the products page" viewHint="role=manager,designModeOnly">
+                <value type="long"></value>
+            </property>
+            <property name="productsPagePreferences:serviceAgreementPageSize" manageable="true" label="Service agreement page size on the products page" viewHint="role=manager,designModeOnly">
+                <value type="long"></value>
+            </property>
+            <property name="maxPaymentOrders" manageable="true" label="Payment orders page size in the user mode" viewHint="role=manager,designModeOnly">
+                <value type="long"></value>
+            </property>
+            <property name="maxAccountsInCustomerOverview" manageable="true" label="Max products to show in the user overview page" viewHint="role=manager,designModeOnly">
+                <value type="long"></value>
+            </property>
+        </properties>
+    </page>
+</catalog>

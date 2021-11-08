@@ -1,0 +1,13 @@
+spring:
+  profiles: mssql
+  datasource:
+    url: jdbc:tc:sqlserver://localhost;instance=SQLEXPRESS;databaseName=dbs
+  jpa:
+    database-platform: org.hibernate.dialect.SQLServer2008Dialect
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.SQLServer2008Dialect
+
+backbase:
+  db:
+    cleanup: db/sql/mssql/cleanupTables.sql

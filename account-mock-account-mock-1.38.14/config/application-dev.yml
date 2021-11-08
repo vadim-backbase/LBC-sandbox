@@ -1,0 +1,23 @@
+### Dev profile
+spring:
+  profiles: dev
+  activemq:
+    in-memory: true
+    pooled: false
+    broker-url: tcp://localhost:61616
+server:
+  port: 8383
+
+logging:
+  level:
+    root: INFO
+
+sso.jwt.internal.signature.key:
+  type: VALUE
+  value: JWTSecretKeyDontUseInProduction!
+
+eureka.client.serviceUrl.defaultZone: http://localhost:8080/registry/eureka/
+
+logging.level:
+  root: WARN
+  com.backbase.account.mock: DEBUG

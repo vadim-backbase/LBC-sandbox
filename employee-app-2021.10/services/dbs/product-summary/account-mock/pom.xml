@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.backbase.apps</groupId>
+        <artifactId>product-summary</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>account-mock</artifactId>
+
+    <packaging>pom</packaging>
+
+    <name>Backbase DBS :: Product Summary :: account-mock</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.backbase.dbs.account</groupId>
+            <artifactId>account-mock</artifactId>
+            <type>war</type>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.backbase.oss</groupId>
+                <artifactId>blade-maven-plugin</artifactId>
+
+                <configuration>
+                    <openBrowserOnStartup>false</openBrowserOnStartup>
+                    <detectAndConfigureSpringConfigLocation>true</detectAndConfigureSpringConfigLocation>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

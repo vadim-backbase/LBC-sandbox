@@ -1,0 +1,61 @@
+---
+# SHARED CONFIGURATION
+defaults: &defaults
+  instances: 1
+  memory: 1GB
+  disk_quota: 300M
+  health-check-type: http
+  no-route: true
+  buildpacks:
+    - https://github.com/cloudfoundry/java-buildpack.git
+commonvariables: &commonvariables
+  EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: https://${x-registry-url}/eureka
+  EUREKA_INSTANCE_PREFER-IP-ADDRESS: true
+  EUREKA_INSTANCE_HOSTNAME: ${CF_INSTANCE_INTERNAL_IP}
+  EUREKA_INSTANCE_NON-SECURE-PORT: 8080
+  SIG_SECRET_KEY: JWTSecretKeyDontUseInProduction!
+  EXTERNAL_SIG_SECRET_KEY: JWTSecretKeyDontUseInProduction!
+  EXTERNAL_ENC_SECRET_KEY: JWTEncKeyDontUseInProduction666!
+  LOGGING_SECURED_ENABLED: false
+  JBP_CONFIG_DEBUG: '{enabled: true}'
+  JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 11.+ }}'
+
+# APPLICATION SPECIFIC CONFIGURATION
+applications:
+  - name: registry
+    <<: *defaults
+    no-route: false
+    routes:
+      - route: ${x-registry-url}
+    path: target/registry.war
+    health-check-http-endpoint: /actuator/health
+    env:
+      <<: *commonvariables
+  - name: edge
+    <<: *defaults
+    no-route: false
+    routes:
+      - route: ${x-edge-url}
+    path: target/edge.jar
+    health-check-http-endpoint: /actuator/health
+    env:
+      <<: *commonvariables
+  - name: token-converter
+    <<: *defaults
+    path: target/bb-authentication-token-converter-service.war
+    health-check-type: port
+    env:
+      <<: *commonvariables
+  - name: auth
+    <<: *defaults
+    path: target/authentication-dev.war
+    health-check-type: port
+    env:
+      <<: *commonvariables
+      SPRING_ACTIVEMQ_BROKER_URL: ${activemq-broker-url}
+      SPRING_ACTIVEMQ_USER: admin
+      SPRING_ACTIVEMQ_PASSWORD: admin
+      USERCTX_KEY: JWTSecretKeyDontUseInProduction!
+      SSO_JWT_EXTERNAL_EXPIRATION: 3600
+      SSO_JWT_EXTERNAL_RENEW: 1800
+      SSO_JWT_EXTERNAL_NOT-VALID-AFTER: 86400

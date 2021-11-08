@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.backbase</groupId>
+        <artifactId>dbs</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>account-statements</artifactId>
+    <name>Backbase DBS :: Account Statements</name>
+
+    <packaging>pom</packaging>
+
+    <properties>
+        <port>8095</port>
+    </properties>
+
+    <modules>
+        <module>account-statement-integration-mock</module>
+        <module>account-statement</module>
+    </modules>
+
+    <dependencies>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.0.2</version>
+                <inherited>false</inherited>
+                <executions>
+                    <execution>
+                        <id>clean</id>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>unpack-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <includeClassifiers>sql</includeClassifiers>
+                            <outputDirectory>${project.build.directory}/sql</outputDirectory>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>unpack-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <includeClassifiers>sql</includeClassifiers>
+                            <outputDirectory>${project.basedir}/files/sql</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>com.backbase.oss</groupId>
+                <artifactId>blade-maven-plugin</artifactId>
+                <inherited>false</inherited>
+                <configuration>
+                    <port>${port}</port>
+                    <detectAndConfigureSpringConfigLocation>true</detectAndConfigureSpringConfigLocation>
+                    <systemProperties>
+                        <!-- Eureka Configuration -->
+                        <eureka.instance.nonSecurePort>${port}</eureka.instance.nonSecurePort>
+                        <server.port>${port}</server.port>
+                        <!-- In-memory database configuration for integration mock -->
+                        <spring.datasource.driver-class-name>org.h2.Driver</spring.datasource.driver-class-name>
+                        <spring.datasource.username>sa</spring.datasource.username>
+                        <spring.datasource.password>password</spring.datasource.password>
+                    </systemProperties>
+                    <stages>
+                        <stage>
+                            <id>${project.artifactId}</id>
+                            <name>Account Statements</name>
+                            <multiThreaded>true</multiThreaded>
+                            <webApps>
+                                <webApp>
+
+                                    <module>account-statement-integration-mock</module>
+                                </webApp>
+                                <webApp>
+
+                                    <module>account-statement</module>
+                                </webApp>
+                            </webApps>
+                        </stage>
+                    </stages>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

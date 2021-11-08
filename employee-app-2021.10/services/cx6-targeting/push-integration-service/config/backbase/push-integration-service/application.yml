@@ -1,0 +1,21 @@
+
+backbase:
+  web:
+    security:
+      enabled: true
+  mobile:
+    ios:
+      isProduction: false
+      topic: "com.backbase.poc.pushnotifications"
+    android:
+      url: "https://fcm.googleapis.com/fcm/send"
+      key: "License key should be here"
+---
+spring:
+  profiles: mysql
+  datasource:
+    platform: mysql
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/pushintegration?useSSL=false
+    username: root
+    password: root

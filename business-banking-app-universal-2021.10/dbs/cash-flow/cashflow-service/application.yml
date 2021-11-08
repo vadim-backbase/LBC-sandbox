@@ -1,0 +1,26 @@
+---
+spring:
+  profiles:
+    active: live
+---
+### Live profile
+spring:
+  profiles: live
+  datasource:
+    driver-class-name: ${spring.datasource.driver-class-name}
+    username: ${spring.datasource.username.cashflow-service}
+    password: ${spring.datasource.password.cashflow-service}
+    url: ${spring.datasource.url.cashflow-service}
+  liquibase:
+    enabled: false
+
+backbase:
+  cashflow:
+    forecast-horizon:
+      week: 10
+      day: 14
+      month: 12
+    history-horizon:
+      week: 4
+      day: 7
+      month: 3

@@ -1,0 +1,7 @@
+#
+# Configuration file only for development
+#
+
+spring:
+  application:
+    name: thumbnailservice

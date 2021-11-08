@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <artifactId>service-sdk-starter-core</artifactId>
+    <groupId>com.backbase.buildingblocks</groupId>
+    <version>13.2.2</version>
+    <relativePath />
+  </parent>
+
+  <groupId>com.backbase.dbs.legalentity</groupId>
+  <artifactId>legalentity-integration-external-mock</artifactId>
+  <version>1.51.2.1</version>
+  <packaging>war</packaging>
+
+  <scm>
+    <developerConnection>scm:git:ssh://git@stash.backbase.com:7999/le/legalentity-integration-external-mock.git</developerConnection>
+    <tag>legalentity-integration-external-mock-1.51.2.1</tag>
+  </scm>
+
+  <distributionManagement>
+    <repository>
+      <id>Backbase Artifact Builds Repository</id>
+      <name>artifacts.backbase.com-builds</name>
+      <url>https://artifacts.backbase.com/staging</url>
+    </repository>
+  </distributionManagement>
+
+  <properties>
+    <auth-security-dbs-accesscontrol.version>1.50.4</auth-security-dbs-accesscontrol.version>
+
+    <access-control-openapi-spec.version>1.0.73</access-control-openapi-spec.version>
+    <legalentity-integration-outbound-api.version>2.1.0</legalentity-integration-outbound-api.version>
+
+    <!-- Docker -->
+    <docker.websphere.skip>false</docker.websphere.skip>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.backbase.buildingblocks</groupId>
+      <artifactId>communication</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.backbase.dbs.accesscontrol</groupId>
+      <artifactId>auth-security-dbs-accesscontrol</artifactId>
+      <version>${auth-security-dbs-accesscontrol.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.springframework.cloud</groupId>
+          <artifactId>spring-cloud-starter-kubernetes-ribbon</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>com.backbase.buildingblocks</groupId>
+      <artifactId>building-blocks-common</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.backbase.buildingblocks</groupId>
+      <artifactId>auth-security</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.backbase.buildingblocks</groupId>
+      <artifactId>events</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.backbase.buildingblocks</groupId>
+      <artifactId>api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.backbase.buildingblocks</groupId>
+      <artifactId>validation</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.backbase.buildingblocks</groupId>
+      <artifactId>communication</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.backbase.buildingblocks</groupId>
+      <artifactId>service-sdk-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.vintage</groupId>
+      <artifactId>junit-vintage-engine</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.github.tomakehurst</groupId>
+      <artifactId>wiremock</artifactId>
+      <version>2.22.0</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.swagger</groupId>
+      <artifactId>swagger-annotations</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.openapitools</groupId>
+      <artifactId>jackson-databind-nullable</artifactId>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>unpack</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>com.backbase.dbs.accesscontrol</groupId>
+                  <artifactId>access-control-openapi-spec</artifactId>
+                  <version>${access-control-openapi-spec.version}</version>
+                  <outputDirectory>${project.build.directory}</outputDirectory>
+                  <classifier>api</classifier>
+                  <type>zip</type>
+                  <overWrite>true</overWrite>
+                </artifactItem>
+              </artifactItems>
+              <includes>**/*.yaml, **/*.json</includes>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.openapitools</groupId>
+        <artifactId>openapi-generator-maven-plugin</artifactId>
+        <version>4.3.1</version>
+        <executions>
+          <execution>
+            <id>generate-client-api-code</id>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <output>${project.build.directory}/generated-sources/</output>
+          <generateSupportingFiles>true</generateSupportingFiles>
+          <generatorName>spring</generatorName>
+          <strictSpec>true</strictSpec>
+          <generateApiTests>false</generateApiTests>
+          <generateModelTests>false</generateModelTests>
+          <inputSpec>${project.build.directory}/access-control/legalentity-integration-outbound-api-v${legalentity-integration-outbound-api.version}.yaml</inputSpec>
+          <configOptions>
+            <importMappings>
+              <importMapping>request=javax.servlet.http.HttpServletRequest</importMapping>
+              <importMapping>response=javax.servlet.http.HttpServletResponse</importMapping>
+            </importMappings>
+            <library>spring-mvc</library>
+            <dateLibrary>legacy</dateLibrary>
+            <interfaceOnly>true</interfaceOnly>
+            <skipDefaultInterface>true</skipDefaultInterface>
+            <useBeanValidation>true</useBeanValidation>
+            <useClassLevelBeanValidation>false</useClassLevelBeanValidation>
+            <useTags>true</useTags>
+            <java8>true</java8>
+            <useOptional>false</useOptional>
+            <apiPackage>com.backbase.integration.legalentity.external.outbound.rest.spec.serviceapi.v2.legalentities</apiPackage>
+            <modelPackage>com.backbase.integration.legalentity.external.outbound.rest.spec.v2.legalentities</modelPackage>
+          </configOptions>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <profiles>
+    <!-- docker-image-websphere -->
+    <profile>
+      <id>docker-image-websphere</id>
+      <properties>
+        <skip.integration.tests>true</skip.integration.tests>
+        <skip.unit.tests>true</skip.unit.tests>
+      </properties>
+      <dependencies>
+        <!-- additional config -->
+        <dependency>
+          <groupId>com.backbase.buildingblocks</groupId>
+          <artifactId>auxiliary-config</artifactId>
+        </dependency>
+
+        <!-- add cloud stream binders -->
+        <dependency>
+          <groupId>org.springframework.cloud</groupId>
+          <artifactId>spring-cloud-stream-binder-rabbit</artifactId>
+          <scope>${docker.scs.rabbit}</scope>
+        </dependency>
+
+        <dependency>
+          <groupId>org.springframework.cloud</groupId>
+          <artifactId>spring-cloud-stream-binder-kafka</artifactId>
+          <scope>${docker.scs.kafka}</scope>
+        </dependency>
+
+        <!-- add embedded tomcat -->
+        <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-tomcat</artifactId>
+          <scope>${docker.runtime.tomcat}</scope>
+        </dependency>
+      </dependencies>
+
+      <build>
+        <plugins>
+          <!-- generate "docker.default.tag" which typically is project.version -->
+          <plugin>
+            <groupId>org.codehaus.gmavenplus</groupId>
+            <artifactId>gmavenplus-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>set-properties</id>
+                <phase>initialize</phase>
+                <goals>
+                  <goal>execute</goal>
+                </goals>
+                <configuration>
+                  <scripts>
+                    <script>
+                      <![CDATA[
+                                                tag = "${project.version}".minus("-SNAPSHOT")
+
+                                                project.properties.setProperty('docker.default.tag', tag)
+                                                println "docker.default.tag: " + project.properties['docker.default.tag']
+                                            ]]>
+                    </script>
+                  </scripts>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <!-- build image -->
+          <plugin>
+            <groupId>com.google.cloud.tools</groupId>
+            <artifactId>jib-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>websphere-image</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>build</goal>
+                </goals>
+                <configuration>
+                  <skip>${docker.websphere.skip}</skip>
+                  <from>
+                    <image>websphere-liberty:19.0.0.9-javaee8-java11</image>
+                  </from>
+                  <to>
+                    <image>${docker.image.name}:${docker.default.tag}-websphere-19</image>
+                    <tags>
+                      <tag>${docker.default.tag}-websphere-19</tag>
+                      <tag>latest-websphere-19</tag>
+                    </tags>
+                  </to>
+                  <container>
+                    <ports>
+                      <port>8186</port>
+                    </ports>
+                    <appRoot>/opt/ibm/wlp/usr/servers/defaultServer/apps/root.war/</appRoot>
+                    <entrypoint>
+                      <![CDATA[sh,-c, printenv > /opt/ibm/wlp/usr/servers/defaultServer/server.env && echo 'SPRING_AUTOCONFIGURE_EXCLUDE=com.backbase.buildingblocks.eureka.ManagementMetadataProviderAutoConfiguration\n' >> /opt/ibm/wlp/usr/servers/defaultServer/server.env && echo '<?xml version="1.0" encoding="UTF-8"?><server description="defaultServer">\n<featureManager><feature>javaee-8.0</feature></featureManager><httpEndpoint host="*" httpPort="8080" httpsPort="8443" id="defaultHttpEndpoint" /><webApplication contextRoot="/" location="root.war" /></server>' > /config/server.xml && /opt/ibm/wlp/bin/installUtility install defaultServer && /opt/ibm/helpers/runtime/docker-server.sh /opt/ibm/wlp/bin/server run defaultServer]]>
+                    </entrypoint>
+                    <user>root</user>
+                  </container>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+</project>

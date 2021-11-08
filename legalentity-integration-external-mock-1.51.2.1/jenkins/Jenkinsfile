@@ -1,0 +1,5 @@
+@Library(['AC-library@latest_v17', 'jenkins-shared-library@latest']) _
+serviceMockBuildPipeline(
+        PROJECT_KEY: "LE",
+        TEAM_CHANEL: "#AC-jenkins"
+)

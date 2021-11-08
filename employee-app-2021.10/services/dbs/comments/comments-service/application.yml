@@ -1,0 +1,9 @@
+---
+### Live profile
+spring:
+  profiles: live
+  datasource:
+    driver-class-name: ${spring.datasource.driver-class-name}
+    username: ${spring.datasource.username.comments}
+    password: ${spring.datasource.password.comments}
+    url: ${spring.datasource.url.comments}

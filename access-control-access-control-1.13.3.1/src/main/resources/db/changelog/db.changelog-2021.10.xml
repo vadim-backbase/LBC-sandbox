@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+	<property dbms="mysql,mariadb" name="db.type" value="mysql" />
+	<property dbms="mssql" name="db.type" value="mssql" />
+	<property dbms="oracle" name="db.type" value="oracle" />
+
+	<property dbms="mysql,mariadb" name="varcharDataType" value="VARCHAR" />
+	<property dbms="mssql" name="varcharDataType" value="NVARCHAR" />
+	<property dbms="oracle" name="varcharDataType" value="VARCHAR2" />
+
+	<property dbms="mysql,mssql,mariadb" name="fixedPointDataType" value="DECIMAL" />
+	<property dbms="oracle" name="fixedPointDataType" value="NUMBER" />
+
+	<!-- change sets for table 'self_appr_policy' -->
+
+	<changeSet id="2021.10_001" context="upgrade_2021_09_to_2021_10" author="backbase"
+		dbms="mysql,mariadb,mssql,oracle">
+		<comment>Add table self_appr_policy</comment>
+		<createTable tableName="self_appr_policy"
+			remarks="Contains self-approval policies telling whether users can approve actions or payments initiated by themeselves from specific account groups to specific payee groups in context of given service agreement and job role.">
+			<column name="id" type="${varcharDataType}(36)" remarks="ID of the self-approval policy">
+				<constraints nullable="false" primaryKey="true" primaryKeyName="pk_sap" />
+			</column>
+			<column name="ua_fg_combination_id" type="bigint"
+				remarks="ID of the target combination of account groups plus payee groups for user">
+				<constraints nullable="false" unique="true" uniqueConstraintName="uq_sap_01"
+					foreignKeyName="fk_sap2uafgc" referencedTableName="user_assigned_fg_combination" referencedColumnNames="id" />
+			</column>
+			<column name="function_group_id" type="${varcharDataType}(36)" remarks="ID of the target job role">
+				<constraints nullable="false" />
+			</column>
+			<column name="afp_id" type="${varcharDataType}(36)"
+				remarks="ID of the target business function 'approve' privilege inside the job role">
+				<constraints nullable="false" unique="true" uniqueConstraintName="uq_sap_01" />
+			</column>
+			<column name="can_self_approve" type="boolean"
+				remarks="boolean flag telling whether user is allowed to self-approve">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+
+	<changeSet id="2021.10_002" context="upgrade_2021_09_to_2021_10" author="backbase"
+		dbms="mysql,mariadb,mssql,oracle">
+		<comment>Add foreign key to self_appr_policy table</comment>
+		<addForeignKeyConstraint baseTableName="self_appr_policy"
+			baseColumnNames="function_group_id, afp_id" constraintName="fk_sap2fgitem" referencedTableName="function_group_item"
+			referencedColumnNames="function_group_id, afp_id" />
+	</changeSet>
+
+	<!-- change sets for table 'self_appr_policy_bound' -->
+
+	<changeSet id="2021.10_003" context="upgrade_2021_09_to_2021_10" author="backbase"
+		dbms="mysql,mariadb,mssql,oracle">
+		<comment>Add table self_appr_policy_bound</comment>
+		<createTable tableName="self_appr_policy_bound"
+			remarks="Optionally defines boundaries in different currecies for payments that can be self-approved by users">
+			<column name="id" type="${varcharDataType}(36)" remarks="ID of the self-approval policy bound">
+				<constraints nullable="false" primaryKey="true" primaryKeyName="pk_sapb" />
+			</column>
+			<column name="self_appr_policy_id" type="${varcharDataType}(36)"
+				remarks="ID of the target self-approval policy">
+				<constraints nullable="false" unique="true" uniqueConstraintName="uq_sapb_01"
+					foreignKeyName="fk_sapb2sap" referencedTableName="self_appr_policy" referencedColumnNames="id" />
+			</column>
+			<column name="upper_bound" type="${fixedPointDataType}(23,5)"
+				remarks="Max transaction amount that can be self-approved">
+				<constraints nullable="false" />
+			</column>
+			<column name="currency_code" type="${varcharDataType}(3)"
+				remarks="Max transaction amount currency, e.g. 'EUR'">
+				<constraints nullable="false" unique="true" uniqueConstraintName="uq_sapb_01" />
+			</column>
+		</createTable>
+	</changeSet>
+
+	<!-- change sets for table 'approval_self_appr_policy' -->
+
+	<changeSet id="2021.10_004" context="upgrade_2021_09_to_2021_10" author="backbase"
+		dbms="mysql,mariadb,mssql,oracle">
+		<comment>Add table approval_self_appr_policy</comment>
+		<createTable tableName="approval_self_appr_policy"
+			remarks="Contains self-approval policies that are pending user permissions assignment">
+			<column name="id" type="${varcharDataType}(36)" remarks="ID of the pending self-approval policy">
+				<constraints nullable="false" primaryKey="true" primaryKeyName="pk_asap" />
+			</column>
+			<column name="approval_uc_assign_fg_id" type="bigint"
+				remarks="ID of the pending combination of account groups plus payee groups for user">
+				<constraints nullable="false" unique="true" uniqueConstraintName="uq_asap_01"
+					foreignKeyName="fk_asap2aucafg" referencedTableName="approval_uc_assign_fg" referencedColumnNames="id" />
+			</column>
+			<column name="function_group_id" type="${varcharDataType}(36)" remarks="ID of the target job role">
+				<constraints nullable="false" />
+			</column>
+			<column name="afp_id" type="${varcharDataType}(36)"
+				remarks="ID of the target business function 'approve' privilege inside the job role">
+				<constraints nullable="false" unique="true" uniqueConstraintName="uq_asap_01" />
+			</column>
+			<column name="can_self_approve" type="boolean"
+				remarks="boolean flag telling whether user is allowed to self-approve">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+
+	<changeSet id="2021.10_005" context="upgrade_2021_09_to_2021_10" author="backbase"
+		dbms="mysql,mariadb,mssql,oracle">
+		<comment>Add foreign key to approval_self_appr_policy table</comment>
+		<addForeignKeyConstraint baseTableName="approval_self_appr_policy"
+			baseColumnNames="function_group_id, afp_id" constraintName="fk_asap2fgitem" referencedTableName="function_group_item"
+			referencedColumnNames="function_group_id, afp_id" />
+	</changeSet>
+
+	<!-- change sets for table 'approval_self_appr_policy_bound' -->
+
+	<changeSet id="2021.10_006" context="upgrade_2021_09_to_2021_10" author="backbase"
+		dbms="mysql,mariadb,mssql,oracle">
+		<comment>Add table approval_self_appr_policy_bound</comment>
+		<createTable tableName="approval_self_appr_policy_bound"
+			remarks="Contains optional boundaries for pending self-approval policies">
+			<column name="id" type="${varcharDataType}(36)" remarks="ID of the pending self-approval policy bound">
+				<constraints nullable="false" primaryKey="true" primaryKeyName="pk_asapb" />
+			</column>
+			<column name="approval_self_appr_policy_id" type="${varcharDataType}(36)"
+				remarks="ID of the pending self-approval policy">
+				<constraints nullable="false" unique="true" uniqueConstraintName="uq_asapb_01"
+					foreignKeyName="fk_asapb2asap" referencedTableName="approval_self_appr_policy" referencedColumnNames="id" />
+			</column>
+			<column name="upper_bound" type="${fixedPointDataType}(23,5)"
+				remarks="Max transaction amount that can be self-approved">
+				<constraints nullable="false" />
+			</column>
+			<column name="currency_code" type="${varcharDataType}(3)"
+				remarks="Max transaction amount currency, e.g. 'EUR'">
+				<constraints nullable="false" unique="true" uniqueConstraintName="uq_asapb_01" />
+			</column>
+		</createTable>
+	</changeSet>
+
+	<!-- tags -->
+
+	<changeSet id="2021.10_007" context="upgrade_2021_09_to_2021_10" author="backbase">
+		<tagDatabase tag="2021.10" />
+	</changeSet>
+
+</databaseChangeLog>

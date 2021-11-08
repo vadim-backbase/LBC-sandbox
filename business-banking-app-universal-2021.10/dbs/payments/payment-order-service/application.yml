@@ -1,0 +1,452 @@
+---
+### Live profile
+spring:
+  profiles: live
+  datasource:
+    driver-class-name: ${spring.datasource.driver-class-name}
+    username: ${spring.datasource.username.payment-order-service}
+    password: ${spring.datasource.password.payment-order-service}
+    url: ${spring.datasource.url.payment-order-service}
+
+backbase:
+  communication:
+    services:
+      dbs:
+        integration:
+          external:
+            outbound:
+              paymentorder:
+                service-id: payment-order-core-mock-service
+
+  payments:
+    approval:
+      enabled: true
+    batches:
+      approval:
+        enabled: true
+      supported-batch-upload-types: 
+        - BB_SEPACT_CSV
+    rules:
+      has-counterparty-name:
+        type: mandatory-field
+        attribute: transferTransactionInformation.counterparty.name
+        when:
+        - post-enrich
+      has-counterparty-account-arrangement:
+        type: mandatory-field
+        attribute: transferTransactionInformation.counterpartyAccount.arrangementId
+        when:
+        - post-enrich
+      has-counterparty-role:
+        type: mandatory-field
+        attribute: transferTransactionInformation.counterparty.role
+        when:
+        - pre-enrich
+      has-counterparty:
+        type: mandatory-field
+        attribute: transferTransactionInformation.counterparty
+        when:
+        - pre-enrich
+        - post-enrich
+      non-zero-transaction:
+        type: SpEL-field
+        attribute: transferTransactionInformation?.instructedAmount?.amount > 0
+        when:
+        - pre-enrich
+        configuration:
+          message: instructedAmount must be greater than 0
+      valid-fast-payment-amount:
+        type: SpEL-field
+        attribute: transferTransactionInformation?.instructedAmount?.amount le 250000
+        when:
+        - pre-enrich
+        configuration:
+          message: instructedAmount must be less or equal to 250.000
+      any-identifiable-counterparty-information:
+        type: or
+        when:
+        - pre-enrich
+        configuration:
+          left: has-counterparty-name
+          right: has-counterparty-account-arrangement
+      has-counterparty-account-type:
+        type: mandatory-field
+        attribute: transferTransactionInformation.counterpartyAccount.accountType
+        when:
+        - pre-enrich
+      has-entry-class:
+        type: mandatory-field
+        attribute: entryClass
+        when:
+        - pre-enrich
+      valid-entry-class:
+        type: SpEL-field
+        attribute: entryClass eq 'PPD' || entryClass eq 'CCD'
+        when:
+        - pre-enrich
+      valid-counterparty-account-type:
+        type: SpEL-field
+        attribute: transferTransactionInformation.counterpartyAccount.accountType eq 'CHECKING' || transferTransactionInformation.counterpartyAccount.accountType eq 'SAVINGS'
+        when:
+        - pre-enrich
+      has-counterparty-bank:
+        type: mandatory-field
+        attribute: transferTransactionInformation.counterpartyBank
+        when:
+        - pre-enrich
+      has-counterparty-aba-rtn:
+        type: mandatory-field
+        attribute: transferTransactionInformation.counterpartyBank.bankBranchCode
+        when:
+        - pre-enrich
+      has-counterparty-bank-branch-code:
+        type: mandatory-field
+        attribute: transferTransactionInformation.counterpartyBank.bankBranchCode
+        when:
+        - pre-enrich
+      counterparty-aba-rtn-is-valid:
+        type: aba-rtn-valid
+        attribute: transferTransactionInformation.counterpartyBank.bankBranchCode
+        when:
+        - pre-enrich
+      has-counterparty-bank-bic:
+        type: mandatory-field
+        attribute: transferTransactionInformation.counterpartyBank.bic
+        when:
+        - pre-enrich
+      has-counterparty-bank-address:
+        type: mandatory-field
+        attribute: transferTransactionInformation.counterpartyBank.postalAddress
+        when:
+        - pre-enrich
+      has-correspondent-aba-rtn:
+        type: mandatory-field
+        attribute: transferTransactionInformation.correspondentBank.bankBranchCode
+        when:
+        - pre-enrich
+      correspondent-aba-rtn-is-valid:
+        type: aba-rtn-valid
+        attribute: transferTransactionInformation?.correspondentBank?.bankBranchCode
+        when:
+        - pre-enrich
+      correspondent-bank-is-null:
+        type: SpEL-field
+        attribute: transferTransactionInformation.correspondentBank eq null
+        when:
+        - pre-enrich
+      valid-instructed-amount-currency:
+        type: SpEL-field
+        attribute: transferTransactionInformation?.instructedAmount?.currencyCode eq 'USD'
+        when:
+        - pre-enrich
+        configuration:
+          message: instructedAmount currencyCode must be USD
+      instructed-amount-currency-gbp:
+        type: SpEL-field
+        attribute: transferTransactionInformation?.instructedAmount?.currencyCode eq 'GBP'
+        when:
+        - pre-enrich
+        configuration:
+          message: instructedAmount currencyCode must be GBP
+      has-counterparty-account-identification:
+        type: mandatory-field
+        attribute: transferTransactionInformation.counterpartyAccount.identification.identification
+        when:
+        - post-enrich
+      valid-originator-account-currency:
+        type: account-currency
+        when:
+        - post-enrich
+        configuration:
+          allowed-currencies: USD,CAD
+          match-amount-currency: true
+      valid-originator-account-currency-usd:
+        type: account-currency
+        when:
+        - post-enrich
+        configuration:
+          allowed-currencies: USD
+          match-amount-currency: true
+      valid-counterparty-account-scheme-name-extid:
+        type: SpEL-field
+        attribute: transferTransactionInformation.counterpartyAccount.identification.schemeName.toString() eq 'EXTERNAL_ID'
+        when:
+        - pre-enrich
+        configuration:
+          message: Counterparty schemeName must be EXTERNAL_ID
+      amount-number-of-decimals-is-valid:
+        type: amount-decimals-valid
+        attribute: transferTransactionInformation.instructedAmount
+        when:
+        - pre-enrich
+      intermediary-aba-rtn-is-valid:
+        type: aba-rtn-valid
+        attribute: transferTransactionInformation?.intermediaryBank?.bankBranchCode
+        when:
+        - post-enrich
+      has-intermediary-bank-valid:
+        type: SpEL-field
+        attribute: "(transferTransactionInformation.intermediaryBank?.bankBranchCode ne null && transferTransactionInformation.intermediaryBank?.bankBranchCode?.trim() ne '') || (transferTransactionInformation.intermediaryBank?.bic ne null && transferTransactionInformation.intermediaryBank?.bic?.trim() ne '')"
+        when:
+        - post-enrich
+      has-no-intermediary-bank:
+        type: SpEL-field
+        attribute: transferTransactionInformation.intermediaryBank eq null
+        when:
+        - post-enrich
+      valid-intermediary-bank:
+        type: or
+        when:
+        - post-enrich
+        configuration:
+          left: has-no-intermediary-bank
+          right: has-intermediary-bank-valid
+          message: Either branch code (ABA RTN) or BIC should be filled for intermediary bank
+      valid-target-currency:
+        type: SpEL-field
+        attribute: transferTransactionInformation?.targetCurrency eq transferTransactionInformation?.instructedAmount?.currencyCode
+        when:
+        - post-enrich
+      amount-and-target-currency-valid:
+        type: or
+        when:
+        - post-enrich
+        configuration:
+          left: valid-instructed-amount-currency
+          right: valid-target-currency
+          message: Either [instructedAmount.currencyCode and targetCurrency] must be the same or [instructedAmount.currencyCode must be USD]
+      correspondent-aba-rtn-present:
+        type: or
+        when:
+        - pre-enrich
+        configuration:
+          left: correspondent-bank-is-null
+          right: has-correspondent-aba-rtn
+          message: Missing mandatory field [transferTransactionInformation.correspondentBank.bankBranchCode]
+      correspondent-aba-rtn-valid-if-present:
+        type: or
+        when:
+        - pre-enrich
+        configuration:
+          left: correspondent-bank-is-null
+          right: correspondent-aba-rtn-is-valid
+          message: Correspondent bank abaRtn is not valid
+      valid-counterparty-account-scheme-name-iban:
+        type: SpEL-field
+        attribute: transferTransactionInformation.counterpartyAccount.identification.schemeName.toString() eq 'IBAN'
+        when:
+        - post-enrich
+        configuration:
+          message: Invalid counterparty account identification scheme
+      valid-counterparty-account-scheme-name-bban:
+        type: SpEL-field
+        attribute: transferTransactionInformation.counterpartyAccount.identification.schemeName.toString() eq 'BBAN'
+        when:
+        - post-enrich
+        configuration:
+          message: Invalid counterparty account identification scheme
+      valid-counterparty-account-iban:
+        type: valid-iban
+        attribute: transferTransactionInformation.counterpartyAccount.identification.identification
+        when:
+        - post-enrich
+      valid-originator-account-scheme-name-iban:
+        type: SpEL-field
+        attribute: originatorAccount.identification.schemeName.toString() eq 'IBAN'
+        when:
+        - post-enrich
+        configuration:
+          message: Invalid originator identification scheme
+      valid-originator-account-iban:
+        type: valid-iban
+        attribute: originatorAccount.identification.identification
+        when:
+        - post-enrich
+      valid-originator-account-iban-country:
+        type: valid-iban-country
+        attribute: originatorAccount.identification
+        when:
+        - post-enrich
+        configuration:
+          message: Invalid country code in originator IBAN
+      valid-counterparty-account-iban-country:
+        type: valid-iban-country
+        attribute: transferTransactionInformation.counterpartyAccount.identification
+        when:
+        - post-enrich
+        configuration:
+          message: Invalid country code in counterparty IBAN
+      valid-instructed-amount-currency-sepa:
+        type: valid-sepa-currency
+        attribute: transferTransactionInformation.instructedAmount.currencyCode
+        when:
+        - post-enrich
+      valid-uk-bank-branch-code:
+        type: SpEL-field
+        attribute: transferTransactionInformation.counterpartyBank.bankBranchCode matches '\d{6}'
+        when:
+        - pre-enrich
+      originator-arrangement-currency-gbp:
+        type: SpEL-field
+        spelRoot: extended
+        attribute: originatorArrangement.currency eq 'GBP'
+        when:
+        - post-enrich
+        configuration:
+          message: Invalid originator account currency
+      originator-account-must-be-current:
+        type: SpEL-field
+        spelRoot: extended
+        attribute: originatorArrangement.product.productKind.kindUri == 'current-account'
+        when:
+        - post-enrich
+      originator-account-must-be-savings:
+        type: SpEL-field
+        spelRoot: extended
+        attribute: originatorArrangement.product.productKind.kindUri == 'savings-account'
+        when:
+        - post-enrich
+      originator-account-must-be-credit-card:
+        type: SpEL-field
+        spelRoot: extended
+        attribute: originatorArrangement.product.productKind.kindUri == 'credit-card'
+        when:
+        - post-enrich
+      originator-account-must-be-loan:
+        type: SpEL-field
+        spelRoot: extended
+        attribute: originatorArrangement.product.productKind.kindUri == 'loan'
+        when:
+        - post-enrich
+      counterparty-account-must-be-savings:
+        type: SpEL-field
+        spelRoot: extended
+        attribute: counterpartyArrangement.product.productKind.kindUri == 'savings-account'
+        when:
+        - post-enrich
+      counterparty-account-must-be-current:
+        type: SpEL-field
+        spelRoot: extended
+        attribute: counterpartyArrangement.product.productKind.kindUri == 'current-account'
+        when:
+        - post-enrich
+      has-valid-sanctioned-currency:
+        type: valid-sanctioned-currency
+        when:
+        - post-enrich
+      has-valid-sanctioned-country:
+        type: valid-sanctioned-country
+        when:
+        - post-enrich
+      has-valid-payment-options:
+        type: valid-payment-options
+        when:
+        - post-enrich
+    types:
+      ACH_CREDIT:
+        validation:
+          rules:
+          - non-zero-transaction
+          - has-entry-class
+          - valid-entry-class
+          - has-counterparty-account-type
+          - valid-counterparty-account-type
+          - has-counterparty-bank
+          - has-counterparty-aba-rtn
+          - counterparty-aba-rtn-is-valid
+          - correspondent-aba-rtn-is-valid
+          - valid-instructed-amount-currency
+      ACH_DEBIT:
+        validation:
+          rules:
+          - non-zero-transaction
+          - has-counterparty
+          - has-counterparty-name
+          - has-counterparty-bank
+          - has-counterparty-aba-rtn
+          - counterparty-aba-rtn-is-valid
+          - has-counterparty-account-identification
+          - valid-originator-account-currency
+      EXTERNAL_A2A:
+        core-bank-route-id: payment-order-a2a
+        validation:
+          rules:
+          - non-zero-transaction
+          - has-counterparty
+          - has-counterparty-name
+          - has-counterparty-role
+          - has-counterparty-account-identification
+          - valid-counterparty-account-scheme-name-extid
+          - valid-originator-account-currency-usd
+          - valid-instructed-amount-currency
+      US_DOMESTIC_WIRE:
+        validation:
+          rules:
+          - non-zero-transaction
+          - valid-instructed-amount-currency
+          - amount-number-of-decimals-is-valid
+          - has-counterparty
+          - has-counterparty-name
+          - has-counterparty-bank
+          - has-counterparty-aba-rtn
+          - counterparty-aba-rtn-is-valid
+          - correspondent-aba-rtn-present
+          - correspondent-aba-rtn-is-valid
+      US_FOREIGN_WIRE:
+        validation:
+          rules:
+          - non-zero-transaction
+          - amount-and-target-currency-valid
+          - amount-number-of-decimals-is-valid
+          - has-counterparty
+          - has-counterparty-name
+          - has-counterparty-bank
+          - has-counterparty-bank-bic
+          - correspondent-aba-rtn-present
+          - correspondent-aba-rtn-is-valid
+          - valid-intermediary-bank
+          - intermediary-aba-rtn-is-valid
+      SEPA_CREDIT_TRANSFER:
+        business-function: SEPA CT
+        validation:
+          rules:
+          - valid-originator-account-scheme-name-iban
+          - valid-originator-account-iban
+          - valid-counterparty-account-scheme-name-iban
+          - valid-counterparty-account-iban
+          - amount-number-of-decimals-is-valid
+          - valid-originator-account-iban-country
+          - valid-counterparty-account-iban-country
+          - valid-instructed-amount-currency-sepa
+      INTERNATIONAL_TRANSFER:
+        business-function: US Foreign Wire
+        validation:
+          rules:
+          - non-zero-transaction
+          - amount-number-of-decimals-is-valid
+          - has-counterparty
+          - has-counterparty-name
+          - has-counterparty-bank
+          - has-counterparty-bank-bic
+          - has-counterparty-bank-address
+          - valid-intermediary-bank
+          - has-valid-sanctioned-currency
+          - has-valid-sanctioned-country
+          - has-valid-payment-options
+      MOBILE_INTRACOMPANY:
+        business-function: SEPA CT
+        validation:
+          rules:
+          - non-zero-transaction
+          - has-counterparty
+          - amount-number-of-decimals-is-valid
+    edit:
+      validation:
+        accepted-status:
+          - READY
+          - ACCEPTED
+          - ENTERED
+          - REJECTED
+          - CANCELLED
+      expiration:
+        final-status: EXPIRED

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.backbase.apps</groupId>
+        <artifactId>statics</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>collection-universal</artifactId>
+    <packaging>pom</packaging>
+
+    <name>Backbase :: Statics :: Collection Universal CX6.1 - Identity</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.backbase.widget.collection</groupId>
+            <artifactId>collection-universal</artifactId>
+            <version>3.3.13</version>
+            <type>zip</type>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.backbase.maven.plugins</groupId>
+                <artifactId>bb-maven-plugin</artifactId>
+                <configuration>
+                    <enableExtPackage>true</enableExtPackage>
+                    <widgetCollections>
+                        <widgetCollection>
+                            <groupId>com.backbase.widget.collection</groupId>
+                            <artifactId>collection-universal</artifactId>
+                        </widgetCollection>
+                    </widgetCollections>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

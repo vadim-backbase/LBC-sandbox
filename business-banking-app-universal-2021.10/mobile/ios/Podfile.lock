@@ -1,0 +1,516 @@
+PODS:
+  - AccessControlClient2 (1.1.0):
+    - Backbase (>= 7.8.0)
+    - ClientCommon (~> 1.1)
+  - ActionsClient2 (1.0.0):
+    - Backbase (>= 7.8.0)
+    - ClientCommon (~> 1.1)
+  - AppAuth (1.3.1):
+    - AppAuth/Core (= 1.3.1)
+    - AppAuth/ExternalUserAgent (= 1.3.1)
+  - AppAuth/Core (1.3.1)
+  - AppAuth/ExternalUserAgent (1.3.1)
+  - ArrangementsClient2 (1.4.0):
+    - Backbase (>= 7.8.0)
+    - ClientCommon (~> 1.1)
+  - Backbase (8.3.0)
+  - BackbaseDesignSystem (1.15.0)
+  - BackbaseIdentity (3.1.0):
+    - AppAuth (= 1.3.1)
+    - Backbase (>= 7.9.0)
+  - BusinessAccountsAndTransactionsJourney (2.1.0):
+    - BusinessAccountsAndTransactionsJourney/Sources (= 2.1.0)
+    - BusinessDesign (~> 1.4)
+    - BusinessJourneyCommon (~> 1.4)
+    - Resolver (~> 1.2.1)
+    - Shimmer (= 1.0.2)
+    - TransactionsClient2 (~> 1.4.0)
+  - BusinessAccountsAndTransactionsJourney/Sources (2.1.0):
+    - BusinessDesign (~> 1.4)
+    - BusinessJourneyCommon (~> 1.4)
+    - Resolver (~> 1.2.1)
+    - Shimmer (= 1.0.2)
+    - TransactionsClient2 (~> 1.4.0)
+  - BusinessAccountsAndTransactionsJourneyArrangementsUseCase2 (2.1.0):
+    - ArrangementsClient2 (~> 1.4.0)
+    - BusinessAccountsAndTransactionsJourney (~> 2.1.0)
+    - BusinessAccountsAndTransactionsJourneyArrangementsUseCase2/Sources (= 2.1.0)
+  - BusinessAccountsAndTransactionsJourneyArrangementsUseCase2/Sources (2.1.0):
+    - ArrangementsClient2 (~> 1.4.0)
+    - BusinessAccountsAndTransactionsJourney (~> 2.1.0)
+  - BusinessAccountsAndTransactionsJourneyTransactionsUseCase2 (2.1.0):
+    - BusinessAccountsAndTransactionsJourney (~> 2.1.0)
+    - BusinessAccountsAndTransactionsJourneyTransactionsUseCase2/Sources (= 2.1.0)
+    - TransactionsClient2 (~> 1.4.0)
+  - BusinessAccountsAndTransactionsJourneyTransactionsUseCase2/Sources (2.1.0):
+    - BusinessAccountsAndTransactionsJourney (~> 2.1.0)
+    - TransactionsClient2 (~> 1.4.0)
+  - BusinessAppCommon (1.0.0):
+    - Backbase
+    - BackbaseDesignSystem
+    - BusinessAppCommon/Sources (= 1.0.0)
+    - BusinessDesign
+    - Resolver (= 1.2.1)
+  - BusinessAppCommon/Sources (1.0.0):
+    - Backbase
+    - BackbaseDesignSystem
+    - BusinessDesign
+    - Resolver (= 1.2.1)
+  - BusinessApprovalsJourney (2.1.1):
+    - BusinessApprovalsJourney/Sources (= 2.1.1)
+    - BusinessDesign (~> 1.4)
+    - BusinessJourneyCommon (~> 1.4)
+    - BusinessManagePaymentsUseCase (~> 1.0)
+    - PaymentOrderClient2 (~> 2.0.13)
+    - Resolver (~> 1.2.1)
+    - Shimmer (= 1.0.2)
+  - BusinessApprovalsJourney/Sources (2.1.1):
+    - BusinessDesign (~> 1.4)
+    - BusinessJourneyCommon (~> 1.4)
+    - BusinessManagePaymentsUseCase (~> 1.0)
+    - PaymentOrderClient2 (~> 2.0.13)
+    - Resolver (~> 1.2.1)
+    - Shimmer (= 1.0.2)
+  - BusinessApprovalsJourneyApprovalsUseCase2 (2.1.1):
+    - BusinessApprovalsJourney (~> 2.1.1)
+    - BusinessApprovalsJourneyApprovalsUseCase2/Sources (= 2.1.1)
+    - PaymentOrderClient2 (~> 2.0.13)
+  - BusinessApprovalsJourneyApprovalsUseCase2/Sources (2.1.1):
+    - BusinessApprovalsJourney (~> 2.1.1)
+    - PaymentOrderClient2 (~> 2.0.13)
+  - BusinessDesign (1.4.4):
+    - BackbaseDesignSystem (~> 1.7)
+    - BusinessDesign/Sources (= 1.4.4)
+    - Charts (~> 3.5.0)
+    - UIScrollView-InfiniteScroll (= 1.1.0)
+    - VGParallaxHeader (= 0.0.6)
+  - BusinessDesign/Sources (1.4.4):
+    - BackbaseDesignSystem (~> 1.7)
+    - Charts (~> 3.5.0)
+    - UIScrollView-InfiniteScroll (= 1.1.0)
+    - VGParallaxHeader (= 0.0.6)
+  - BusinessJourneyCommon (1.4.8):
+    - AccessControlClient2 (~> 1.1.0)
+    - ArrangementsClient2 (~> 1.4.0)
+    - Backbase (>= 8.0.0)
+    - BackbaseIdentity (>= 2.3.0)
+    - BusinessDesign (~> 1.4)
+    - BusinessJourneyCommon/Sources (= 1.4.8)
+    - RxCocoa (~> 5)
+    - RxSwift (~> 5)
+  - BusinessJourneyCommon/Sources (1.4.8):
+    - AccessControlClient2 (~> 1.1.0)
+    - ArrangementsClient2 (~> 1.4.0)
+    - Backbase (>= 8.0.0)
+    - BackbaseIdentity (>= 2.3.0)
+    - BusinessDesign (~> 1.4)
+    - RxCocoa (~> 5)
+    - RxSwift (~> 5)
+  - BusinessManagePaymentsJourney (2.2.0):
+    - BackbaseDesignSystem (~> 1.5)
+    - BusinessDesign (~> 1.4)
+    - BusinessJourneyCommon (~> 1.4)
+    - BusinessManagePaymentsJourney/Sources (= 2.2.0)
+    - BusinessManagePaymentsUseCase (~> 1.2.0)
+    - BusinessOmniPaymentsJourney (~> 2.1.0)
+    - PaymentOrderClient2 (~> 2.0.13)
+    - Resolver (= 1.2.1)
+    - Shimmer (= 1.0.2)
+  - BusinessManagePaymentsJourney/Sources (2.2.0):
+    - BackbaseDesignSystem (~> 1.5)
+    - BusinessDesign (~> 1.4)
+    - BusinessJourneyCommon (~> 1.4)
+    - BusinessManagePaymentsUseCase (~> 1.2.0)
+    - BusinessOmniPaymentsJourney (~> 2.1.0)
+    - PaymentOrderClient2 (~> 2.0.13)
+    - Resolver (= 1.2.1)
+    - Shimmer (= 1.0.2)
+  - BusinessManagePaymentsJourneyPaymentOrdersUseCase2 (2.2.0):
+    - BusinessManagePaymentsJourney (~> 2.2.0)
+    - BusinessManagePaymentsJourneyPaymentOrdersUseCase2/Sources (= 2.2.0)
+    - PaymentOrderClient2 (~> 2.0.13)
+  - BusinessManagePaymentsJourneyPaymentOrdersUseCase2/Sources (2.2.0):
+    - BusinessManagePaymentsJourney (~> 2.2.0)
+    - PaymentOrderClient2 (~> 2.0.13)
+  - BusinessManagePaymentsUseCase (1.2.1):
+    - BusinessManagePaymentsUseCase/Sources (= 1.2.1)
+  - BusinessManagePaymentsUseCase/Sources (1.2.1)
+  - BusinessMoreMenuJourney (2.1.0):
+    - AccessControlClient2 (~> 1.1.0)
+    - BusinessDesign (~> 1.4)
+    - BusinessJourneyCommon (~> 1.4)
+    - BusinessMoreMenuJourney/Sources (= 2.1.0)
+    - Resolver (~> 1.2.1)
+  - BusinessMoreMenuJourney/Sources (2.1.0):
+    - AccessControlClient2 (~> 1.1.0)
+    - BusinessDesign (~> 1.4)
+    - BusinessJourneyCommon (~> 1.4)
+    - Resolver (~> 1.2.1)
+  - BusinessOmniPaymentsJourney (2.1.0):
+    - ArrangementsClient2 (= 1.4.0)
+    - BusinessDesign (~> 1.4)
+    - BusinessJourneyCommon (~> 1.4)
+    - BusinessOmniPaymentsJourney/Sources (= 2.1.0)
+    - ContactsClient2 (= 1.4.0)
+    - FittedSheets (= 2.1.1)
+    - Kingfisher (~> 7.0)
+    - PaymentOrderClient2 (~> 2.0.13)
+    - PaymentOrderOptionsClient1 (= 1.0.5)
+    - Resolver (= 1.2.1)
+    - RxCocoa (~> 5.1)
+    - RxSwift (~> 5.1)
+  - BusinessOmniPaymentsJourney/Sources (2.1.0):
+    - ArrangementsClient2 (= 1.4.0)
+    - BusinessDesign (~> 1.4)
+    - BusinessJourneyCommon (~> 1.4)
+    - ContactsClient2 (= 1.4.0)
+    - FittedSheets (= 2.1.1)
+    - Kingfisher (~> 7.0)
+    - PaymentOrderClient2 (~> 2.0.13)
+    - PaymentOrderOptionsClient1 (= 1.0.5)
+    - Resolver (= 1.2.1)
+    - RxCocoa (~> 5.1)
+    - RxSwift (~> 5.1)
+  - BusinessOmniPaymentsJourneyArrangementsUseCase2 (2.1.0):
+    - ArrangementsClient2 (~> 1.4.0)
+    - BusinessOmniPaymentsJourney (~> 2.1.0)
+    - BusinessOmniPaymentsJourneyArrangementsUseCase2/Sources (= 2.1.0)
+  - BusinessOmniPaymentsJourneyArrangementsUseCase2/Sources (2.1.0):
+    - ArrangementsClient2 (~> 1.4.0)
+    - BusinessOmniPaymentsJourney (~> 2.1.0)
+  - BusinessOmniPaymentsJourneyContactManagerUseCase2 (2.1.0):
+    - BusinessOmniPaymentsJourney (~> 2.1.0)
+    - BusinessOmniPaymentsJourneyContactManagerUseCase2/Sources (= 2.1.0)
+    - ContactsClient2 (~> 1.4.0)
+  - BusinessOmniPaymentsJourneyContactManagerUseCase2/Sources (2.1.0):
+    - BusinessOmniPaymentsJourney (~> 2.1.0)
+    - ContactsClient2 (~> 1.4.0)
+  - BusinessOmniPaymentsJourneyPaymentOrderOptionsUseCase1 (2.1.0):
+    - ArrangementsClient2 (~> 1.4.0)
+    - BusinessOmniPaymentsJourney (~> 2.1.0)
+    - BusinessOmniPaymentsJourneyPaymentOrderOptionsUseCase1/Sources (= 2.1.0)
+    - PaymentOrderClient2 (~> 2.0.13)
+  - BusinessOmniPaymentsJourneyPaymentOrderOptionsUseCase1/Sources (2.1.0):
+    - ArrangementsClient2 (~> 1.4.0)
+    - BusinessOmniPaymentsJourney (~> 2.1.0)
+    - PaymentOrderClient2 (~> 2.0.13)
+  - BusinessOmniPaymentsJourneyPaymentOrdersUseCase2 (2.1.0):
+    - BusinessOmniPaymentsJourney (~> 2.1.0)
+    - BusinessOmniPaymentsJourneyPaymentOrdersUseCase2/Sources (= 2.1.0)
+    - PaymentOrderClient2 (~> 2.0.13)
+  - BusinessOmniPaymentsJourneyPaymentOrdersUseCase2/Sources (2.1.0):
+    - BusinessOmniPaymentsJourney (~> 2.1.0)
+    - PaymentOrderClient2 (~> 2.0.13)
+  - BusinessUniversalApp (2.1.1):
+    - BusinessAccountsAndTransactionsJourneyArrangementsUseCase2 (~> 2.1.0)
+    - BusinessAccountsAndTransactionsJourneyTransactionsUseCase2 (~> 2.1.0)
+    - BusinessAppCommon (~> 1.0.0)
+    - BusinessApprovalsJourneyApprovalsUseCase2 (~> 2.1.1)
+    - BusinessManagePaymentsJourneyPaymentOrdersUseCase2 (~> 2.2.0)
+    - BusinessMoreMenuJourney (~> 2.1.0)
+    - BusinessOmniPaymentsJourneyArrangementsUseCase2 (~> 2.1.0)
+    - BusinessOmniPaymentsJourneyContactManagerUseCase2 (~> 2.1.0)
+    - BusinessOmniPaymentsJourneyPaymentOrderOptionsUseCase1 (~> 2.1.0)
+    - BusinessOmniPaymentsJourneyPaymentOrdersUseCase2 (~> 2.1.0)
+    - BusinessWorkspacesJourneyWorkspacesUseCase2 (~> 2.1.0)
+    - IdentityAuthenticationJourney (~> 2.1.0)
+    - MessagesJourney (~> 2.3.0)
+    - MessagesJourneyMessagesUseCase (~> 2.3.0)
+    - MobileNotificationsCore (~> 1.2)
+    - MobileNotificationsIdentity (~> 1.2)
+    - MobileNotificationsPresentation (~> 1.2)
+    - NotificationsJourney (~> 2.3.0)
+    - NotificationsJourneyNotificationSettingsUseCase (~> 2.3.0)
+    - NotificationsJourneyNotificationsUseCase (~> 2.3.0)
+    - RetailCardsManagementJourney (~> 1.9.1)
+  - BusinessWorkspacesJourney (2.1.0):
+    - AccessControlClient2 (~> 1.1.0)
+    - BusinessDesign (~> 1.4)
+    - BusinessJourneyCommon (~> 1.4)
+    - BusinessWorkspacesJourney/Sources (= 2.1.0)
+    - Resolver (~> 1.2.1)
+    - SwiftLint (~> 0.43.1)
+  - BusinessWorkspacesJourney/Sources (2.1.0):
+    - AccessControlClient2 (~> 1.1.0)
+    - BusinessDesign (~> 1.4)
+    - BusinessJourneyCommon (~> 1.4)
+    - Resolver (~> 1.2.1)
+    - SwiftLint (~> 0.43.1)
+  - BusinessWorkspacesJourneyWorkspacesUseCase2 (2.1.0):
+    - AccessControlClient2 (~> 1.1.0)
+    - BusinessJourneyCommon (~> 1.4)
+    - BusinessWorkspacesJourney (= 2.1.0)
+    - BusinessWorkspacesJourneyWorkspacesUseCase2/Sources (= 2.1.0)
+    - Resolver (~> 1.2.1)
+    - SwiftLint
+  - BusinessWorkspacesJourneyWorkspacesUseCase2/Sources (2.1.0):
+    - AccessControlClient2 (~> 1.1.0)
+    - BusinessJourneyCommon (~> 1.4)
+    - BusinessWorkspacesJourney (= 2.1.0)
+    - Resolver (~> 1.2.1)
+    - SwiftLint
+  - CardsClient2 (1.1.0):
+    - Backbase (>= 7.8.0)
+    - ClientCommon (~> 1.1)
+  - Charts (3.5.0):
+    - Charts/Core (= 3.5.0)
+  - Charts/Core (3.5.0)
+  - ClientCommon (1.1.1):
+    - Backbase (>= 7.8.0)
+  - ContactsClient2 (1.4.0):
+    - Backbase (>= 7.8.0)
+    - ClientCommon (~> 1.1)
+  - Differentiator (4.0.1)
+  - FittedSheets (2.1.1)
+  - FlagKit (2.2)
+  - IdentityAuthenticationJourney (2.1.0):
+    - BackbaseDesignSystem (~> 1.0)
+    - BackbaseIdentity (>= 3.1.0)
+    - Resolver (~> 1.2.1)
+    - RxCocoa (~> 5)
+    - RxSwift (~> 5)
+    - SnapKit (~> 5)
+  - Kingfisher (7.1.0)
+  - MessagesClient4 (1.0.0):
+    - Backbase (>= 7.8.0)
+    - ClientCommon (~> 1.1)
+  - MessagesJourney (2.3.0):
+    - BackbaseDesignSystem (~> 1)
+    - PureLayout (~> 3.1)
+    - Resolver (= 1.2.1)
+    - SnapKit (~> 5)
+  - MessagesJourneyMessagesUseCase (2.3.0):
+    - Backbase (>= 7.9)
+    - MessagesClient4 (~> 1)
+    - MessagesJourney (~> 2)
+  - MobileNotificationsCore (1.2.1):
+    - Backbase (>= 7.9)
+  - MobileNotificationsIdentity (1.2.1):
+    - Backbase (>= 7.9)
+    - BackbaseIdentity (>= 1.4.1)
+    - MobileNotificationsCore (~> 1.2.1)
+    - PushTokenClient (~> 1)
+  - MobileNotificationsPresentation (1.2.1):
+    - MobileNotificationsCore (~> 1.2.1)
+  - NotificationsClient2 (1.0.0):
+    - Backbase (>= 7.8.0)
+    - ClientCommon (~> 1.1)
+  - NotificationsJourney (2.3.0):
+    - BackbaseDesignSystem (~> 1)
+    - PureLayout (~> 3.1)
+    - Resolver (= 1.2.1)
+    - SnapKit (~> 5)
+  - NotificationsJourneyNotificationSettingsUseCase (2.3.0):
+    - ActionsClient2 (~> 1)
+    - ArrangementsClient2 (~> 1)
+    - Backbase (>= 7.9)
+    - NotificationsJourney (~> 2)
+  - NotificationsJourneyNotificationsUseCase (2.3.0):
+    - Backbase (>= 7.9)
+    - NotificationsClient2 (~> 1)
+    - NotificationsJourney (~> 2)
+  - PaymentOrderClient2 (2.0.16):
+    - Backbase (>= 7.8.0)
+    - ClientCommon (~> 1.1)
+  - PaymentOrderOptionsClient1 (1.0.5):
+    - Backbase (>= 7.8.0)
+    - ClientCommon (~> 1.1)
+  - PureLayout (3.1.9)
+  - PushTokenClient (1.3.1):
+    - Backbase (>= 7.9)
+  - Resolver (1.2.1)
+  - RetailCardsManagementJourney (1.9.1):
+    - BackbaseDesignSystem (~> 1.14)
+    - CardsClient2 (~> 1.1)
+    - RetailDesign (~> 1.0)
+    - RetailJourneyCommon (~> 1.0)
+    - RxAnimated (~> 0.7)
+    - RxDataSources (~> 4.0)
+    - UserManagerClient2 (~> 1.0.0)
+  - RetailDesign (1.0.3):
+    - BackbaseDesignSystem (~> 1.0)
+    - SnapKit (~> 5)
+  - RetailJourneyCommon (1.0.3):
+    - Resolver (= 1.2.1)
+    - RxCocoa (~> 5)
+    - RxSwift (~> 5)
+  - RxAnimated (0.7.0):
+    - RxAnimated/Core (= 0.7.0)
+    - RxCocoa (~> 5.1)
+    - RxSwift (~> 5.1)
+  - RxAnimated/Core (0.7.0):
+    - RxCocoa (~> 5.1)
+    - RxSwift (~> 5.1)
+  - RxCocoa (5.1.3):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxDataSources (4.0.1):
+    - Differentiator (~> 4.0)
+    - RxCocoa (~> 5.0)
+    - RxSwift (~> 5.0)
+  - RxRelay (5.1.3):
+    - RxSwift (~> 5)
+  - RxSwift (5.1.3)
+  - Shimmer (1.0.2)
+  - SnapKit (5.0.1)
+  - SwiftLint (0.43.1)
+  - TransactionsClient2 (1.4.0):
+    - Backbase (>= 7.8.0)
+    - ClientCommon (~> 1.1)
+  - UIScrollView-InfiniteScroll (1.1.0)
+  - UserManagerClient2 (1.0.0):
+    - Backbase (>= 7.8.0)
+    - ClientCommon (~> 1.1)
+  - VGParallaxHeader (0.0.6):
+    - PureLayout
+
+DEPENDENCIES:
+  - BusinessUniversalApp (= 2.1.1)
+  - FlagKit
+
+SPEC REPOS:
+  https://repo.backbase.com/api/pods/ios-business:
+    - BusinessAccountsAndTransactionsJourney
+    - BusinessAccountsAndTransactionsJourneyArrangementsUseCase2
+    - BusinessAccountsAndTransactionsJourneyTransactionsUseCase2
+    - BusinessAppCommon
+    - BusinessApprovalsJourney
+    - BusinessApprovalsJourneyApprovalsUseCase2
+    - BusinessDesign
+    - BusinessJourneyCommon
+    - BusinessManagePaymentsJourney
+    - BusinessManagePaymentsJourneyPaymentOrdersUseCase2
+    - BusinessManagePaymentsUseCase
+    - BusinessMoreMenuJourney
+    - BusinessOmniPaymentsJourney
+    - BusinessOmniPaymentsJourneyArrangementsUseCase2
+    - BusinessOmniPaymentsJourneyContactManagerUseCase2
+    - BusinessOmniPaymentsJourneyPaymentOrderOptionsUseCase1
+    - BusinessOmniPaymentsJourneyPaymentOrdersUseCase2
+    - BusinessUniversalApp
+    - BusinessWorkspacesJourney
+    - BusinessWorkspacesJourneyWorkspacesUseCase2
+  https://repo.backbase.com/api/pods/ios-engagement-channels:
+    - MessagesJourney
+    - MessagesJourneyMessagesUseCase
+    - NotificationsJourney
+    - NotificationsJourneyNotificationSettingsUseCase
+    - NotificationsJourneyNotificationsUseCase
+  https://repo.backbase.com/api/pods/ios-identity:
+    - BackbaseIdentity
+    - IdentityAuthenticationJourney
+  https://repo.backbase.com/api/pods/ios-mobile-notifications:
+    - MobileNotificationsCore
+    - MobileNotificationsIdentity
+    - MobileNotificationsPresentation
+  https://repo.backbase.com/api/pods/ios-retail3:
+    - AccessControlClient2
+    - ActionsClient2
+    - ArrangementsClient2
+    - BackbaseDesignSystem
+    - CardsClient2
+    - ClientCommon
+    - ContactsClient2
+    - MessagesClient4
+    - NotificationsClient2
+    - PaymentOrderClient2
+    - PaymentOrderOptionsClient1
+    - RetailCardsManagementJourney
+    - RetailDesign
+    - RetailJourneyCommon
+    - TransactionsClient2
+    - UserManagerClient2
+  https://repo.backbase.com/api/pods/ios3:
+    - Backbase
+    - PushTokenClient
+  trunk:
+    - AppAuth
+    - Charts
+    - Differentiator
+    - FittedSheets
+    - FlagKit
+    - Kingfisher
+    - PureLayout
+    - Resolver
+    - RxAnimated
+    - RxCocoa
+    - RxDataSources
+    - RxRelay
+    - RxSwift
+    - Shimmer
+    - SnapKit
+    - SwiftLint
+    - UIScrollView-InfiniteScroll
+    - VGParallaxHeader
+
+SPEC CHECKSUMS:
+  AccessControlClient2: 9fb741b81ded6bcfb7cdac9c6f9c528a519fe840
+  ActionsClient2: 0f6069cac24a65445c4481b7fd7497e9458ab749
+  AppAuth: 8803ba1aec6d00d9afd30093f82e600307eaa6ea
+  ArrangementsClient2: 12501ea239d0b127f2a8d0eddeacaad1ed2d15f8
+  Backbase: 7a23a247e3ff340d90bcfe30a68f1c66e8b8c984
+  BackbaseDesignSystem: 7943e829e8dfd7ec395a54454d1629b1f6453134
+  BackbaseIdentity: 4289b163c02d37f65741acafc0684fbc0732c897
+  BusinessAccountsAndTransactionsJourney: e6585cc39093901933af5d6ef8e4878f5bc5cec5
+  BusinessAccountsAndTransactionsJourneyArrangementsUseCase2: 560a2f6a1d1beeebb012dadc819369223496b831
+  BusinessAccountsAndTransactionsJourneyTransactionsUseCase2: f951c36ac23b6d12665c1be56b8a051a839b49c2
+  BusinessAppCommon: f5103e4537dbebc725f85bd27c16e5fd9401552a
+  BusinessApprovalsJourney: c399dac043bdca879de193f9f425838aa8252a12
+  BusinessApprovalsJourneyApprovalsUseCase2: 7bbb10c3b12603b7f69fe9ac703fc50bd227adc8
+  BusinessDesign: 4c8e4c5991975ff123de286de84089e55d2f9177
+  BusinessJourneyCommon: ad7f9ac1854e78f77ad63a74162ffe46a2d9d6a9
+  BusinessManagePaymentsJourney: e3a9cb1ec570407313e89d470b5f8e133651f861
+  BusinessManagePaymentsJourneyPaymentOrdersUseCase2: 266d2c2c3a7104d15f4650a878d919bdb6b3044d
+  BusinessManagePaymentsUseCase: b9c473047ba942ef9d7375370fca6e5c0b62310f
+  BusinessMoreMenuJourney: 2f58cce522d119811899ce850d483b34bb7d9d67
+  BusinessOmniPaymentsJourney: 2557b85ad52fb1125fc64262896e4d2c75d6ebd7
+  BusinessOmniPaymentsJourneyArrangementsUseCase2: 7979240810e872bce629825b35eca312927e3269
+  BusinessOmniPaymentsJourneyContactManagerUseCase2: 4aa4baa1df6caa82db25586c49dc84ea44dcaf78
+  BusinessOmniPaymentsJourneyPaymentOrderOptionsUseCase1: 1dac3a20ec2c985397028f6bfd1208f00d97674d
+  BusinessOmniPaymentsJourneyPaymentOrdersUseCase2: 5244a86d6cd5618527b3712acc58d5f10e38f07c
+  BusinessUniversalApp: 7486d68cf8425accabc25ac16a15eb6faf10f24e
+  BusinessWorkspacesJourney: 6cfdc118183872afbfd93716c8103768a7963ba9
+  BusinessWorkspacesJourneyWorkspacesUseCase2: ab7a29654e1954edbac6f6ed3260cdd7a9472734
+  CardsClient2: 8cb0c6d1d12db3b703921c65126aa050c39d2c97
+  Charts: 40a08591df1f8ad5c223ddedfb1a06da92f24f7c
+  ClientCommon: fa6cc30ef711fdf8ce3029c4a46bc5e892b359b5
+  ContactsClient2: 552a071f1e1ce193e6a56ec8c2e488f8de5ce9c1
+  Differentiator: 886080237d9f87f322641dedbc5be257061b0602
+  FittedSheets: ec30a41b7f054891992ada0441ebe7801958f123
+  FlagKit: eca7dc89064b0c986302ba9acefad1bf80a435b1
+  IdentityAuthenticationJourney: 13ba1701b4b40d3ab89c65693af996000cc126b7
+  Kingfisher: cdabaf49be7ee7cc124f0f276b355edf61903cf8
+  MessagesClient4: 00be66a3525cf9a33b20e94b03049c413fe0be2f
+  MessagesJourney: c1b1906de9bceb5aade5f1f4865a6e4e6a4aab4c
+  MessagesJourneyMessagesUseCase: 78d3a22949c68bce04544c500920aaddce383877
+  MobileNotificationsCore: a1e96e0fb28b648e811a8fb78aeb99025e633fb2
+  MobileNotificationsIdentity: 5268026c326c5cf42dd2f5e7f37d5a831b235bfc
+  MobileNotificationsPresentation: 8161ecff9b51df2160416c5030e45184efc248b7
+  NotificationsClient2: d96264e7bfe69f2e58690d2f59a15e9d176874e4
+  NotificationsJourney: 2b31310c4993c6d8a46e731ba0ead69347c691e9
+  NotificationsJourneyNotificationSettingsUseCase: a867afcc3a896464c4cd83c38616055e0f49c331
+  NotificationsJourneyNotificationsUseCase: d7ecab3c1104308512f7162e51ab9beea2c48573
+  PaymentOrderClient2: d6e266950b3ff991eeb893e0d7ac283e1d0ba81c
+  PaymentOrderOptionsClient1: a605621531f3cf04366693ec1f21633cff0769ea
+  PureLayout: 5fb5e5429519627d60d079ccb1eaa7265ce7cf88
+  PushTokenClient: 15b0b9f63c8420bd96e7bbdc2e5e4fa3244f34ea
+  Resolver: 764e380b2ddb26bba48c6e45ab393c968894a156
+  RetailCardsManagementJourney: 84723be15f6d8de980a53ff197ce0897219edd5f
+  RetailDesign: aecf8ed5b88a1258fbdffe290f217acb6dae2e38
+  RetailJourneyCommon: 32fb7bda45113dde1cf6f2205d95734ee2a6a16e
+  RxAnimated: 8540892468e906e7404595bc51ed4b36b3737ab5
+  RxCocoa: e2ed092d5432e4296aa818021d27de4090ac0354
+  RxDataSources: efee07fa4de48477eca0a4611e6d11e2da9c1114
+  RxRelay: 5a18c2eb2d68326ebaf0112f80d837ae41b92b97
+  RxSwift: 915abbdfb62214aa89ccd0b194d44fb478019b27
+  Shimmer: c5374be1c2b0c9e292fb05b339a513cf291cac86
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
+  TransactionsClient2: 7c13a8e120c82f8217c49262ca0980ebeeef1974
+  UIScrollView-InfiniteScroll: 3ef456bcbe759c19f510a383cff96e6647c98c98
+  UserManagerClient2: 9851ed8619099ea9f6ec79d17acdcb7c310018e5
+  VGParallaxHeader: 1213aba58c9b0aea84f9e81ad526fde57aa4fe48
+
+PODFILE CHECKSUM: eafbac4ea051df10cbc9d0081793c68d63f33489
+
+COCOAPODS: 1.10.1

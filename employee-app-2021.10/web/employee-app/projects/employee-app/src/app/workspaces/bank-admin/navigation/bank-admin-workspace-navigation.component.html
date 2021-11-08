@@ -1,0 +1,208 @@
+<div class="bb-sidebar" data-role="sidebar">
+  <nav role="navigation" data-role="bank-admin-nav">
+    <ul class="bb-navigation" aria-orientation="vertical">
+      <li
+        class="bb-navigation__header"
+        i18n="
+          Bank admin menu header|Title text for the Bank admin workspace nav
+          menu@@employee-app.bank-admin.nav-title"
+      >
+        Bank admin workspace
+      </li>
+      <li
+        class="bb-navigation__item bb-navigation-item"
+        routerLinkActive="bb-navigation-item--active"
+      >
+        <a class="bb-navigation-item__link" routerLink="user-enrollment">
+          <i class="bicon bicon-how-to-reg bb-navigation-item__icon"></i>
+          <span
+            class="bb-navigation-item__title"
+            i18n="
+              User enrollment menu item|Link text to navigate to the User
+              enrollment admin page@@employee-app.bank-admin-nav.user-enrollment"
+          >
+            User enrollment
+          </span>
+        </a>
+      </li>
+      <li
+        class="bb-navigation__item bb-navigation-item"
+        routerLinkActive="bb-navigation-item--active"
+      >
+        <a class="bb-navigation-item__link" routerLink="create-user">
+          <i class="bicon bicon-person-add bb-navigation-item__icon"></i>
+          <span
+            class="bb-navigation-item__title"
+            i18n="
+              Create user menu item|Link text to navigate to the create user
+              admin page@@employee-app.bank-admin-nav.create-user"
+          >
+            Create user
+          </span>
+        </a>
+      </li>
+      <li
+        class="bb-navigation__item bb-navigation-item"
+        routerLinkActive="bb-navigation-item--active"
+      >
+        <a class="bb-navigation-item__link" routerLink="service-agreements">
+          <i class="bicon bicon-lock bb-navigation-item__icon"></i>
+          <span
+            class="bb-navigation-item__title"
+            i18n="
+              Access Control menu item|Link text to navigate to the Access
+              Control admin page@@employee-app.bank-admin-nav.access-control"
+          >
+            Access control
+          </span>
+        </a>
+      </li>
+      <li
+        class="bb-navigation__item bb-navigation-item"
+        routerLinkActive="bb-navigation-item--active"
+      >
+        <a class="bb-navigation-item__link" routerLink="approval-log">
+          <i class="bicon bicon-done-all bb-navigation-item__icon"></i>
+          <span
+            class="bb-navigation-item__title"
+            i18n="
+              Approval log menu item|Link text to navigate to the Approval log
+              page@@employee-app.bank-admin-nav.approval-log"
+          >
+            Approval log
+          </span>
+        </a>
+      </li>
+      <li
+        class="bb-navigation__item bb-navigation-item"
+        routerLinkActive="bb-navigation-item--active"
+      >
+        <a class="bb-navigation-item__link" routerLink="audit">
+          <i class="bicon bicon-audit bb-navigation-item__icon"></i>
+          <span
+            class="bb-navigation-item__title"
+            i18n="
+              Audit menu item|Link text to navigate to the Audit page in the
+              Bank admin workspace@@employee-app.bank-admin-nav.audit"
+          >
+            Audit
+          </span>
+        </a>
+      </li>
+      <li
+        class="bb-navigation__item bb-navigation-item"
+        routerLinkActive="bb-navigation-item--active"
+      >
+        <a class="bb-navigation-item__link" routerLink="topics">
+          <i
+            class="bicon bicon-markunread-mailbox bb-navigation-item__icon"
+          ></i>
+          <span
+            class="bb-navigation-item__title"
+            i18n="
+              Topic management menu item|Link text to navigate to the Topic
+              management page@@employee-app.bank-admin-nav.topic-management"
+          >
+            Topic management
+          </span>
+        </a>
+      </li>
+      <li
+        class="bb-navigation__header"
+        data-role="bank-admin-configuration-nav-header"
+        i18n="
+          Configuration menu header|Title text for the Configuration header in
+          Bank admin workspace nav
+          menu@@employee-app.bank-admin-nav.configuration"
+      >
+        Configuration
+      </li>
+      <li
+        class="bb-navigation__item bb-navigation-item"
+        routerLinkActive="bb-navigation-item--active"
+      >
+        <a class="bb-navigation-item__link" routerLink="approvals">
+          <i class="bicon bicon-authorizations bb-navigation-item__icon"></i>
+          <span
+            class="bb-navigation-item__title"
+            i18n="
+              Approvals menu item|Link text to navigate to the Approvals
+              page@@employee-app.bank-admin-nav.approvals"
+          >
+            Approvals
+          </span>
+        </a>
+      </li>
+      <li
+        class="bb-navigation__item bb-navigation-item"
+        routerLinkActive="bb-navigation-item--active"
+      >
+        <a class="bb-navigation-item__link" routerLink="global-limits">
+          <i
+            class="bicon bicon-vertical-align-top bb-navigation-item__icon"
+          ></i>
+          <span
+            class="bb-navigation-item__title"
+            i18n="
+              Global limits menu item|Link text to navigate to the Global Limits
+              page@@employee-app.bank-admin-nav.global-limits"
+          >
+            Global limits
+          </span>
+        </a>
+      </li>
+      <li
+        *ngIf="showOtherToolsHeader$ | async"
+        class="bb-navigation__header"
+        data-role="bank-admin-other-tools-nav-header"
+        i18n="
+          Other tools menu header|Title text for the other tools header in Bank
+          admin workspace nav menu@@employee-app.bank-admin-nav.other-tools"
+      >
+        Other tools
+      </li>
+      <li
+        *ngIf="identityAdminHref$ | async as identityAdminHref"
+        class="bb-navigation__item bb-navigation-item"
+        data-role="bank-admin-identity-admin-nav"
+      >
+        <a
+          class="bb-navigation-item__link"
+          target="_blank"
+          [href]="identityAdminHref"
+        >
+          <i class="bicon bicon-security bb-navigation-item__icon"></i>
+          <span
+            class="bb-navigation-item__title"
+            i18n="
+              Identity admin menu item|Link text to navigate to the Backbase
+              Identity admin page@@employee-app.bank-admin-nav.identity-admin"
+          >
+            Identity admin
+          </span>
+        </a>
+      </li>
+      <li
+        *ngIf="paymentAdminHref$ | async as paymentAdminHref"
+        class="bb-navigation__item bb-navigation-item"
+        data-role="bank-admin-payment-admin-nav"
+      >
+        <a
+          class="bb-navigation-item__link"
+          target="_blank"
+          [href]="paymentAdminHref"
+        >
+          <i class="bicon bicon-monetization-on bb-navigation-item__icon"></i>
+          <span
+            class="bb-navigation-item__title"
+            i18n="
+              Payment admin portal menu item|Link text to navigate to the
+              Payment admin portal@@employee-app.bank-admin-nav.payment-admin"
+          >
+            Payment admin
+          </span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>

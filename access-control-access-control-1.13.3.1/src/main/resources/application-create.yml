@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    initialization-mode: always
+  activemq:
+    in-memory: true
+    pooled: false
+    broker-url: vm://localhost?broker.advisorySupport=false&broker.persistent=false
+
+  jpa:
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    properties:
+      hibernate:
+        format_sql: true
+    generate-ddl: false
+    hibernate:
+      ddl-auto: none
+      generate_statistics: true
+  main:
+    allow-bean-definition-overriding: true
+
+
+

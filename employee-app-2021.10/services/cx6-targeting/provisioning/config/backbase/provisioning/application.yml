@@ -1,0 +1,25 @@
+#
+# Configuration file only for development
+#
+
+spring:
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/provisioning?useSSL=false
+    username: root
+    password: root
+    tomcat:
+      min-idle: 1
+      max-active: 2
+      test-while-idle: true
+      time-between-eviction-runs-millis: 3600000
+      validation-query: SELECT 1
+    hikari:
+      pool-name: ${spring.application.name}
+      minimum-idle: 1
+      maximum-pool-size: 2
+      connection-test-query: SELECT 1

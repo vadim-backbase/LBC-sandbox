@@ -1,0 +1,55 @@
+platform :ios, '12.0'
+
+plugin 'cocoapods-art', :sources => [
+  'bbrepo-retail3',
+  'bbrepo3',
+  'bbrepo-business',
+  'bbrepo-identity',
+  'bbrepo-engagement-channels',
+  'bbrepo-mobile-notifications'
+]
+
+inhibit_all_warnings!
+install! 'cocoapods', :deterministic_uuids => false
+source 'https://cdn.cocoapods.org/'
+
+use_frameworks!
+
+target 'BBKickstarter' do
+  pod 'BusinessUniversalApp', '2.1.1'
+  pod 'FlagKit'
+end
+
+post_install do |installer_representation|
+  installer_representation.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['CLANG_ENABLE_CODE_COVERAGE'] = 'NO'
+      config.build_settings['ENABLE_BITCODE'] = 'YES'
+      config.build_settings['BUILD_LIBRARY_FOR_DISTRIBUTION'] = 'YES'
+      config.build_settings['EXPANDED_CODE_SIGN_IDENTITY'] = ""
+      config.build_settings['CODE_SIGNING_REQUIRED'] = "NO"
+      config.build_settings['CODE_SIGNING_ALLOWED'] = "NO"
+
+      cflags = config.build_settings['OTHER_CFLAGS'] || ['$(inherited)']
+      if config.name == 'Release'
+        cflags << '-fembed-bitcode'
+        config.build_settings['BITCODE_GENERATION_MODE'] = 'bitcode'
+      else
+        cflags << '-fembed-bitcode-marker'
+        config.build_settings['BITCODE_GENERATION_MODE'] = 'marker'
+      end
+
+      config.build_settings['OTHER_CFLAGS'] = cflags
+    end
+  end
+  update_vg_parallax_pod()
+end
+
+# Temporary fix for this dependency to import correctly one of it's subdependencies
+def update_vg_parallax_pod
+  filename = [Dir.pwd, "Pods", "VGParallaxHeader", "VGParallaxHeader", "UIScrollView+VGParallaxHeader.m"].join("/")
+  File.chmod(0700, filename)
+  text = File.read(filename)
+  new_contents = text.gsub("#import <PureLayout.h>", "#import <PureLayout/PureLayout.h>")
+  File.open(filename, "w") {|file| file.puts new_contents }
+end

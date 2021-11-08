@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.backbase</groupId>
+        <artifactId>notifications</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>notifications-service</artifactId>
+
+    <!-- Set packaging to WAR if you want extend the behaviour of the DBS service -->
+    <packaging>pom</packaging>
+
+    <name>Backbase DBS :: Notifications :: notifications-service</name>
+
+    <properties>
+        <spring.datasource.driver-class-name>com.mysql.jdbc.Driver</spring.datasource.driver-class-name>
+        <spring.datasource.url.notifications-service>jdbc:mysql://localhost:3306/notifications_service?useSSL=false</spring.datasource.url.notifications-service>
+        <spring.datasource.username.notifications-service>root</spring.datasource.username.notifications-service>
+        <spring.datasource.password.notifications-service>root</spring.datasource.password.notifications-service>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.backbase.dbs.notifications</groupId>
+            <artifactId>notifications-service</artifactId>
+            <type>war</type>
+        </dependency>
+        <dependency>
+            <groupId>com.backbase.dbs.notifications</groupId>
+            <artifactId>notifications-service</artifactId>
+            <classifier>classes</classifier>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.backbase.oss</groupId>
+                <artifactId>blade-maven-plugin</artifactId>
+
+                <configuration>
+                    <openBrowserOnStartup>false</openBrowserOnStartup>
+                    <detectAndConfigureSpringConfigLocation>true</detectAndConfigureSpringConfigLocation>
+                    <systemProperties>
+                        <spring.datasource.driver-class-name>${spring.datasource.driver-class-name}</spring.datasource.driver-class-name>
+                        <spring.datasource.url.notifications-service>${spring.datasource.url.notifications-service}</spring.datasource.url.notifications-service>
+                        <spring.datasource.username.notifications-service>${spring.datasource.username.notifications-service}</spring.datasource.username.notifications-service>
+                        <spring.datasource.password.notifications-service>${spring.datasource.password.notifications-service}</spring.datasource.password.notifications-service>
+                    </systemProperties>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

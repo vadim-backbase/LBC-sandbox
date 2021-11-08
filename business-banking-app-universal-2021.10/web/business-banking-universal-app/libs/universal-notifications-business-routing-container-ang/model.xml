@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<catalog>
+  <container>
+    <name>bb-universal-notifications-business-routing-container-ang</name>
+    <properties>
+      <property name="classId">
+        <value>UniversalNotificationsBusinessRoutingContainerAngComponent</value>
+      </property>
+      <property name="src">
+        <value>$(itemRoot)/index.html</value>
+      </property>
+      <property name="render.requires">
+        <value>render-bb-widget-3</value>
+      </property>
+      <property name="title" label="Title" readonly="true" viewHint="admin,designModeOnly">
+        <value type="string">NotificationsBusinessRoutingContainer</value>
+      </property>
+      <property name="thumbnailUrl">
+        <value>$(itemRoot)/icon.png</value>
+      </property>
+      <property name="label">
+        <value>Angular NotificationsBusinessRoutingContainer</value>
+      </property>
+      <property
+        name="input.notificationRouting"
+        label="Takes routing metadata"
+        viewHint="text-input,admin,designModeOnly">
+        <value>memory</value>
+      </property>
+      <property
+        name="output.viewConversation"
+        label="View conversation event with id"
+        viewHint="text-input,admin,designModeOnly">
+        <value>route-param</value>
+      </property>
+       <property
+        name="output.selectedAccount"
+        label="View account details with id"
+        viewHint="text-input,admin,designModeOnly">
+        <value>route-param</value>
+      </property>
+      <property
+        name="output.viewTransaction"
+        label="View transactions for selected account with id"
+        viewHint="text-input,admin,designModeOnly">
+        <value>route-param</value>
+      </property>
+      <property
+        name="output.viewContact"
+        label="View contact event with id"
+        viewHint="text-input,admin,designModeOnly">
+        <value>route-param</value>
+      </property>
+      <property
+        name="output.viewContactsToApprove"
+        label="View contacts to approve"
+        viewHint="text-input,admin,designModeOnly">
+        <value>route-param</value>
+      </property>
+      <property
+        name="output.viewPayment"
+        label="View payment event with id"
+        viewHint="text-input,admin,designModeOnly">
+        <value>route-param</value>
+      </property>
+      <property
+        name="output.viewPaymentsToApprove"
+        label="View payments to approve"
+        viewHint="text-input,admin,designModeOnly">
+        <value>route-param</value>
+      </property>
+      <property
+        name="output.viewPaymentsList"
+        label="View payments list"
+        viewHint="text-input,admin,designModeOnly">
+        <value>item-navigate</value>
+      </property>
+    </properties>
+  </container>
+</catalog>

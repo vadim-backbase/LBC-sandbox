@@ -1,0 +1,92 @@
+[
+  {
+    "id": "951293e6521940e3ae0608f93ff0b215",
+    "externalId": "external-id-1",
+    "name": "Broker deal 1",
+    "description": "Agreement between Backbase and Apple",
+    "creatorLegalEntity": "9371efe0-e295-47f7-822f-934532646b98",
+    "isMaster": false,
+    "status": "ENABLED"
+  },
+  {
+    "id": "9e4fb91794574b98ae8a1e42bbe961471",
+    "externalId": "external-id-2",
+    "name": "Broker deal 2",
+    "description": "Agreement between Backbase and HP",
+    "creatorLegalEntity": "9371efe0-e295-47f7-822f-934532646b98",
+    "isMaster": false,
+    "status": "ENABLED"
+  },
+  {
+    "id": "9e4fb91794574b98ae0a1e42bbe961472",
+    "externalId": "external-id-3",
+    "name": "Tyler Boyd Associates 1",
+    "description": "Description of service agreement",
+    "creatorLegalEntity": "0955e686-d31e-4216-b3dd-5d66161d536d",
+    "isMaster": false,
+    "status": "ENABLED"
+  },
+  {
+    "id": "9e4fb91794574b98ae0a1e42bbe961473",
+    "externalId": "external-id-4",
+    "name": "Tyler Boyd Associates 2",
+    "description": "Description of service agreement",
+    "creatorLegalEntity": "0955e686-d31e-4216-b3dd-5d66161d536d",
+    "isMaster": false,
+    "status": "ENABLED"
+  },
+  {
+    "id": "9e4fb91794574b98ae0a1e42bbe961474",
+    "externalId": "external-id-5",
+    "name": "Starbucks",
+    "description": "Description of service agreement",
+    "creatorLegalEntity": "0955e686-d31e-4216-b3dd-5d66161d536d",
+    "isMaster": false,
+    "status": "ENABLED"
+  },
+  {
+    "id": "9e4fb91794574b98ae0a1e42bbe961475",
+    "externalId": "external-id-6",
+    "name": "Barista Coffee Shop",
+    "description": "Description of service agreement",
+    "creatorLegalEntity": "0955e686-d31e-4216-b3dd-5d66161d536d",
+    "isMaster": false,
+    "status": "ENABLED"
+  },
+  {
+    "id": "9e4fb91794574b98ae0a1e42bbe961476",
+    "externalId": "external-id-7",
+    "name": "Green Bicycle Factory",
+    "description": "Description of service agreement",
+    "creatorLegalEntity": "0955e686-d31e-4216-b3dd-5d66161d536d",
+    "isMaster": false,
+    "status": "ENABLED"
+  },
+  {
+    "id": "9e4fb91794574b98ae0a1e42bbe961477",
+    "externalId": "external-id-8",
+    "name": "Green Bicycle Factory UAE",
+    "description": "Description of service agreement",
+    "creatorLegalEntity": "0955e686-d31e-4216-b3dd-5d66161d536d",
+    "isMaster": false,
+    "status": "ENABLED"
+  },
+  {
+    "id": "9e4fb91794574b98ae0a1e42bbe961478",
+    "externalId": "external-id-9",
+    "name": "Harvey Pearson Associates",
+    "description": "Description of service agreement",
+    "creatorLegalEntity": "0955e686-d31e-4216-b3dd-5d66161d536d",
+    "isMaster": false,
+    "status": "ENABLED"
+  },
+  {
+    "id": "9e4fb91794574b98ae1a1e42bbe961479",
+    "externalId": "external-id-10",
+    "name": "Mike Harvey Associates",
+    "description": "Description of service agreement",
+    "creatorLegalEntity": "0955e686-d31e-4216-b3dd-5d66161d536d",
+    "isMaster": false,
+    "status": "ENABLED"
+  }
+]

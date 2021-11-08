@@ -1,0 +1,21 @@
+---
+### Live profile
+spring:
+  profiles:
+    active: live
+  datasource:
+    driver-class-name: ${spring.datasource.driver-class-name}
+    username: ${spring.datasource.username.limit}
+    password: ${spring.datasource.password.limit}
+    url: ${spring.datasource.url.limit}
+
+backbase:
+  limits:
+    applicableCurrency:
+      currencyList: [EUR, GBP, USD, AED, AUD, BRL, CAD, CNY, HKD, INR, JPY, JOD, RUB, SGD, ZAR]
+    defaults:
+      currency: EUR
+      firstDayOfWeek: Monday
+    xccy:
+      enabled: true
+      strategy: ask-always

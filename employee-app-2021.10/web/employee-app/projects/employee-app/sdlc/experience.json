@@ -1,0 +1,124 @@
+{
+  "$schema": "../../../node_modules/@backbase/sdlc-convert/node_modules/@backbase/sdlc-schema/experience.schema.json",
+  "name": "employee-app",
+  "title": "employee-app",
+  "locales": ["en-US"],
+  "properties": {
+    "TypeOfTags": "tracking"
+  },
+  "cxSources": [
+    "node_modules/@backbase",
+    "dist/provisioning-packages/employee-web-app-page.zip",
+    "collections/collection-bb-web-sdk-1.16.3.zip"
+  ],
+  "contentDirs": {
+    "default": "apps/employee-app/sdlc/content",
+    "shared": "shared"
+  },
+  "environments": {
+    "default": {
+      "authorization": {
+        "authUrl": "http://localhost:8180/auth",
+        "clientId": "bb-web-client",
+        "scope": "openid",
+        "kind": "hybrid",
+        "realm": "LaurentianBank",
+        "landingPageUrl": "employee-app/index",
+        "loginPageUrl": "employee-app/login",
+        "maxInactivityDuration": 300
+      },
+      "entitlements": {
+        "enable": false,
+        "uri": "/accessgroup-presentation-service/client-api/v2/accessgroups/users/permissions/summary"
+      },
+      "provisioning": {
+        "type": "cx",
+        "outputDir": "./dist/provisioning-packages/employee-app",
+        "permissions": {
+          "anonymousConsumer": {
+            "ROLE_group_user": "CONSUMER",
+            "ROLE_group_admin": "ADMIN",
+            "ROLE_group_manager": "ADMIN",
+            "ROLE_group_master page designer": "ADMIN",
+            "ROLE_ANONYMOUS": "CONSUMER"
+          },
+          "admin": {
+            "ROLE_group_manager": "ADMIN",
+            "ROLE_group_admin": "ADMIN",
+            "ROLE_group_master page designer": "ADMIN"
+          }
+        },
+        "linkRoot": "",
+        "staticResourcesRoot": "/api/portal/static/items"
+      }
+    }
+  },
+  "menus": {
+    "master-pages": [
+      {
+        "section": "page-bb-default",
+        "title": "Lean Page",
+        "page": {
+          "extends": "page-bb-default",
+          "name": "page-bb-default",
+          "children": [
+            {
+              "fragment": "./pages/lean-page.json"
+            }
+          ]
+        }
+      },
+      {
+        "section": "employee-web-app-page",
+        "title": "Employee Web App SPA",
+        "page": {
+          "extends": "employee-web-app-page",
+          "name": "employee-web-app-page",
+          "children": []
+        }
+      }
+    ],
+    "special-pages": [
+      {
+        "section": "login",
+        "title": "Login",
+        "permission": "anonymousConsumer",
+        "page": {
+          "extends": "page-bb-default",
+          "title": "Login",
+          "children": [
+            {
+              "fragment": "./pages/login.json"
+            }
+          ]
+        }
+      },
+      {
+        "section": "error",
+        "title": "Error",
+        "permission": "anonymousConsumer",
+        "page": {
+          "extends": "page-bb-default",
+          "title": "Something went wrong",
+          "children": [
+            {
+              "fragment": "./pages/error.json"
+            }
+          ]
+        }
+      }
+    ],
+    "main": [
+      {
+        "section": "index",
+        "friendlyUrl": "employee-app",
+        "title": "Home",
+        "permission": "admin",
+        "page": {
+          "extends": "employee-web-app-page",
+          "children": []
+        }
+      }
+    ]
+  }
+}

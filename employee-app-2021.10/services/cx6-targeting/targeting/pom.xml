@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.backbase.apps</groupId>
+        <artifactId>cx6-targeting</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>targeting</artifactId>
+
+    <name>Backbase 6.2 :: CX :: Targeting Services</name>
+
+    <packaging>pom</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.backbase.cxp.targeting</groupId>
+            <artifactId>targeting</artifactId>
+            <type>war</type>
+        </dependency>
+        <dependency>
+            <groupId>com.backbase.cxp.targeting</groupId>
+            <artifactId>targeting</artifactId>
+            <type>zip</type>
+            <classifier>sql</classifier>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <inherited>false</inherited>
+                <executions>
+                    <execution>
+                        <id>clean</id>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>unpack-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <includeClassifiers>sql</includeClassifiers>
+                            <outputDirectory>${project.build.directory}/sql</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>clean-database</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>sql-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>drop-db</id>
+                                <phase>clean</phase>
+                                <goals>
+                                    <goal>execute</goal>
+                                </goals>
+                                <configuration>
+                                    <driver>com.mysql.jdbc.Driver</driver>
+                                    <url>jdbc:mysql://localhost:3306?useSSL=false</url>
+                                    <username>root</username>
+                                    <password>root</password>
+                                    <forceMojoExecution>true</forceMojoExecution>
+                                    <sqlCommand>
+                                        DROP DATABASE IF EXISTS tar_draft;
+                                        DROP DATABASE IF EXISTS tar_final;
+                                    </sqlCommand>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>create-db-targeting</id>
+                                <phase>clean</phase>
+                                <goals>
+                                    <goal>execute</goal>
+                                </goals>
+                                <configuration>
+                                    <driver>com.mysql.jdbc.Driver</driver>
+                                    <url>jdbc:mysql://localhost:3306/tar_draft?useSSL=false&amp;createDatabaseIfNotExist=true</url>
+                                    <username>root</username>
+                                    <password>root</password>
+                                    <forceMojoExecution>true</forceMojoExecution>
+                                    <fileset>
+                                        <basedir>${project.build.directory}/sql/targeting/mysql</basedir>
+                                        <includes>
+                                            <include>create/*.sql</include>
+                                        </includes>
+                                    </fileset>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>create-db-targeting-live</id>
+                                <phase>clean</phase>
+                                <goals>
+                                    <goal>execute</goal>
+                                </goals>
+                                <configuration>
+                                    <driver>com.mysql.jdbc.Driver</driver>
+                                    <url>jdbc:mysql://localhost:3306/tar_final?useSSL=false&amp;createDatabaseIfNotExist=true</url>
+                                    <username>root</username>
+                                    <password>root</password>
+                                    <forceMojoExecution>true</forceMojoExecution>
+                                    <fileset>
+                                        <basedir>${project.build.directory}/sql/targeting/mysql</basedir>
+                                        <includes>
+                                            <include>create/*.sql</include>
+                                        </includes>
+                                    </fileset>
+                                </configuration>
+                            </execution>
+                        </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>mysql</groupId>
+                                <artifactId>mysql-connector-java</artifactId>
+                                <version>${mysql-connector.version}</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+</project>

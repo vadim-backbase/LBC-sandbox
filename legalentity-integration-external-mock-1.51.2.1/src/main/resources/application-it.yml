@@ -1,0 +1,19 @@
+spring:
+  profiles: it
+
+backbase:
+  activemq:
+    enabled: false
+  communication:
+    http:
+      access-token-uri: http://localService/token
+      discoverable-access-token-service: true
+    logRequests: true
+    logReplies: true
+    logEventEmit: true
+    logEventReceive: true
+  mockito:
+    verify:
+      timeout: 2000
+
+spring.main.allow-bean-definition-overriding: true

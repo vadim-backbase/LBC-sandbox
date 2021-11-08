@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<catalog>
+    <widget>
+        <name>bb-actions-business-notification-preferences-journey-ang</name>
+        <properties>
+            <property name="classId">
+                <value>ActionsBusinessNotificationPreferencesJourneyBundleModule</value>
+            </property>
+            <property name="src">
+                <value>$(itemRoot)/index.html</value>
+            </property>
+            <property name="render.requires">
+                <value>render-bb-widget-3</value>
+            </property>
+            <property name="title" label="Title" readonly="true" viewHint="admin,designModeOnly">
+                <value type="string">Actions Business Notification Preferences Journey Bundle</value>
+            </property>
+            <property name="thumbnailUrl">
+                <value>$(itemRoot)/icon.png</value>
+            </property>
+            <property name="notificationDismissTime" label="Notification dismiss time in seconds (defaults to 5)" viewHint="text-input,admin,designModeOnly">
+                <value type="long">5</value>
+            </property>
+            <property name="specificationIDs" label="Comma separated specification IDs to process" viewHint="text-input,admin,designModeOnly">
+                <value type="string">5, 6, 13, 14</value>
+            </property>
+        </properties>
+    </widget>
+</catalog>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.backbase</groupId>
+        <artifactId>transactions</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>transaction-enricher</artifactId>
+
+    <packaging>pom</packaging>
+
+    <name>Backbase DBS :: Transactions :: transaction-enricher</name>
+
+    <properties>
+        <spring.datasource.driver-class-name.transaction-enricher>com.mysql.jdbc.Driver</spring.datasource.driver-class-name.transaction-enricher>
+        <spring.datasource.url.transaction-enricher>jdbc:mysql://localhost:3306/transaction_enricher?useSSL=false</spring.datasource.url.transaction-enricher>
+        <spring.datasource.username.transaction-enricher>root</spring.datasource.username.transaction-enricher>
+        <spring.datasource.password.transaction-enricher>root</spring.datasource.password.transaction-enricher>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.backbase.dbs.transaction.enrichment</groupId>
+            <artifactId>transaction-enricher</artifactId>
+            <type>war</type>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.backbase.oss</groupId>
+                <artifactId>blade-maven-plugin</artifactId>
+
+                <configuration>
+
+                    <openBrowserOnStartup>false</openBrowserOnStartup>
+                    <detectAndConfigureSpringConfigLocation>true</detectAndConfigureSpringConfigLocation>
+                    <systemProperties>
+                        <spring.datasource.driver-class-name.transaction-enricher>${spring.datasource.driver-class-name.transaction-enricher}</spring.datasource.driver-class-name.transaction-enricher>
+                        <spring.datasource.url.transaction-enricher>${spring.datasource.url.transaction-enricher}</spring.datasource.url.transaction-enricher>
+                        <spring.datasource.username.transaction-enricher>${spring.datasource.username.transaction-enricher}</spring.datasource.username.transaction-enricher>
+                        <spring.datasource.password.transaction-enricher>${spring.datasource.password.transaction-enricher}</spring.datasource.password.transaction-enricher>
+                    </systemProperties>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.backbase</groupId>
+        <artifactId>statics</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>collection-app-manager</artifactId>
+    <packaging>pom</packaging>
+
+    <name>Backbase :: Statics :: CX 6 App Manager</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.backbase.cxp</groupId>
+            <artifactId>collection-app-manager</artifactId>
+            <version>1.2.0</version>
+            <classifier>cx6-page</classifier>
+            <type>zip</type>
+        </dependency>
+        <dependency>
+            <groupId>com.backbase.cxp</groupId>
+            <artifactId>collection-app-manager</artifactId>
+            <version>1.2.0</version>
+            <classifier>cx6-portal</classifier>
+            <type>zip</type>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.backbase.maven.plugins</groupId>
+                <artifactId>bb-maven-plugin</artifactId>
+                <configuration>
+                    <enableExtPackage>true</enableExtPackage>
+                    <widgetCollections>
+                        <widgetCollection>
+                            <groupId>com.backbase.cxp</groupId>
+                            <artifactId>collection-app-manager</artifactId>
+                            <classifier>cx6-page</classifier>
+                        </widgetCollection>
+                    </widgetCollections>
+                    <experiencePackages>
+                        <experiencePackage>
+                            <groupId>com.backbase.cxp</groupId>
+                            <artifactId>collection-app-manager</artifactId>
+                            <classifier>cx6-portal</classifier>
+                            <export>false</export>
+                        </experiencePackage>
+                    </experiencePackages>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

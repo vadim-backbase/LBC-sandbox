@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.backbase</groupId>
+        <artifactId>loans</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>loan</artifactId>
+
+    <!-- Set packaging to WAR if you want extend the behaviour of the DBS service -->
+    <packaging>pom</packaging>
+
+    <name>Backbase DBS :: Loans :: loan</name>
+
+    <properties>
+        <spring.datasource.driver-class-name>com.mysql.jdbc.Driver</spring.datasource.driver-class-name>
+        <spring.datasource.url.loan>jdbc:mysql://localhost:3306/loan?useSSL=false</spring.datasource.url.loan>
+        <spring.datasource.username.loan>root</spring.datasource.username.loan>
+        <spring.datasource.password.loan>root</spring.datasource.password.loan>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.backbase.loan</groupId>
+            <artifactId>loan</artifactId>
+            <type>war</type>
+        </dependency>
+        <dependency>
+            <groupId>com.backbase.loan</groupId>
+            <artifactId>loan</artifactId>
+            <classifier>classes</classifier>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.backbase.oss</groupId>
+                <artifactId>blade-maven-plugin</artifactId>
+
+                <configuration>
+                    <openBrowserOnStartup>false</openBrowserOnStartup>
+                    <detectAndConfigureSpringConfigLocation>true</detectAndConfigureSpringConfigLocation>
+                    <systemProperties>
+                        <spring.datasource.driver-class-name>${spring.datasource.driver-class-name}</spring.datasource.driver-class-name>
+                        <spring.datasource.url.loan>${spring.datasource.url.loan}</spring.datasource.url.loan>
+                        <spring.datasource.username.loan>${spring.datasource.username.loan}</spring.datasource.username.loan>
+                        <spring.datasource.password.loan>${spring.datasource.password.loan}</spring.datasource.password.loan>
+                    </systemProperties>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

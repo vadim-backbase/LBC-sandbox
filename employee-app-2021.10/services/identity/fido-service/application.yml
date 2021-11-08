@@ -1,0 +1,18 @@
+---
+### Live profile
+spring:
+  profiles: live
+  datasource:
+    driver-class-name: ${spring.datasource.driver-class-name}
+    username: ${spring.datasource.username}
+    password: ${spring.datasource.password}
+    url: ${spring.datasource.url.fido-service}
+
+sso:
+  jwt:
+    internal:
+      type: signed
+      signature:
+        key:
+          type: ENV
+          value: SIG_SECRET_KEY

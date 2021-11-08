@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "ic_logo_full_white.pdf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

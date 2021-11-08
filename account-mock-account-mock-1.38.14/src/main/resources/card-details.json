@@ -1,0 +1,16 @@
+{
+    "cardProvider": "Provider {number}",
+    "secured": true,
+    "availableCashCredit": "4{number}00.{number}",
+    "cashCreditLimit": "4{number}00.{number}2",
+    "lastPaymentDate": "202{number}-0{number}-1{number}",
+    "lastPaymentAmount": "20.2{number}",
+    "latePaymentFee": "0.{number}%",
+    "previousStatementDate": "202{number}-0{number}-0{number}",
+    "previousStatementBalance": "-4{number}.{number}7",
+    "statementBalance": "4{number}.{number}7",
+    "additions": {
+        "prop0": "value0{number}",
+        "prop1": "value1{number}"
+    }
+}

@@ -1,0 +1,32 @@
+
+backbase:
+  api:
+    extensions:
+      classes:
+        com.backbase.presentation.legalentity.rest.spec.v2.legalentities.CreateLegalEntitiesPostRequestBody: additional-le-data
+        com.backbase.presentation.legalentity.rest.spec.v2.legalentities.LegalEntityAsParticipantPostRequestBody: additional-le-data
+        com.backbase.presentation.legalentity.rest.spec.v2.legalentities.LegalEntityPut: additional-le-data
+        com.backbase.presentation.legalentity.rest.spec.v2.legalentities.LegalEntity: additional-le-data
+        com.backbase.presentation.legalentity.rest.spec.v2.legalentities.LegalEntitiesPostRequestBody: additional-le-data
+        com.backbase.presentation.legalentity.rest.spec.v2.legalentities.PresentationCreateLegalEntityItemPostRequestBody: additional-le-data
+        com.backbase.presentation.legalentity.rest.spec.v2.legalentities.NewCustomServiceAgreement: additional-sa-data
+        com.backbase.presentation.legalentity.rest.spec.v2.legalentities.NewMasterServiceAgreement: additional-sa-data
+        com.backbase.presentation.accessgroup.rest.spec.v2.accessgroups.serviceagreements.ServiceAgreementPutRequestBody: additional-sa-data
+        com.backbase.presentation.accessgroup.rest.spec.v2.accessgroups.serviceagreements.ServiceAgreementSave: additional-sa-data
+        com.backbase.presentation.accessgroup.rest.spec.v2.accessgroups.serviceagreements.ServiceAgreementPostRequestBody: additional-sa-data
+        com.backbase.presentation.accessgroup.rest.spec.v2.accessgroups.serviceagreements.ServiceAgreementIngestPostRequestBody: additional-sa-data
+      property-sets:
+        additional-le-data:
+          properties:
+            - property-name: jurisdiction
+              type: string
+            - property-name: address_line_1
+              type: string
+            - property-name: isTPP
+              type: boolean
+        additional-sa-data:
+          properties:
+            - property-name: sa_type
+              type: string
+            - property-name: canUpdate
+              type: boolean

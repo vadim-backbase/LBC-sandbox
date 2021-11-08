@@ -1,0 +1,28 @@
+@Library('jenkins-shared-library@latest') _1
+@Library('f5-shared-jenkins-library@neo-mock') _2
+
+performDbsMockBuild {
+    slackRoom '#neo-pipelines'
+    projectKey 'ACC'
+    depositOnEscrow: true
+
+    image 'default', '-Pdocker-image'
+    image 'whebsphere', '-Pdocker-image-websphere -Pno-runtime'
+
+    forkOrigin 'release/2021.09'
+
+    relocation {
+        from 'com.backbase.dbs.account'
+    }
+
+    hook 'initialize', {
+        if( isReleaseBranch() ) {
+            return
+        }
+
+        updateDependencyVersion 'arrangement-manager-api.version',
+                                artifact: 'com.backbase.dbs.arrangement:arrangement-backend-api',
+                                project: 'AR:arrangement-manager-api',
+                                matching: /.+-${branchInfo.id}-SNAPSHOT/
+    }
+}

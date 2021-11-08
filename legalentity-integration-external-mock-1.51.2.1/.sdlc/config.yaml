@@ -1,0 +1,6 @@
+stream: "Business Banking"
+tribe: "Business Lviv Tribe"
+squad: "Leleka"
+escrow:
+  tagpattern: 'legalentity-integration-external-mock-VERSION'
+  product: 'entitlements'

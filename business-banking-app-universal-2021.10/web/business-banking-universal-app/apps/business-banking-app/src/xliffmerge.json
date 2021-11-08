@@ -1,0 +1,8 @@
+{
+  "xliffmergeOptions": {
+    "apikey": "",
+    "autotranslate": [],
+    "srcDir": "apps/business-banking-app/src/locale",
+    "genDir": "apps/business-banking-app/src/locale"
+  }
+}

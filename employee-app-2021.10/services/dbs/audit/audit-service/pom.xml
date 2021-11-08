@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.backbase.apps</groupId>
+        <artifactId>audit</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>audit-service</artifactId>
+
+    <!-- Set packaging to WAR if you want extend the behaviour of the DBS service -->
+    <packaging>pom</packaging>
+
+    <name>Backbase DBS :: Audit :: audit-service</name>
+
+    <properties>
+        <spring.cache.caffeine.spec.audit-service>expireAfterWrite=10s</spring.cache.caffeine.spec.audit-service>
+        <spring.datasource.url.audit-service>jdbc:mysql://localhost:3306/audit_persistence?useSSL=false</spring.datasource.url.audit-service>
+        <spring.datasource.username.audit-service>root</spring.datasource.username.audit-service>
+        <spring.datasource.password.audit-service>root</spring.datasource.password.audit-service>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.backbase.dbs.audit</groupId>
+            <artifactId>audit-service</artifactId>
+            <type>war</type>
+        </dependency>
+        <dependency>
+            <groupId>com.backbase.dbs.audit</groupId>
+            <artifactId>audit-service</artifactId>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>com.backbase.dbs.audit</groupId>
+            <artifactId>audit-service</artifactId>
+            <classifier>classes</classifier>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${jdbc.driver.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.backbase.oss</groupId>
+                <artifactId>blade-maven-plugin</artifactId>
+
+                <configuration>
+                    <port>${port}</port>
+                    <openBrowserOnStartup>false</openBrowserOnStartup>
+                    <detectAndConfigureSpringConfigLocation>true</detectAndConfigureSpringConfigLocation>
+                    <systemProperties>
+                        <spring.cache.caffeine.spec.audit-service>${spring.cache.caffeine.spec.audit-service}</spring.cache.caffeine.spec.audit-service>
+                        <spring.datasource.url.audit-service>${spring.datasource.url.audit-service}</spring.datasource.url.audit-service>
+                        <spring.datasource.username.audit-service>${spring.datasource.username.audit-service}</spring.datasource.username.audit-service>
+                        <spring.datasource.password.audit-service>${spring.datasource.password.audit-service}</spring.datasource.password.audit-service>
+                    </systemProperties>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

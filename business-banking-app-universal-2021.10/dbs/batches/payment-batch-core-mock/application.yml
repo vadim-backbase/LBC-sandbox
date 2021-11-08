@@ -1,0 +1,4 @@
+---
+### Live profile
+spring:
+  profiles: live

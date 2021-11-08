@@ -1,0 +1,43 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.Backbase">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/transparent</item>
+        <item name="colorAccent">@color/accent</item>
+        <item name="android:windowBackground">@drawable/splash_layer_list</item>
+        <item name="collapsedTitleTextAppearance">@style/TitleTextAppearance</item>
+        <item name="expandedTitleTextAppearance">@style/TitleTextAppearance</item>
+    </style>
+
+    <style name="TitleTextAppearance" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">?colorOnSecondary</item>
+    </style>
+
+    <style name="IntracompanyBody1Medium">
+        <item name="android:textAppearance">?textAppearanceHeadline6</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="SepaBody1Medium">
+        <item name="android:textAppearance">?textAppearanceBody1</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+    <style name="InternationalSubtitle1Medium">
+        <item name="android:textAppearance">?textAppearanceSubtitle1</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
+    </style>
+
+    <style name="InternationalTextView">
+        <item name="android:textAppearance">?textAppearanceSubtitle2</item>
+        <item name="android:textColor">?android:textColorSecondary</item>
+    </style>
+
+    <style name="PaymentResultComment" parent="BasePaymentResultComment">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+</resources>

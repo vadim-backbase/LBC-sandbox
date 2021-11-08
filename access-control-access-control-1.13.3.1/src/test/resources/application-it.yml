@@ -1,0 +1,120 @@
+accesscontrol:
+  security:
+    cookies:
+      secure:
+        value: false
+      httpOnly:
+        value: false
+backbase:
+  accesscontrol:
+    token:
+      expiration: 1000
+      initPhrase: RandomInitVecto2
+      key: Bar12345Bar12345
+  legalentity:
+    externalSearch:
+      validateOnPersistence: true
+  usercontext:
+    jwtTokenExpiration: 300
+    signatureAndEncryption:
+      key:
+        type: VALUE
+        value: JWTSecretKeyDontUseInProduction!
+  data-group:
+    validation:
+      enabled: false
+    types:
+      - ARRANGEMENTS
+      - CONTACTS
+      - CUSTOMERS
+      - PAYEES
+  db:
+    cleanup: db/sql/mssql/cleanupTables.sql
+  activemq:
+    enabled: false
+  eventsourcing:
+    commands-and-events-storage-enabled: false
+  communication:
+    consumer-options:
+      maxConcurrentConsumers: 25
+      concurrentConsumers: 5
+      maxMessagesPerTask: 100
+    http:
+      access-token-uri: http://localService/token
+      discoverable-access-token-service: true
+    logRequests: true
+    logReplies: true
+    logEventEmit: true
+    logEventReceive: true
+  accessgroup:
+    audit:
+      size: 100
+  approval:
+    validation:
+      enabled: false
+    level:
+      enabled: false
+  api:
+    extensions:
+      classes:
+        com.backbase.presentation.accessgroup.rest.spec.v2.accessgroups.serviceagreements.ServiceAgreementPutRequestBody: test-data
+        com.backbase.presentation.accessgroup.rest.spec.v2.accessgroups.serviceagreements.ServiceAgreementSave: test-data
+        com.backbase.presentation.accessgroup.rest.spec.v2.accessgroups.serviceagreements.ServiceAgreementPostRequestBody: test-data
+        com.backbase.presentation.accessgroup.rest.spec.v2.accessgroups.serviceagreements.ServiceAgreementIngestPostRequestBody: sa-data
+        com.backbase.presentation.legalentity.rest.spec.v2.legalentities.CreateLegalEntitiesPostRequestBody: le-data
+        com.backbase.presentation.legalentity.rest.spec.v2.legalentities.LegalEntityPut: le-data
+        com.backbase.presentation.legalentity.rest.spec.v2.legalentities.LegalEntity: le-data
+        com.backbase.presentation.legalentity.rest.spec.v2.legalentities.LegalEntitiesPostRequestBody: le-data
+        com.backbase.presentation.legalentity.rest.spec.v2.legalentities.PresentationCreateLegalEntityItemPostRequestBody: le-data
+      property-sets:
+        test-data:
+          properties:
+            - property-name: externalId
+              type: string
+        le-data:
+          properties:
+            - property-name: leExternalId
+              type: string
+  mockito:
+    verify:
+      timeout: 2000
+
+logging:
+  level:
+    com.backbase: INFO
+    org.springframework: INFO
+
+spring:
+  activemq:
+    in-memory: true
+    pooled: false
+    broker-url: vm://localhost?broker.advisorySupport=false&broker.persistent=false
+  datasource:
+    url: jdbc:h2:mem:ACG;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driverClassName: org.h2.Driver
+    username: sa
+  h2:
+    console:
+      enabled: true
+  liquibase:
+    enabled: false
+  jpa:
+    show-sql: true
+    database-platform: org.hibernate.dialect.H2Dialect
+    properties:
+      hibernate:
+        format_sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create-drop
+      generate_statistics: true
+  main.allow-bean-definition-overriding: true
+
+sso:
+  jwt:
+    internal:
+      type: signed
+      signature:
+        key:
+          type: VALUE
+          value: JWTSecretKeyDontUseInProduction!

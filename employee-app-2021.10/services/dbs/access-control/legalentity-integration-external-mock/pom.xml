@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.backbase.apps</groupId>
+        <artifactId>access-control</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>legalentity-integration-external-mock</artifactId>
+
+    <packaging>pom</packaging>
+
+    <name>Backbase DBS :: Access Control :: legalentity-integration-external-mock</name>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>com.backbase.dbs.legalentity</groupId>
+            <artifactId>legalentity-integration-external-mock</artifactId>
+            <type>war</type>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>legalentity-integration-external-mock</finalName>
+        <plugins>
+            <plugin>
+                <groupId>com.backbase.oss</groupId>
+                <artifactId>blade-maven-plugin</artifactId>
+                <configuration>
+                    <openBrowserOnStartup>false</openBrowserOnStartup>
+                    <detectAndConfigureSpringConfigLocation>true</detectAndConfigureSpringConfigLocation>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <overlays>
+                        <overlay>
+                            <groupId>com.backbase.dbs.legalentity</groupId>
+                            <artifactId>legalentity-integration-external-mock</artifactId>
+                            <type>war</type>
+                            <excludes>
+                                <exclude>WEB-INF/classes/all-legal-entities.json</exclude>
+                            </excludes>
+                            <!--<includes>
+                                <include>all-legal-entities.json</include>
+                            </includes>-->
+                        </overlay>
+                    </overlays>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

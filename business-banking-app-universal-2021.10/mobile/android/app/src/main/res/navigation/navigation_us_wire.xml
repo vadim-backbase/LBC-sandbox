@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/omnipayments_us_wire_journey"
+    app:startDestination="@id/fromAccount">
+    <fragment
+        android:id="@+id/fromAccount"
+        android:name="com.backbase.android.business.journey.omnipayments.view.PaymentStepFragment"
+        android:label="PaymentStepFragment" >
+        <action
+            android:id="@+id/action_fromAccount_to_transferTo"
+            app:destination="@id/transferTo"
+            app:enterAnim="@anim/anim_enter"
+            app:exitAnim="@anim/anim_exit"
+            app:popEnterAnim="@anim/anim_pop_enter"
+            app:popExitAnim="@anim/anim_pop_exit"/>
+        <argument
+            android:name="router"
+            app:argType="string"
+            android:defaultValue="OmniPaymentRouting_Us_Wire" />
+        <argument
+            android:name="stepIndex"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/transferTo"
+        android:name="com.backbase.android.business.journey.omnipayments.view.PaymentStepFragment"
+        android:label="PaymentStepFragment" >
+        <argument
+            android:name="stepIndex"
+            app:argType="integer"
+            android:defaultValue="1" />
+        <argument
+            android:name="router"
+            app:argType="string"
+            android:defaultValue="OmniPaymentRouting_Us_Wire" />
+        <action
+            android:id="@+id/action_transferTo_to_paymentDetails"
+            app:destination="@id/paymentDetails"
+            app:enterAnim="@anim/anim_enter"
+            app:exitAnim="@anim/anim_exit"
+            app:popEnterAnim="@anim/anim_pop_enter"
+            app:popExitAnim="@anim/anim_pop_exit"/>
+        <action
+            android:id="@+id/action_transferTo_to_newBeneficiary"
+            app:destination="@id/newBeneficiary"
+            app:enterAnim="@anim/anim_enter"
+            app:exitAnim="@anim/anim_exit"
+            app:popEnterAnim="@anim/anim_pop_enter"
+            app:popExitAnim="@anim/anim_pop_exit"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/newBeneficiary"
+        android:name="com.backbase.android.business.journey.omnipayments.view.PaymentStepFragment"
+        android:label="PaymentStepFragment" >
+        <argument
+            android:name="stepIndex"
+            app:argType="integer"
+            android:defaultValue="2" />
+        <argument
+            android:name="router"
+            app:argType="string"
+            android:defaultValue="OmniPaymentRouting_Us_Wire" />
+        <action
+            android:id="@+id/action_newBeneficiary_to_paymentDetails"
+            app:destination="@id/paymentDetails"
+            app:enterAnim="@anim/anim_enter"
+            app:exitAnim="@anim/anim_exit"
+            app:popEnterAnim="@anim/anim_pop_enter"
+            app:popExitAnim="@anim/anim_pop_exit"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/paymentDetails"
+        android:name="com.backbase.android.business.journey.omnipayments.view.PaymentStepFragment"
+        android:label="PaymentStepFragment" >
+        <argument
+            android:name="stepIndex"
+            app:argType="integer"
+            android:defaultValue="3" />
+        <argument
+            android:name="router"
+            app:argType="string"
+            android:defaultValue="OmniPaymentRouting_Us_Wire" />
+        <action
+            android:id="@+id/action_paymentDetails_to_review"
+            app:destination="@id/review"
+            app:enterAnim="@anim/anim_enter"
+            app:exitAnim="@anim/anim_exit"
+            app:popEnterAnim="@anim/anim_pop_enter"
+            app:popExitAnim="@anim/anim_pop_exit"/>
+    </fragment>
+    <fragment
+        android:id="@+id/review"
+        android:name="com.backbase.android.business.journey.omnipayments.view.PaymentStepFragment"
+        android:label="PaymentStepFragment" >
+        <argument
+            android:name="stepIndex"
+            app:argType="integer"
+            android:defaultValue="4" />
+        <argument
+            android:name="router"
+            app:argType="string"
+            android:defaultValue="OmniPaymentRouting_Us_Wire" />
+        <action
+            android:id="@+id/action_review_to_result"
+            app:destination="@id/resultFragment"
+            app:enterAnim="@anim/anim_enter"
+            app:exitAnim="@anim/anim_exit"
+            app:popEnterAnim="@anim/anim_pop_enter"
+            app:popExitAnim="@anim/anim_pop_exit"/>
+    </fragment>
+    <fragment
+        android:id="@+id/resultFragment"
+        android:name="com.backbase.android.business.journey.omnipayments.view.PaymentResultFragment"
+        android:label="PaymentResultFragment">
+    </fragment>
+</navigation>

@@ -1,0 +1,14 @@
+{
+  "type": "object",
+  "description": "User context event",
+  "properties": {
+    "userId": {
+      "type": "string",
+      "description": "Internal user id"
+    },
+    "serviceAgreementId": {
+      "type": "string",
+      "description": "Internal service agreement id"
+    }
+  }
+}

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/accounts_transactions_journey"
+        android:enabled="true"
+        android:icon="@drawable/ic_accounts"
+        android:title="Accounts"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/approvals_journey_container"
+        android:enabled="true"
+        android:icon="@drawable/ic_approvals"
+        android:title="Approvals"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/manage_payments_journey"
+        android:enabled="true"
+        android:icon="@drawable/ic_payments"
+        android:title="Payments"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/cards_management_journey"
+        android:enabled="true"
+        android:icon="@drawable/ic_credit_card"
+        android:title="@string/custom_menu_cards_title"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/more_journey_container"
+        android:enabled="true"
+        android:icon="@drawable/ic_more_horiz"
+        android:title="@string/custom_menu_more_title"
+        app:showAsAction="ifRoom" />
+</menu>

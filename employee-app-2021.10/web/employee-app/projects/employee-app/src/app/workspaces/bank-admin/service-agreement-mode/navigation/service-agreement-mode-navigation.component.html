@@ -1,0 +1,103 @@
+<div class="bb-sidebar" data-role="sidebar">
+  <nav role="navigation" data-role="service-agreement-mode-nav">
+    <ul class="bb-navigation" aria-orientation="vertical">
+      <li
+        class="bb-navigation__item bb-navigation-item"
+        routerLinkActive="bb-navigation-item--active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <a class="bb-navigation-item__link" routerLink="./">
+          <i class="bicon bicon-dashboard bb-navigation-item__icon"></i>
+          <span
+            class="bb-navigation-item__title"
+            i18n="
+              Service agreement overview menu item|Link text to navigate to the
+              service agreement overview
+              page@@employee-app.service-agreement-mode-nav.service-agreement-overview"
+          >
+            Overview
+          </span>
+        </a>
+      </li>
+      <li
+        class="bb-navigation__header"
+        i18n="
+          Entitlements menu header|Title text for the entitlements header in
+          service agreement
+          mode@@employee-app.service-agreement-mode-nav.customer-support"
+      >
+        Manage service agreement
+      </li>
+      <li
+        class="bb-navigation__item bb-navigation-item"
+        routerLinkActive="bb-navigation-item--active"
+      >
+        <a
+          class="bb-navigation-item__link"
+          routerLink="./users-and-permissions"
+        >
+          <i class="bicon bicon-people-outline bb-navigation-item__icon"></i>
+          <span
+            class="bb-navigation-item__title"
+            i18n="
+              users and permissions menu item|Link text to navigate to the users
+              and permissions
+              page@@employee-app.service-agreement-mode-nav.users-and-permissions"
+          >
+            Users and permissions
+          </span>
+        </a>
+      </li>
+      <li
+        class="bb-navigation__item bb-navigation-item"
+        routerLinkActive="bb-navigation-item--active"
+      >
+        <a class="bb-navigation-item__link" routerLink="./job-roles">
+          <i class="bicon bicon-recent-actors bb-navigation-item__icon"></i>
+          <span
+            class="bb-navigation-item__title"
+            i18n="
+              job roles menu item|Link text to navigate to the job roles
+              page@@employee-app.service-agreement-mode-nav.job-roles"
+          >
+            Job roles
+          </span>
+        </a>
+      </li>
+      <li
+        class="bb-navigation__item bb-navigation-item"
+        routerLinkActive="bb-navigation-item--active"
+      >
+        <a class="bb-navigation-item__link" routerLink="./account-groups">
+          <i class="bicon bicon-current-accounts bb-navigation-item__icon"></i>
+          <span
+            class="bb-navigation-item__title"
+            i18n="
+              account groups menu item|Link text to navigate to the account
+              groups
+              page@@employee-app.service-agreement-mode-nav.account-groups"
+          >
+            Account groups
+          </span>
+        </a>
+      </li>
+      <li
+        class="bb-navigation__item bb-navigation-item"
+        routerLinkActive="bb-navigation-item--active"
+      >
+        <a class="bb-navigation-item__link" routerLink="./approvals">
+          <i class="bicon bicon-authorizations bb-navigation-item__icon"></i>
+          <span
+            class="bb-navigation-item__title"
+            i18n="
+              Approval workflow menu item|Link text to navigate to the Approval
+              workflow
+              page@@employee-app.service-agreement-mode-nav.approval-workflow"
+          >
+            Approval workflow
+          </span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>

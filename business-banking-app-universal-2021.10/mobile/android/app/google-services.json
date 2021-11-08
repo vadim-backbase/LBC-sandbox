@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "713073511614",
+    "project_id": "backbase-push-notificati-e593e",
+    "storage_bucket": "backbase-push-notificati-e593e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:713073511614:android:4b409d32d0e114e64d62ef",
+        "android_client_info": {
+          "package_name": "com.backbase.business.kickstarter.productised_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "713073511614-vgeqsisqlfrsh03ljo5b6jca3cpbh2r2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbzdgquf1BBtZb8sdYO3rVo2Q86GIUyl8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "713073511614-vgeqsisqlfrsh03ljo5b6jca3cpbh2r2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:713073511614:android:43839a84f29196104d62ef",
+        "android_client_info": {
+          "package_name": "com.backbase.business.kickstarter.productised_app.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "713073511614-vgeqsisqlfrsh03ljo5b6jca3cpbh2r2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbzdgquf1BBtZb8sdYO3rVo2Q86GIUyl8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "713073511614-vgeqsisqlfrsh03ljo5b6jca3cpbh2r2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

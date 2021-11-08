@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<catalog>
+  <widget>
+    <name>bb-universal-create-payment-template-widget-ang</name>
+    <properties>
+      <property name="classId">
+        <value>UniversalCreatePaymentTemplateWidgetAngComponent</value>
+      </property>
+      <property name="src">
+        <value>$(itemRoot)/index.html</value>
+      </property>
+      <property name="render.requires">
+        <value>render-bb-widget-3</value>
+      </property>
+      <property name="title" label="Title" readonly="true" viewHint="admin,designModeOnly">
+        <value type="string">Create Payment Template Widget</value>
+      </property>
+      <property name="thumbnailUrl">
+        <value>$(itemRoot)/icon.png</value>
+      </property>
+      <property name="label">
+        <value>Angular CreatePaymentTemplateWidgetAngComponent Widget</value>
+      </property>
+      <property name="successEventName" label="Event emitted when payment or template is created" viewHint="admin,designModeOnly">
+        <value type="string">bb.refresh.payment.templates</value>
+      </property>
+      <property name="modalViewName" label="Name of the modal window. (Url friendly without spaces)" viewHint="admin,designModeOnly">
+        <value type="string">create-payment-template</value>
+      </property>
+      <property name="templateTypes" label="Types of supported payment templates. (Comma separated values without spaces)" viewHint="admin,designModeOnly">
+        <value type="string">ACH_CREDIT,US_DOMESTIC_WIRE,INTERNATIONAL_TRANSFER</value>
+      </property>
+      <property name="isModalView" label="Render as  modal" viewHint="checkbox,admin,designModeOnly">
+        <value type="boolean">true</value>
+      </property>
+      <property name="checkClosedPaymentsAccess" label="Check closed payments access" type="boolean" viewHint="checkbox,admin">
+        <value>false</value>
+      </property>
+      <property
+        name="input.editedPaymentTemplate"
+        viewHint="text-input,admin,designModeOnly">
+        <value>memory</value>
+      </property>
+      <property name="pageSize" label="Number of arrangements loaded for originating and counterparty account selector" type="long" viewHint="admin,designModeOnly">
+        <value>50</value>
+      </property>
+    </properties>
+  </widget>
+</catalog>

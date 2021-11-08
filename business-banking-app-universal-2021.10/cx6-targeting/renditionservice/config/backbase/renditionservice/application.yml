@@ -1,0 +1,10 @@
+#
+# Configuration file only for development
+#
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/rendition?useSSL=false
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver

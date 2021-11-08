@@ -1,0 +1,10 @@
+---
+### Live profile
+spring:
+  profiles: live
+  datasource:
+    driver-class-name: ${spring.datasource.driver-class-name}
+    username: ${spring.datasource.username.approval-service}
+    password: ${spring.datasource.password.approval-service}
+    url: ${spring.datasource.url.approval-service}
+

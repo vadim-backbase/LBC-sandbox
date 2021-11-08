@@ -1,0 +1,176 @@
+[
+  {
+    "externalId": "BankMock1",
+    "name": "BankMock1",
+    "additions": {
+      "cif": "128",
+      "address": "Street no.1"
+    }
+  },
+  {
+    "externalId": "BankMock2",
+    "name": "BankMock2",
+    "additions": {
+      "cif": "127",
+      "address": "Street no.2"
+    }
+  },
+  {
+    "externalId": "BankMock3",
+    "name": "BankMock3",
+    "additions": {
+      "cif": "126",
+      "address": "Street no.3",
+      "phone": "123456"
+    }
+  },
+  {
+    "externalId": "BankMock4",
+    "name": "BankMock4",
+    "additions": {
+      "cif": "125",
+      "address": "Street no.4",
+      "phone": "123123"
+    }
+  },
+  {
+    "externalId": "BankMock5",
+    "name": "BankMock5",
+    "additions": {
+      "address": "Street no.5"
+    }
+  },
+  {
+    "externalId": "BankMock6",
+    "name": "BankMock6",
+    "additions": {
+      "location": "NL",
+      "id": 6
+    }
+  },
+  {
+    "externalId": "BankMock7",
+    "name": "BankMock7",
+    "additions": {
+      "cif": "239",
+      "address": "Street no.7",
+      "location": "NL",
+      "id": 7
+    }
+  },
+  {
+    "externalId": "BankMock8",
+    "name": "BankMock8"
+  },
+  {
+    "externalId": "BankMock9",
+    "name": "BankMock9"
+  },
+  {
+    "externalId": "BankMock10",
+    "name": "BankMock10"
+  },
+  {
+    "externalId": "BankMock11",
+    "name": "BankMock11"
+  },
+  {
+    "externalId": "BankMock12",
+    "name": "BankMock12",
+    "additions": {
+      "cif": "234",
+      "address": "Street no.12",
+      "id": 12
+    }
+  },
+  {
+    "externalId": "BankMock13",
+    "name": "BankMock13",
+    "additions": {
+      "cif": "159",
+      "address": "Street no.13"
+    }
+  },
+  {
+    "externalId": "BankMock14",
+    "name": "BankMock14"
+  },
+  {
+    "externalId": "BankMock15",
+    "name": "BankMock15"
+  },
+  {
+    "externalId": "BankMock16",
+    "name": "BankMock16",
+    "additions": {
+      "address": "Street no.16"
+    }
+  },
+  {
+    "externalId": "BankMock17",
+    "name": "BankMock17",
+    "additions": {
+      "cif": "790"
+    }
+  },
+  {
+    "externalId": "Bank18",
+    "name": "Bank18",
+    "additions": {
+      "cif": "797",
+      "address": "Same Street"
+    }
+  },
+  {
+    "externalId": "Bank19",
+    "name": "Bank19"
+  },
+  {
+    "externalId": "Bank20",
+    "name": "Bank20"
+  },
+  {
+    "externalId": "BANK0001",
+    "name": "Bank A",
+    "additions": {
+      "cif": "792"
+    }
+  },
+  {
+    "externalId": "CompanyABC ",
+    "name": "Company ABC",
+    "additions": {
+      "cif": "123",
+      "address": "Same Street"
+    }
+  },
+  {
+    "externalId": "Real Estate",
+    "name": "A. Krämer"
+  },
+  {
+    "externalId": "RealEstateCommercial1",
+    "name": "Real Estate - Commercial entity 1"
+  },
+  {
+    "externalId": "RealEstateCommercial2",
+    "name": "Real Estate - Commercial entity 2"
+  },
+  {
+    "externalId": "RealEstateCommercial3",
+    "name": "Real Estate - Commercial entity 3"
+  },
+  {
+    "externalId": "Company1",
+    "name": "Company 1"
+  },
+  {
+    "externalId": "Company2",
+    "name": "Company 3"
+  },
+  {
+    "externalId": "Company3",
+    "name": "Company 3"
+  }
+
+]

@@ -1,0 +1,120 @@
+---
+# SHARED CONFIGURATION
+defaults: &defaults
+  instances: 1
+  memory: 1GB
+  disk_quota: 300M
+  no-route: true
+  health-check-type: http
+  health-check-http-endpoint: /actuator/health
+  buildpacks:
+  - https://github.com/cloudfoundry/java-buildpack.git
+  timeout: 180
+commonvariables: &commonvariables
+    GATEWAY_TOKEN_CONVERTER_TYPE: SERVICE
+    EUREKA_INSTANCE_PREFER_IP_ADDRESS: true
+    EUREKA_INSTANCE_HOSTNAME: $CF_INSTANCE_INTERNAL_IP
+    EUREKA_INSTANCE_NON_SECURE_PORT: 8080
+    EUREKA_INSTANCE_METADATAMAP_CONTEXTPATH: /
+    SIG_SECRET_KEY: JWTSecretKeyDontUseInProduction!
+    EXTERNAL_SIG_SECRET_KEY: JWTSecretKeyDontUseInProduction!
+    EXTERNAL_ENC_SECRET_KEY: JWTEncKeyDontUseInProduction666!
+    JBP_CONFIG_DEBUG: '{enabled: true}'
+    SPRING_PROFILES_ACTIVE: cloud,auditing,provisioning
+    LOGGING_SECURED_ENABLED: false
+    SPRING_ACTIVEMQ_BROKER_URL: ${activemq-broker-url}
+    SPRING_ACTIVEMQ_USER: admin
+    SPRING_ACTIVEMQ_PASSWORD: admin
+    SPRING_LIQUIBASE_ENABLED: false
+    SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.MySQL5Dialect
+    SPRING_DATASOURCE_DRIVERCLASSNAME: com.mysql.jdbc.Driver
+    SPRING_APPLICATION_JSON: '{"eureka.client.serviceUrl.defaultZone": "${x-registry-url}/eureka"}'
+    JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 11.+ }}'
+
+# APPLICATION SPECIFIC CONFIGURATION
+applications:
+  - name: portal
+    <<: *defaults
+    memory: 1280M
+    path: target/dist/portal.war
+    services:
+      - portal-db
+    env:
+      <<: *commonvariables
+      PORTAL_DATABASE_MIGRATION_ENABLED: false
+      PORTAL_AUDITING_ENABLED: true
+      PORTAL_EXTENSION_POINTS_ENABLED: true
+      PORTAL_RESOURCELOCATION_PROFILE: contentservices
+      SPRING_APPLICATION_JSON: '{"eureka.client.serviceUrl.defaultZone": "${x-registry-url}/eureka","management.health.defaults.enabled":"false"}'
+
+  - name: contentservices
+    <<: *defaults
+    memory: 1280M
+    disk_quota: 500M
+    path: target/dist/contentservices.war
+    services:
+      - contentservices-db
+    env:
+      <<: *commonvariables
+      CONTENTSERVICES_AUDITING_ENABLED: true
+      CONTENTSERVICES_EXTENSION_POINTS_ENABLED: true
+      CONTENTSERVICES_DATABASE_MIGRATION_ENABLED: false
+      CONTENTSERVICES_FILESYSTEM_IMPORT_LOCATION: /tmp/backbase/contentservices/import
+      CONTENTSERVICES_FILESYSTEM_EXPORT_LOCATION: /tmp/backbase/contentservices/export
+      SPRING_APPLICATION_JSON: '{"eureka.client.serviceUrl.defaultZone": "${x-registry-url}/eureka","management.health.defaults.enabled":"false"}'
+
+  - name: targeting
+    <<: *defaults
+    path: target/dist/targeting.war
+    services:
+      - targeting-db
+    env:
+      <<: *commonvariables
+      SPRING_PROFILES_INCLUDE: campaigns
+      TARGETING_COLLECTORS_SESSION_ENABLED: true
+      TARGETING_CAMPAIGNS_STORAGE-INTERVAL: 0 0/1 * * * *
+      SPRING_APPLICATION_JSON: '{"eureka.client.serviceUrl.defaultZone": "${x-registry-url}/eureka","management.health.defaults.enabled":"false"}'
+
+  - name: auditing
+    <<: *defaults
+    path: target/dist/auditing.war
+    services:
+      - auditing-db
+    env:
+      <<: *commonvariables
+      SPRING_DATASOURCE_HIKARI_POOL-NAME: auditing
+      SPRING_DATASOURCE_HIKARI_MINIMUM-IDLE: 1
+      SPRING_DATASOURCE_HIKARI_MAXIMUM-POOL-SIZE: 2
+      SPRING_DATASOURCE_HIKARI_CONNECTION-TEST-QUERY: SELECT 1
+
+  - name: provisioning
+    <<: *defaults
+    disk_quota: 500M
+    path: target/dist/provisioning.war
+    services:
+      - provisioning-db
+    env:
+      <<: *commonvariables
+      SPRING_DATASOURCE_HIKARI_POOL-NAME: provisioning
+      SPRING_DATASOURCE_HIKARI_MINIMUM-IDLE: 1
+      SPRING_DATASOURCE_HIKARI_MAXIMUM-POOL-SIZE: 2
+      SPRING_DATASOURCE_HIKARI_CONNECTION-TEST-QUERY: SELECT 1
+      SPRING_DATASOURCE_TOMCAT_MIN-IDLE: 1
+      SPRING_DATASOURCE_TOMCAT_MAX-ACTIVE: 2
+      SPRING_DATASOURCE_TOMCAT_TEST-WHILE-IDLE: true
+      SPRING_DATASOURCE_TOMCAT_TIME-BETWEEN-EVICTION-RUNS-MILLIS: 3600000
+      SPRING_DATASOURCE_TOMCAT_VALIDATION-QUERY: SELECT 1
+
+  - name: renditionservice
+    <<: *defaults
+    path: target/dist/renditionservice.war
+    services:
+      - renditionservice-db
+    env:
+      <<: *commonvariables
+
+  - name: thumbnailservice
+    <<: *defaults
+    path: target/dist/thumbnailservice.war
+    env:
+      <<: *commonvariables

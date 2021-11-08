@@ -1,0 +1,48 @@
+<ng-container  *ngIf="!isModalView; else modalViewSwitch">
+  <ng-container *ngTemplateOutlet="widgetTmpl"></ng-container>
+</ng-container>
+
+<ng-template #modalViewSwitch>
+  <ng-container *ngIf="!shouldCloseModal()">
+    <ng-container *ngTemplateOutlet="modalView"></ng-container>
+  </ng-container>
+</ng-template>
+
+<ng-template #modalView>
+  <bb-routable-modal
+          [showHeader]="false"
+          [modalWindowName]="modalViewName"
+          [modalTitleIcon]="modalHeadingIcon"
+          [closeButton]="modalCloseBtn"
+          (visibilityChange)="onModalToggle($event)"
+  >
+    <ng-container *ngIf="(isModalOpen$ | async)">
+      <ng-container *ngTemplateOutlet="tmplEdit; context: { $implicit: paymentType$ | async }"> </ng-container>
+    </ng-container>
+  </bb-routable-modal>
+</ng-template>
+
+<ng-template let-paymentType #tmplEdit>
+  <bb-payord-omni-payment-widget-ang
+          [paymentConfig]="getPaymentConfig(paymentType)"
+          [businessFunction]="getBusinessFunction(paymentType)"
+          [options]="getWidgetOptions()"
+          [selectedPayment]="selectedPayment"
+          (afterSuccessRedirect)="onAfterSuccessRedirect()"
+  ></bb-payord-omni-payment-widget-ang>
+</ng-template>
+
+<ng-template #widgetTmpl>
+  <ng-container *ngIf="paymentType$ | async as paymentType; else defaultTmpl">
+    <bb-payord-omni-payment-widget-ang
+            [paymentConfig]="getPaymentConfig(paymentType)"
+            [businessFunction]="getBusinessFunction(paymentType)"
+            [options]="getWidgetOptions()"
+            [paymentTemplate]="selectedPaymentTemplate"
+    ></bb-payord-omni-payment-widget-ang>
+  </ng-container>
+</ng-template>
+
+<ng-template #defaultTmpl>
+  <bb-payord-omni-payment-widget-ang></bb-payord-omni-payment-widget-ang>
+</ng-template>

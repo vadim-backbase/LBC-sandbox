@@ -1,0 +1,67 @@
+package com.backbase.accesscontrol.audit.descriptionprovider.rest.datagroup;
+
+import static java.util.Collections.singletonList;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
+
+import com.backbase.audit.client.model.AuditMessage;
+import com.backbase.audit.client.model.AuditMessage.Status;
+import java.util.List;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
+
+@RunWith(MockitoJUnitRunner.class)
+public class DeleteDataGroupDescriptorTest {
+
+    @InjectMocks
+    private DeleteDataGroupDescriptor deleteDataGroupDescriptor;
+
+    @Mock
+    private ProceedingJoinPoint joinPoint;
+
+    @Test
+    public void getSuccessEventDataList() {
+
+        when(joinPoint.getArgs())
+            .thenReturn(singletonList("id").toArray());
+        AuditMessage expectedEventList = new AuditMessage()
+            .withStatus(Status.SUCCESSFUL)
+            .withEventMetaDatum("Data Group ID", "id")
+            .withEventDescription("Delete | Data Group | Successful | ID id");
+        List<AuditMessage> actualEventList = deleteDataGroupDescriptor
+            .getSuccessEventDataList(joinPoint, null);
+        assertEquals(expectedEventList, actualEventList.get(0));
+    }
+
+    @Test
+    public void getInitEventDataListWithExternalSaId() {
+
+        when(joinPoint.getArgs())
+            .thenReturn(singletonList("id").toArray());
+        AuditMessage expectedEventList = new AuditMessage()
+            .withStatus(Status.INITIATED)
+            .withEventMetaDatum("Data Group ID", "id")
+            .withEventDescription("Delete | Data Group | Initiated | ID id");
+        List<AuditMessage> actualEventList = deleteDataGroupDescriptor
+            .getInitEventDataList(joinPoint);
+        assertEquals(expectedEventList, actualEventList.get(0));
+    }
+
+    @Test
+    public void getFailedEventDataListWithExternalSaId() {
+
+        when(joinPoint.getArgs())
+            .thenReturn(singletonList("id").toArray());
+        AuditMessage expectedEventList = new AuditMessage()
+            .withStatus(Status.FAILED)
+            .withEventMetaDatum("Data Group ID", "id")
+            .withEventDescription("Delete | Data Group | Failed | ID id");
+        List<AuditMessage> actualEventList = deleteDataGroupDescriptor
+            .getFailedEventDataList(joinPoint);
+        assertEquals(expectedEventList, actualEventList.get(0));
+    }
+}

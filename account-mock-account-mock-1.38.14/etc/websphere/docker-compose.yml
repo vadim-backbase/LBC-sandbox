@@ -1,0 +1,25 @@
+#
+# mvn clean install -Dmaven.test.skip -Dmaven.javadoc.skip -Pdocker-image-websphere -Ddocker.jib.goal=dockerBuild -Ddocker.default.tag=local -Djib.container.creationTime=$(date --utc '+%Y-%m-%dT%H:%M:%SZ')
+# docker-compose -f etc/websphere/docker-compose.yml up --build --force-recreate --abort-on-container-exit --remove-orphans
+#
+
+version: "3.5"
+
+services:
+  service:
+    image: harbor.backbase.eu/experimental/account-mock:local-websphere-19
+    environment:
+      - EUREKA_CLIENT_ENABLED=false
+      - SIG_SECRET_KEY=JWTSecretKeyDontUseInProduction!
+      - USERCTX_KEY=JWTSecretKeyDontUseInProduction!
+      - SSO_JWT_INTERNAL_SIGNATURE_KEY_TYPE=VALUE
+      - SSO_JWT_INTERNAL_SIGNATURE_KEY_VALUE=01234567890123456789012345678901
+      - BACKBASE_SECURITY_MTLS_ENABLED=false
+      - LOGGING_LEVEL_ROOT=INFO
+      - LOGGING_LEVEL_COM_BACKBASE=DEBUG
+      - DEBUG_PORT=5555
+      - ADMIN_CENTER=true
+    ports:
+      - "5555:5555"
+      - "8888:8080"
+      - "8889:8443"

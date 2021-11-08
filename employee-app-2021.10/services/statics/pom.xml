@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.backbase.apps</groupId>
+    <artifactId>statics</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+
+    <packaging>pom</packaging>
+
+    <name>Backbase 6 :: Statics</name>
+
+    <modules>
+        <module>collection-experience-manager</module>
+        <module>collection-web-sdk</module>
+        <module>collection-universal</module>
+        <module>collection-employee-app-services</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.backbase</groupId>
+                <artifactId>backbase-bom</artifactId>
+                <version>2021.10</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>com.backbase.maven.plugins</groupId>
+                    <artifactId>bb-maven-plugin</artifactId>
+                    <version>1.7.0</version>
+                    <extensions>true</extensions>
+                    <configuration>
+                        <protocol>${portal.protocol}</protocol>
+                        <host>${portal.host}</host>
+                        <port>${portal.port}</port>
+                        <version>${portal.version}</version>
+                        <username>${portal.username}</username>
+                        <password>${portal.password}</password>
+                        <context>${contextpath}</context>
+                        <bbIamHost>http://localhost:8180</bbIamHost>
+                        <bbIamRealm>backbase</bbIamRealm>
+                        <bbIamClientId>bb-tooling-client</bbIamClientId>
+                        <!-- You can upgrade bb-cli version independently -->
+                        <!--<bbCliVersion>2.10.0</bbCliVersion>-->
+                        <!-- Or choose to use your globally available bb-cli -->
+                        <useGlobalBBCli>false</useGlobalBBCli>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>local</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <portal.protocol>http</portal.protocol>
+                <portal.host>localhost</portal.host>
+                <portal.port>7777</portal.port>
+                <portal.version>6</portal.version>
+                <portal.username>admin</portal.username>
+                <portal.password>admin</portal.password>
+                <contextpath>/api</contextpath>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>remote</id>
+            <properties>
+                <portal.protocol>https</portal.protocol>
+                <portal.host>remote</portal.host>
+                <portal.port>8080</portal.port>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>backbase.local</id>
+            <properties>
+                <portal.version>6</portal.version>
+                <portal.username>admin</portal.username>
+                <portal.password>admin</portal.password>
+                <portal.protocol>http</portal.protocol>
+                <portal.host>backbase.local</portal.host>
+                <portal.port>80</portal.port>
+                <contextpath>/api</contextpath>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>space-draft</id>
+            <properties>
+                <portal.version>6</portal.version>
+                <portal.username>admin</portal.username>
+                <portal.password>admin</portal.password>
+                <portal.protocol>http</portal.protocol>
+                <portal.host>localhost</portal.host>
+                <portal.port>8085</portal.port>
+                <contextpath>/api</contextpath>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>space-final</id>
+            <properties>
+                <portal.version>6</portal.version>
+                <portal.username>admin</portal.username>
+                <portal.password>admin</portal.password>
+                <portal.protocol>http</portal.protocol>
+                <portal.host>localhost</portal.host>
+                <portal.port>9085</portal.port>
+                <contextpath>/api</contextpath>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>copy-dependencies</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <version>3.1.1</version>
+                        <executions>
+                            <execution>
+                                <id>copy-collections</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>copy-dependencies</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>${project.build.directory}</outputDirectory>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+</project>
+

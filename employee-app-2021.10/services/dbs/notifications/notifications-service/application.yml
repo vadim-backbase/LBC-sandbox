@@ -1,0 +1,13 @@
+spring:
+  profiles:
+    active: ${DBS_ACTIVE_PROFILE:live}
+
+---
+### Live profile
+spring:
+  profiles: live
+  datasource:
+    driver-class-name: ${spring.datasource.driver-class-name}
+    username: ${spring.datasource.username.notifications-service}
+    password: ${spring.datasource.password.notifications-service}
+    url: ${spring.datasource.url.notifications-service}

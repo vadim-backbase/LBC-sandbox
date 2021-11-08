@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.backbase.apps</groupId>
+    <artifactId>identity</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+
+    <packaging>pom</packaging>
+
+    <name>Backbase 6 :: Identity</name>
+
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <dockerfile-maven-version>1.4.9</dockerfile-maven-version>
+        <mysql.connector.version>5.1.41</mysql.connector.version>
+
+        <identity-bom.version>2021.10</identity-bom.version>
+
+        <port>8181</port>
+        <sig.secret.key>JWTSecretKeyDontUseInProduction!</sig.secret.key>
+        <ext.sig.secret.key>JWTSecretKeyDontUseInProduction!</ext.sig.secret.key>
+        <ext.enc.secret.key>JWTEncKeyDontUseInProduction666!</ext.enc.secret.key>
+        <user.context.key>JWTSecretKeyDontUseInProduction!</user.context.key>
+
+        <blade.openBrowserOnStartup>true</blade.openBrowserOnStartup>
+
+        <blade.multiThreaded>true</blade.multiThreaded>
+        <!-- Disable logging encoding -->
+        <logging.secured.enabled>false</logging.secured.enabled>
+
+        <!-- Set Expiry Time to one hour  -->
+        <sso.jwt.external.expiration>3600</sso.jwt.external.expiration>
+        <sso.jwt.external.renew>1800</sso.jwt.external.renew>
+        <sso.jwt.external.not_valid_after>86400</sso.jwt.external.not_valid_after>
+
+        <!-- Docker Registry -->
+        <docker.registry.url>remote.registry.url</docker.registry.url>
+        <docker.registry.username></docker.registry.username>
+        <docker.registry.password></docker.registry.password>
+
+        <jdbc.driver.groupId>mysql</jdbc.driver.groupId>
+        <jdbc.driver.artifactId>mysql-connector-java</jdbc.driver.artifactId>
+        <jdbc.driver.version>5.1.41</jdbc.driver.version>
+        <spring.datasource.driver-class-name>com.mysql.jdbc.Driver</spring.datasource.driver-class-name>
+        <spring.datasource.username>root</spring.datasource.username>
+        <spring.datasource.password>root</spring.datasource.password>
+
+        <liquibase.enabled>true</liquibase.enabled>
+
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.backbase</groupId>
+                <artifactId>backbase-bom</artifactId>
+                <version>${identity-bom.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <modules>
+        <module>backbase-identity</module>
+        <module>oidc-token-converter-service</module>
+        <module>confirmation</module>
+        <module>device-management-service</module>
+        <module>fido-service</module>
+        <module>identity-integration-service</module>
+    </modules>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.backbase.oss</groupId>
+                <artifactId>blade-maven-plugin</artifactId>
+                <version>4.21.0</version>
+                <inherited>false</inherited>
+                <configuration>
+                    <port>${port}</port>
+                    <detectAndConfigureSpringConfigLocation>true</detectAndConfigureSpringConfigLocation>
+                    <masterBladeAddress>http://localhost:8080</masterBladeAddress>
+                    <systemProperties>
+                        <!-- Eureka Configuration -->
+                        <eureka.client.serviceUrl.defaultZone>http://localhost:8080/registry/eureka/</eureka.client.serviceUrl.defaultZone>
+                        <eureka.instance.nonSecurePort>${port}</eureka.instance.nonSecurePort>
+                        <eureka.instance.hostname>localhost</eureka.instance.hostname>
+                        <eureka.instance.preferIpAddress>false</eureka.instance.preferIpAddress>
+                        <server.port>${port}</server.port>
+
+                        <!-- Active MQ Configuration -->
+                        <spring.activemq.broker-url>tcp://localhost:61616</spring.activemq.broker-url>
+                        <spring.activemq.user>admin</spring.activemq.user>
+                        <spring.activemq.password>admin</spring.activemq.password>
+
+                        <!-- Disable logging encoding -->
+                        <logging.secured.enabled>false</logging.secured.enabled>
+
+                        <!-- Shared Secret key to validate Internal JWT signature -->
+                        <SIG_SECRET_KEY>${sig.secret.key}</SIG_SECRET_KEY>
+
+                        <!-- Entitlements User Context key -->
+                        <USERCTX_KEY>${user.context.key}</USERCTX_KEY>
+
+                        <spring.datasource.url.device-management-service>jdbc:mysql://localhost:3306/device_management?useSSL=false</spring.datasource.url.device-management-service>
+                        <spring.datasource.url.fido-service>jdbc:mysql://localhost:3306/fido?useSSL=false</spring.datasource.url.fido-service>
+                        <spring.datasource.url.confirmation>jdbc:mysql://localhost:3306/confirmation?useSSL=false</spring.datasource.url.confirmation>
+                        <spring.datasource.driver-class-name>com.mysql.jdbc.Driver</spring.datasource.driver-class-name>
+                        <spring.datasource.username>root</spring.datasource.username>
+                        <spring.datasource.password>root</spring.datasource.password>
+                    </systemProperties>
+                    <stages>
+                        <stage>
+                            <id>identity</id>
+                            <name>Identity</name>
+                            <multiThreaded>${blade.multiThreaded}</multiThreaded>
+                            <webApps>
+                                <webApp>
+                                    <module>oidc-token-converter-service</module>
+                                </webApp>
+                                <webApp>
+                                    <module>identity-integration-service</module>
+                                </webApp>
+                            </webApps>
+                        </stage>
+                        <stage>
+                            <id>device</id>
+                            <name>Device Services</name>
+                            <autoStart>true</autoStart>
+                            <multiThreaded>${blade.multiThreaded}</multiThreaded>
+                            <webApps>
+                                <webApp>
+                                    <module>confirmation</module>
+                                </webApp>
+                                <webApp>
+                                    <module>device-management-service</module>
+                                </webApp>
+                                <webApp>
+                                    <module>fido-service</module>
+                                </webApp>
+                            </webApps>
+                        </stage>
+                    </stages>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>${jdbc.driver.groupId}</groupId>
+                        <artifactId>${jdbc.driver.artifactId}</artifactId>
+                        <version>${jdbc.driver.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>com.spotify</groupId>
+                    <artifactId>dockerfile-maven-plugin</artifactId>
+                    <version>${dockerfile-maven-version}</version>
+                    <executions>
+                        <execution>
+                            <id>default</id>
+                            <goals>
+                                <goal>build</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>tag-image</id>
+                            <goals>
+                                <goal>tag</goal>
+                                <goal>push</goal>
+                            </goals>
+                            <phase>deploy</phase>
+                            <configuration>
+                                <repository>${docker.registry.url}/${project.artifactId}</repository>
+                                <tag>${identity-bom.version}</tag>
+                            </configuration>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <repository>${project.artifactId}</repository>
+                        <username>${docker.registry.username}</username>
+                        <password>${docker.registry.password}</password>
+                        <tag>${identity-bom.version}</tag>
+                        <pullNewerImage>false</pullNewerImage>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>3.0.0</version>
+                    <executions>
+                        <execution>
+                            <id>copy-war-files</id>
+                            <phase>process-resources</phase>
+                            <goals>
+                                <goal>copy-dependencies</goal>
+                            </goals>
+                            <configuration>
+                                <outputDirectory>${project.build.directory}</outputDirectory>
+                                <overWriteReleases>false</overWriteReleases>
+                                <overWriteSnapshots>false</overWriteSnapshots>
+                                <overWriteIfNewer>true</overWriteIfNewer>
+                                <stripVersion>true</stripVersion>
+                                <includeTypes>war,jar</includeTypes>
+                                <excludeScope>provided</excludeScope>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>2.7</version>
+                    <configuration>
+                        <skip>true</skip>
+                    </configuration>
+                </plugin>
+
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>clean-database</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>sql-maven-plugin</artifactId>
+                        <inherited>false</inherited>
+                        <version>1.5</version>
+                        <configuration>
+                            <printResultSet>true</printResultSet>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>drop-db</id>
+                                <phase>clean</phase>
+                                <goals>
+                                    <goal>execute</goal>
+                                </goals>
+                                <configuration>
+                                    <driver>com.mysql.jdbc.Driver</driver>
+                                    <url>jdbc:mysql://localhost:3306?useSSL=false</url>
+                                    <username>root</username>
+                                    <password>root</password>
+                                    <forceMojoExecution>true</forceMojoExecution>
+                                    <sqlCommand>
+                                        DROP DATABASE IF EXISTS backbase_identity;
+                                        CREATE DATABASE IF NOT EXISTS backbase_identity DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_unicode_ci;
+                                    </sqlCommand>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>create-db-backbase-identity</id>
+                                <phase>clean</phase>
+                                <goals>
+                                    <goal>execute</goal>
+                                </goals>
+                                <configuration>
+                                    <driver>com.mysql.jdbc.Driver</driver>
+                                    <url>jdbc:mysql://localhost:3306/backbase_identity?useSSL=false&amp;createDatabaseIfNotExist=true</url>
+                                    <username>root</username>
+                                    <password>root</password>
+                                    <forceMojoExecution>true</forceMojoExecution>
+                                    <fileset>
+                                        <basedir>backbase-identity/sql/mysql</basedir>
+                                        <includes>
+                                            <include>create/*.sql</include>
+                                        </includes>
+                                    </fileset>
+                                </configuration>
+                            </execution>
+                        </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>mysql</groupId>
+                                <artifactId>mysql-connector-java</artifactId>
+                                <version>${mysql.connector.version}</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>dist</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <version>3.0.0</version>
+                        <executions>
+                            <execution>
+                                <id>copy-war-files</id>
+                                <phase>process-resources</phase>
+                                <goals>
+                                    <goal>copy-dependencies</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>../target</outputDirectory>
+                                    <overWriteReleases>false</overWriteReleases>
+                                    <overWriteSnapshots>false</overWriteSnapshots>
+                                    <overWriteIfNewer>true</overWriteIfNewer>
+                                    <stripVersion>true</stripVersion>
+                                    <includeTypes>war</includeTypes>
+                                    <excludeScope>provided</excludeScope>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+
+</project>

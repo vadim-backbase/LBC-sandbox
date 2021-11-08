@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<catalog>
+  <container>
+    <name>bb-business-banking-app-ang</name>
+    <properties>
+      <property name="AppConfig.googleAPIKey" label="Google API Key" type="string" viewHint="admin,text-input">
+        <value></value>
+      </property>
+      <property name="AppConfig.batches" label="Enable Batches journey" type="boolean" viewHint="admin,checkbox">
+        <value>true</value>
+      </property>
+       <property name="AppConfig.contacts" label="Enable Contacts journey" type="boolean" viewHint="admin,checkbox">
+        <value>true</value>
+      </property>
+      <property name="AppConfig.batchTemplates" label="Enable Batch Templates journey" type="boolean" viewHint="admin,checkbox">
+        <value>true</value>
+      </property>
+    </properties>
+  </container>
+</catalog>

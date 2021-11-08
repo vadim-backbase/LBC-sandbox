@@ -1,0 +1,49 @@
+<ng-container  *ngIf="isModalView else defaultTmpl">
+  <bb-routable-modal
+    [modalTitle]="templateModeType$?.value === 'EDIT' ? 'Edit Template': 'New Template'"
+    modalTitleIcon="content-copy"
+    [closeButton]="false"
+    [modalWindowName]="modalViewName"
+    (visibilityChange)="onModalToggle($event)"
+  >
+    <ng-container *ngIf="(isModalOpen$ | async)">
+      <ng-container *ngTemplateOutlet="widgetTmpl"></ng-container>
+    </ng-container>
+  </bb-routable-modal>
+</ng-container>
+
+<ng-template #defaultTmpl>
+  <ng-container *ngTemplateOutlet="widgetTmpl"></ng-container>
+</ng-template>
+
+<ng-template #widgetTmpl>
+  <ng-container [ngSwitch]="(templateModeType$ | async)!">
+    <ng-container *ngSwitchCase="'EDIT'">
+      <ng-container *ngTemplateOutlet="tmpl; context: { $implicit: (selectedPaymentTemplate$ | async)?.details?.paymentType}"> </ng-container>
+    </ng-container>
+    <ng-container *ngSwitchDefault>
+      <bb-horizontal-list-selector
+        *ngIf="templateItems && templateItems.length > 1"
+        [options]="templateItems"
+        [activeItem]="(selectedPaymentType$ | async)!"
+        (select)="onSelectPaymentType($event)">
+      </bb-horizontal-list-selector>
+      <ng-container [ngSwitch]="(selectedPaymentType$ | async)!">
+        <ng-container *ngFor="let item of templateItems;">
+          <div *ngSwitchCase="item?.value" [attr.id]="item?.value">
+            <ng-container *ngTemplateOutlet="tmpl; context: { $implicit: item.value }"> </ng-container>
+          </div>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</ng-template>
+
+<ng-template let-paymentType #tmpl>
+  <bb-payord-omni-payment-widget-ang
+    [paymentConfig]="getPaymentConfig(paymentType)"
+    [businessFunction]="getBusinessFunction(paymentType)"
+    [options]="getWidgetOptions()"
+    [paymentTemplate]="(selectedPaymentTemplate$ | async)!"
+  ></bb-payord-omni-payment-widget-ang>
+</ng-template>

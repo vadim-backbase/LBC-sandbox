@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.backbase.apps</groupId>
+        <artifactId>statics</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>collection-experience-manager</artifactId>
+    <packaging>pom</packaging>
+
+    <name>Backbase :: Statics :: Experience Manager - Identity</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.backbase.cxp</groupId>
+            <artifactId>editorial-collection</artifactId>
+            <version>2.26.0-b3</version>
+            <type>zip</type>
+        </dependency>
+        <dependency>
+            <groupId>com.backbase.cxp</groupId>
+            <artifactId>experience-manager</artifactId>
+            <version>2.26.0-b3</version>
+            <type>zip</type>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.backbase.maven.plugins</groupId>
+                <artifactId>bb-maven-plugin</artifactId>
+                <configuration>
+                    <enableExtPackage>true</enableExtPackage>
+                    <widgetCollections>
+                        <widgetCollection>
+                            <groupId>com.backbase.cxp</groupId>
+                            <artifactId>editorial-collection</artifactId>
+                        </widgetCollection>
+                    </widgetCollections>
+                    <experiencePackages>
+                        <experiencePackage>
+                            <groupId>com.backbase.cxp</groupId>
+                            <artifactId>experience-manager</artifactId>
+                            <export>false</export>
+                        </experiencePackage>
+                    </experiencePackages>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.backbase.apps</groupId>
+        <artifactId>dbs</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>product-summary</artifactId>
+    <name>Backbase DBS :: Product Summary</name>
+
+    <packaging>pom</packaging>
+
+    <properties>
+        <spring.datasource.driver-class-name>com.mysql.jdbc.Driver</spring.datasource.driver-class-name>
+        <spring.datasource.url.arrangement-manager>jdbc:mysql://localhost:3306/arrangement_manager?useSSL=false</spring.datasource.url.arrangement-manager>
+        <spring.datasource.username.arrangement-manager>root</spring.datasource.username.arrangement-manager>
+        <spring.datasource.password.arrangement-manager>root</spring.datasource.password.arrangement-manager>
+        <port>8082</port>
+        <liquibase.enabled>false</liquibase.enabled>
+    </properties>
+
+    <modules>
+        <!--<module>account-mock</module>-->
+        <module>arrangement-manager</module>
+    </modules>
+
+    <dependencies>
+        <!-- Database Scripts -->
+        <dependency>
+            <groupId>com.backbase.dbs.arrangement</groupId>
+            <artifactId>arrangement-manager</artifactId>
+            <classifier>sql</classifier>
+            <scope>provided</scope>
+            <type>zip</type>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.0.2</version>
+                <inherited>false</inherited>
+                <executions>
+                    <execution>
+                        <id>clean</id>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>unpack-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <includeClassifiers>sql</includeClassifiers>
+                            <outputDirectory>${project.build.directory}/sql</outputDirectory>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>unpack-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <includeClassifiers>sql</includeClassifiers>
+                            <outputDirectory>${project.basedir}/files/sql</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>com.backbase.oss</groupId>
+                <artifactId>blade-maven-plugin</artifactId>
+                <inherited>false</inherited>
+                <configuration>
+                    <port>${port}</port>
+                    <detectAndConfigureSpringConfigLocation>true</detectAndConfigureSpringConfigLocation>
+                    <systemProperties>
+                        <spring.datasource.driver-class-name>${spring.datasource.driver-class-name}</spring.datasource.driver-class-name>
+                        <spring.datasource.url.arrangement-manager>${spring.datasource.url.arrangement-manager}</spring.datasource.url.arrangement-manager>
+                        <spring.datasource.username.arrangement-manager>${spring.datasource.username.arrangement-manager}</spring.datasource.username.arrangement-manager>
+                        <spring.datasource.password.arrangement-manager>${spring.datasource.password.arrangement-manager}</spring.datasource.password.arrangement-manager>
+
+                        <!-- Eureka Configuration -->
+                        <eureka.instance.nonSecurePort>${port}</eureka.instance.nonSecurePort>
+                        <server.port>${port}</server.port>
+                    </systemProperties>
+                    <stages>
+                        <stage>
+                            <id>${project.artifactId}</id>
+                            <name>Product Summary</name>
+                            <multiThreaded>true</multiThreaded>
+                            <webApps>
+                                <!--<webApp>
+
+                                    <module>account-mock</module>
+                                </webApp>-->
+                                <webApp>
+
+                                    <module>arrangement-manager</module>
+                                </webApp>
+                            </webApps>
+                        </stage>
+                    </stages>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>clean-database</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>sql-maven-plugin</artifactId>
+                        <inherited>false</inherited>
+                        <version>1.5</version>
+                        <configuration>
+                            <printResultSet>true</printResultSet>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>drop-db</id>
+                                <phase>clean</phase>
+                                <goals>
+                                    <goal>execute</goal>
+                                </goals>
+                                <configuration>
+                                    <driver>com.mysql.jdbc.Driver</driver>
+                                    <url>jdbc:mysql://localhost:3306?useSSL=false</url>
+                                    <username>root</username>
+                                    <password>root</password>
+                                    <forceMojoExecution>true</forceMojoExecution>
+                                    <sqlCommand>
+                                        DROP DATABASE IF EXISTS arrangement_manager;
+                                    </sqlCommand>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>create-db-arrangement-manager</id>
+                                <phase>clean</phase>
+                                <goals>
+                                    <goal>execute</goal>
+                                </goals>
+                                <configuration>
+                                    <driver>com.mysql.jdbc.Driver</driver>
+                                    <url>jdbc:mysql://localhost:3306/arrangement_manager?useSSL=false&amp;createDatabaseIfNotExist=true</url>
+                                    <username>root</username>
+                                    <password>root</password>
+                                    <forceMojoExecution>true</forceMojoExecution>
+                                    <fileset>
+                                        <basedir>${project.build.directory}/sql/arrangement-manager/mysql</basedir>
+                                        <includes>
+                                            <include>create/*.sql</include>
+                                        </includes>
+                                    </fileset>
+                                </configuration>
+                            </execution>
+                        </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>mysql</groupId>
+                                <artifactId>mysql-connector-java</artifactId>
+                                <version>5.1.41</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>init-database</id>
+            <properties>
+                <liquibase.enabled>true</liquibase.enabled>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>sql-maven-plugin</artifactId>
+                        <inherited>false</inherited>
+                        <version>1.5</version>
+                        <configuration>
+                            <printResultSet>false</printResultSet>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>create-db-arrangement-manager</id>
+                                <phase>initialize</phase>
+                                <goals>
+                                    <goal>execute</goal>
+                                </goals>
+                                <configuration>
+                                    <driver>com.mysql.jdbc.Driver</driver>
+                                    <url>jdbc:mysql://localhost:3306/?useSSL=false</url>
+                                    <username>root</username>
+                                    <password>root</password>
+                                    <forceMojoExecution>true</forceMojoExecution>
+                                    <sqlCommand>
+                                        CREATE DATABASE IF NOT EXISTS arrangement_manager;
+                                    </sqlCommand>
+                                </configuration>
+                            </execution>
+                        </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>mysql</groupId>
+                                <artifactId>mysql-connector-java</artifactId>
+                                <version>5.1.41</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project>

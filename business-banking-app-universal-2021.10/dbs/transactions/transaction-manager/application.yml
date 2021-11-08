@@ -1,0 +1,17 @@
+---
+### Live profile
+spring:
+  profiles: live
+  datasource:
+    driver-class-name: ${spring.datasource.driver-class-name.transaction-manager}
+    username: ${spring.datasource.username.transaction-manager}
+    password: ${spring.datasource.password.transaction-manager}
+    url: ${spring.datasource.url.transaction-manager}
+
+backbase:
+  transaction:
+    export:
+      csv:
+        dateformat: dd/MM/YYYY
+        headers: Account number(IBAN),Account name,Counter party account number,Counter party name,Currency,Amount,Credit/debit indicator,Book date,Transaction type,Transaction group,Transaction reference,Instructed currency,currency exchange rate,Instructed amount,Description,Category,Check number,Creation Time
+        fields: IBAN,name,counterPartyAccountNumber,counterPartyName,currency,amount,creditDebitIndicator,bookingDate,type,typeGroup,reference,instructedCurrency,currencyExchangeRate,instructedAmount,description,category,checkSerialNumber,creationTime

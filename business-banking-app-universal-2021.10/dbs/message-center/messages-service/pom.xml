@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.backbase</groupId>
+        <artifactId>message-center</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>messages-service</artifactId>
+
+    <!-- Set packaging to WAR if you want extend the behaviour of the DBS service -->
+    <packaging>pom</packaging>
+
+    <name>Backbase DBS :: Message Center :: messages-service</name>
+
+    <properties>
+        <spring.datasource.driver-class-name>com.mysql.jdbc.Driver</spring.datasource.driver-class-name>
+        <spring.datasource.url.messages-service>jdbc:mysql://localhost:3306/messages_service?useSSL=false</spring.datasource.url.messages-service>
+        <spring.datasource.username.messages-service>root</spring.datasource.username.messages-service>
+        <spring.datasource.password.messages-service>root</spring.datasource.password.messages-service>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.backbase.dbs.messages</groupId>
+            <artifactId>messages-service</artifactId>
+            <type>war</type>
+        </dependency>
+        <dependency>
+            <groupId>com.backbase.dbs.messages</groupId>
+            <artifactId>messages-service</artifactId>
+            <classifier>classes</classifier>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.backbase.oss</groupId>
+                <artifactId>blade-maven-plugin</artifactId>
+
+                <configuration>
+                    <openBrowserOnStartup>false</openBrowserOnStartup>
+                    <detectAndConfigureSpringConfigLocation>true</detectAndConfigureSpringConfigLocation>
+                    <systemProperties>
+                        <spring.datasource.driver-class-name>${spring.datasource.driver-class-name}</spring.datasource.driver-class-name>
+                        <spring.datasource.url.messages-service>${spring.datasource.url.messages-service}</spring.datasource.url.messages-service>
+                        <spring.datasource.username.messages-service>${spring.datasource.username.messages-service}</spring.datasource.username.messages-service>
+                        <spring.datasource.password.messages-service>${spring.datasource.password.messages-service}</spring.datasource.password.messages-service>
+                    </systemProperties>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

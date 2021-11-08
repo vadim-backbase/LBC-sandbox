@@ -1,0 +1,54 @@
+{
+    "realm": "backbase",
+    "users": [
+        {
+            "username": "admin",
+            "firstName": "test",
+            "lastName": "admin",
+            "enabled": true,
+            "credentials": [
+                {
+                    "type": "password",
+                    "value": "admin",
+                    "temporary": "false"
+                }
+            ],
+            "realmRoles": [
+                "ROLE_ADMIN",
+                "ROLE_group_admin(ADMIN)"
+            ]
+        },
+        {
+            "username": "user",
+            "firstName": "test",
+            "lastName": "user",
+            "enabled": true,
+            "credentials": [
+                {
+                    "type": "password",
+                    "value": "user",
+                    "temporary": "false"
+                }
+            ],
+            "realmRoles": [
+                "ROLE_group_user(USER)"
+            ]
+        },
+        {
+            "username": "manager",
+            "firstName": "test",
+            "lastName": "manager",
+            "enabled": true,
+            "credentials": [
+                {
+                    "type": "password",
+                    "value": "manager",
+                    "temporary": "false"
+                }
+            ],
+            "realmRoles": [
+                "ROLE_group_manager(MANAGER)"
+            ]
+        }
+    ]
+}

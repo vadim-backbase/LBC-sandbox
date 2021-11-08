@@ -1,0 +1,88 @@
+#
+# EXAMPLE KUBERNETES OBJECT DEFINITIONS
+#
+# This file contains examples of how you could define some kubernetes objects to deploy and
+# configure your employee web app container in your kubernetes cluster.
+#
+# In particular, the Deployment yaml below contains environment variables which can be used
+# to configure identity integration and the api base path. See also the ./Dockerfile and
+# ./src/environments/environment.prod.docker.ts files for details on how these variables are applied.
+#
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: employee-app
+spec:
+  selector:
+    app: employee-app
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: ClusterIP
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: employee-app
+spec:
+  selector:
+    matchLabels:
+      app: employee-app
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: employee-app
+    spec:
+      containers:
+        - name: employee-app
+          image: "containers.example.com/registry/employee-app:container-tag"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          env:
+            - name: PORT
+              value: "8080"
+            - name: API_ROOT
+              value: /api
+            - name: AUTH_URL
+              value: https://identity.example.com/auth
+            - name: AUTH_REALM
+              value: employee-realm
+            - name: AUTH_SCOPE
+              value: openid
+            - name: AUTH_CLIENT_ID
+              value: bb-web-client
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: employee-app-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+    - host: employee-app.example.com
+      http:
+        paths:
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: edge
+                port:
+                  name: http
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: employee-app
+                port:
+                  name: http

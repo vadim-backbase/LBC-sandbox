@@ -1,0 +1,7 @@
+stream: "business banking"
+tribe: "business lviv tribe"
+squad: "Leleka"
+slack: "#leleka"
+escrow:
+  tagpattern: 'access-control-VERSION'
+  product: 'entitlements'

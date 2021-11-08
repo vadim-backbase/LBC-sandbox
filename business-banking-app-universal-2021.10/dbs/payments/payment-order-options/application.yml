@@ -1,0 +1,6 @@
+---
+### Universal profile
+spring.config.use-legacy-processing: true
+spring.profiles: live
+spring.profiles.include:
+  - universal

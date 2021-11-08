@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.backbase</groupId>
+        <artifactId>dbs</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>employee</artifactId>
+
+    <name>Backbase DBS :: Employee</name>
+
+    <packaging>pom</packaging>
+    <properties>
+        <port>8096</port>
+        <liquibase.enabled>false</liquibase.enabled>
+    </properties>
+
+    <modules>
+        <module>employee-service</module>
+    </modules>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.0.2</version>
+                <inherited>false</inherited>
+                <executions>
+                    <execution>
+                        <id>clean</id>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>unpack-dependencies</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>copy</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>unpack-dependencies</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            
+            <plugin>
+                <groupId>com.backbase.oss</groupId>
+                <artifactId>blade-maven-plugin</artifactId>
+                <inherited>false</inherited>
+                <configuration>
+                    <port>${port}</port>
+                    <detectAndConfigureSpringConfigLocation>true</detectAndConfigureSpringConfigLocation>
+                    <systemProperties>
+                        <!-- Eureka Configuration -->
+                        <eureka.instance.nonSecurePort>${port}</eureka.instance.nonSecurePort>
+                        <server.port>${port}</server.port>
+                    </systemProperties>
+                    <stages>
+                        <stage>
+                            <id>${project.artifactId}</id>
+                            <name>Employee</name>
+                            <multiThreaded>true</multiThreaded>
+                            <webApps>
+                                <webApp>
+
+                                    <module>employee-service</module>
+                                </webApp>
+                            </webApps>
+                        </stage>
+                    </stages>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

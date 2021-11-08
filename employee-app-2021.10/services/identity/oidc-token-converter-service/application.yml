@@ -1,0 +1,8 @@
+backbase:
+  basic-authentication:
+    username: admin
+    password: admin
+
+logging:
+  level:
+    root: INFO

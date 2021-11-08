@@ -1,0 +1,12 @@
+spring:
+  profiles: oracle
+  datasource:
+    url: jdbc:tc:oracle:thin:@localhost:1521/ORCLCDB
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.Oracle10gDialect
+
+backbase:
+  db:
+    cleanup: db/sql/oracle/cleanupTables.sql

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.backbase.apps</groupId>
+        <artifactId>limits</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>limit</artifactId>
+
+    <!-- Set packaging to WAR if you want extend the behaviour of the DBS service -->
+    <packaging>pom</packaging>
+
+    <name>Backbase DBS :: Limits :: limit service</name>
+
+    <properties>
+        <spring.datasource.driver-class-name>com.mysql.jdbc.Driver</spring.datasource.driver-class-name>
+        <spring.datasource.url.limit>jdbc:mysql://localhost:3306/limits?useSSL=false</spring.datasource.url.limit>
+        <spring.datasource.username.limit>root</spring.datasource.username.limit>
+        <spring.datasource.password.limit>root</spring.datasource.password.limit>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.backbase.dbs.limit</groupId>
+            <artifactId>limit</artifactId>
+            <type>war</type>
+        </dependency>
+        <dependency>
+            <groupId>com.backbase.dbs.limit</groupId>
+            <artifactId>limit</artifactId>
+            <classifier>classes</classifier>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.backbase.oss</groupId>
+                <artifactId>blade-maven-plugin</artifactId>
+
+                <configuration>
+                    <openBrowserOnStartup>false</openBrowserOnStartup>
+                    <detectAndConfigureSpringConfigLocation>true</detectAndConfigureSpringConfigLocation>
+                    <systemProperties>
+                        <spring.datasource.driver-class-name>${spring.datasource.driver-class-name}</spring.datasource.driver-class-name>
+                        <spring.datasource.url.limit>${spring.datasource.url.limit}</spring.datasource.url.limit>
+                        <spring.datasource.username.limit>${spring.datasource.username.limit}</spring.datasource.username.limit>
+                        <spring.datasource.password.limit>${spring.datasource.password.limit}</spring.datasource.password.limit>
+                    </systemProperties>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

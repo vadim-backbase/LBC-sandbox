@@ -1,0 +1,6 @@
+backbase:
+  accesscontrol:
+    token:
+      expiration: 1000
+      initPhrase: RandomInitVecto2
+      key: Bar12345Bar12345

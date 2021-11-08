@@ -1,0 +1,16 @@
+*~
+.DS_Store
+.idea
+*.iml
+target
+overlays
+node_modules
+
+
+tomcat/base/bin/*.jar
+tomcat/base/work
+tomcat/base/logs
+tomcat/base/lib
+tomcat/base/webapps
+
+**/files/sql

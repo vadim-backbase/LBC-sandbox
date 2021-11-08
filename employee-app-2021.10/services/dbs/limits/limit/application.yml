@@ -1,0 +1,11 @@
+---
+### Live profile
+spring:
+  profiles:
+    active: live
+  datasource:
+    driver-class-name: ${spring.datasource.driver-class-name}
+    username: ${spring.datasource.username.limit}
+    password: ${spring.datasource.password.limit}
+    url: ${spring.datasource.url.limit}
+

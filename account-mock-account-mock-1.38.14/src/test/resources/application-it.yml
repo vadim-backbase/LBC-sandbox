@@ -1,0 +1,17 @@
+spring:
+  activemq:
+    enabled: false
+
+backbase:
+  communication:
+    logRequests: true
+    logReplies: true
+    logEventEmit: true
+    logEventReceive: true
+
+  persistence:
+    enabled: false
+
+eureka:
+  client:
+    enabled: false

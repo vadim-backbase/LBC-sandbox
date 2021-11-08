@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.backbase.apps</groupId>
+    <artifactId>platform</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+
+    <packaging>pom</packaging>
+
+    <name>Backbase 6 :: Platform</name>
+
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <dockerfile-maven-version>1.4.9</dockerfile-maven-version>
+
+        <platform-bom.version>2021.10</platform-bom.version>
+        <auth-dev.version>1.34.0</auth-dev.version>
+        <port>8080</port>
+        <sig.secret.key>JWTSecretKeyDontUseInProduction!</sig.secret.key>
+        <ext.sig.secret.key>JWTSecretKeyDontUseInProduction!</ext.sig.secret.key>
+        <ext.enc.secret.key>JWTEncKeyDontUseInProduction666!</ext.enc.secret.key>
+        <user.context.key>JWTSecretKeyDontUseInProduction!</user.context.key>
+
+        <blade.openBrowserOnStartup>true</blade.openBrowserOnStartup>
+
+        <blade.multiThreaded>true</blade.multiThreaded>
+        <!-- Disable logging encoding -->
+        <logging.secured.enabled>false</logging.secured.enabled>
+
+        <!-- Set Expiry Time to one hour  -->
+        <sso.jwt.external.expiration>3600</sso.jwt.external.expiration>
+        <sso.jwt.external.renew>1800</sso.jwt.external.renew>
+        <sso.jwt.external.not_valid_after>86400</sso.jwt.external.not_valid_after>
+
+        <!-- Docker Registry -->
+        <docker.registry.url>remote.registry.url</docker.registry.url>
+        <docker.registry.username></docker.registry.username>
+        <docker.registry.password></docker.registry.password>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.backbase</groupId>
+                <artifactId>backbase-bom</artifactId>
+                <version>${platform-bom.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <modules>
+        <module>registry</module>
+        <module>edge</module>
+    </modules>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.backbase.oss</groupId>
+                <artifactId>blade-maven-plugin</artifactId>
+                <version>4.21.0</version>
+                <inherited>false</inherited>
+                <configuration>
+                    <port>${port}</port>
+                    <name>Platform</name>
+                    <openBrowserOnStartup>${blade.openBrowserOnStartup}</openBrowserOnStartup>
+                    <detectAndConfigureSpringConfigLocation>true</detectAndConfigureSpringConfigLocation>
+                    <backbaseConfigDir>${project.build.directory}/config/backbase</backbaseConfigDir>
+                    <systemProperties>
+                        <!-- Eureka Configuration -->
+                        <eureka.client.serviceUrl.defaultZone>http://localhost:8080/registry/eureka/</eureka.client.serviceUrl.defaultZone>
+                        <eureka.instance.hostname>localhost</eureka.instance.hostname>
+                        <eureka.instance.nonSecurePort>${port}</eureka.instance.nonSecurePort>
+                        <eureka.instance.preferIpAddress>false</eureka.instance.preferIpAddress>
+
+                        <!-- Active MQ Configuration -->
+                        <spring.activemq.broker-url>tcp://localhost:61616</spring.activemq.broker-url>
+                        <spring.activemq.user>admin</spring.activemq.user>
+                        <spring.activemq.password>admin</spring.activemq.password>
+
+                        <!-- Shared Secret key to validate Internal JWT signature -->
+                        <SIG_SECRET_KEY>${sig.secret.key}</SIG_SECRET_KEY>
+
+                        <!-- External Secret key to validate and encrypt external JWT -->
+                        <EXTERNAL_ENC_SECRET_KEY>${ext.enc.secret.key}</EXTERNAL_ENC_SECRET_KEY>
+                        <EXTERNAL_SIG_SECRET_KEY>${ext.sig.secret.key}</EXTERNAL_SIG_SECRET_KEY>
+
+                        <!-- Set Expiry Time to one hour  -->
+                        <sso.jwt.external.expiration>${sso.jwt.external.expiration}</sso.jwt.external.expiration>
+                        <sso.jwt.external.renew>${sso.jwt.external.renew}</sso.jwt.external.renew>
+                        <sso.jwt.external.not_valid_after>${sso.jwt.external.not_valid_after}</sso.jwt.external.not_valid_after>
+
+                        <!-- Disable logging encoding -->
+                        <logging.secured.enabled>${logging.secured.enabled}</logging.secured.enabled>
+
+                        <!-- Entitlements User Context key -->
+                        <USERCTX_KEY>${user.context.key}</USERCTX_KEY>
+
+                        <!-- Configure users file for Authentication service -->
+                        <authentication.users.resource>file:${project.basedir}/authentication-dev/config/users.json</authentication.users.resource>
+                    </systemProperties>
+                    <stages>
+                        <stage>
+                            <id>Service Registry</id>
+                            <webApps>
+                                <webApp>
+                                    <module>registry</module>
+                                </webApp>
+                            </webApps>
+                        </stage>
+                    </stages>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.google.code.findbugs</groupId>
+                        <artifactId>jsr305</artifactId>
+                        <version>3.0.2</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>com.spotify</groupId>
+                    <artifactId>dockerfile-maven-plugin</artifactId>
+                    <version>${dockerfile-maven-version}</version>
+                    <executions>
+                        <execution>
+                            <id>default</id>
+                            <goals>
+                                <goal>build</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>tag-image</id>
+                            <goals>
+                                <goal>tag</goal>
+                                <goal>push</goal>
+                            </goals>
+                            <phase>deploy</phase>
+                            <configuration>
+                                <repository>${docker.registry.url}/${project.artifactId}</repository>
+                                <tag>${platform-bom.version}</tag>
+                            </configuration>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <repository>${project.artifactId}</repository>
+                        <username>${docker.registry.username}</username>
+                        <password>${docker.registry.password}</password>
+                        <tag>${platform-bom.version}</tag>
+                        <pullNewerImage>false</pullNewerImage>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>3.0.0</version>
+                    <executions>
+                        <execution>
+                            <id>copy-war-files</id>
+                            <phase>process-resources</phase>
+                            <goals>
+                                <goal>copy-dependencies</goal>
+                            </goals>
+                            <configuration>
+                                <outputDirectory>${project.build.directory}</outputDirectory>
+                                <overWriteReleases>false</overWriteReleases>
+                                <overWriteSnapshots>false</overWriteSnapshots>
+                                <overWriteIfNewer>true</overWriteIfNewer>
+                                <stripVersion>true</stripVersion>
+                                <includeTypes>war,jar</includeTypes>
+                                <excludeScope>provided</excludeScope>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>2.7</version>
+                    <configuration>
+                        <skip>true</skip>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>dist</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <version>3.0.0</version>
+                        <executions>
+                            <execution>
+                                <id>copy-war-files</id>
+                                <phase>process-resources</phase>
+                                <goals>
+                                    <goal>copy-dependencies</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>../target</outputDirectory>
+                                    <overWriteReleases>false</overWriteReleases>
+                                    <overWriteSnapshots>false</overWriteSnapshots>
+                                    <overWriteIfNewer>true</overWriteIfNewer>
+                                    <stripVersion>true</stripVersion>
+                                    <includeTypes>war,jar</includeTypes>
+                                    <excludeScope>provided</excludeScope>
+                                    <excludeTransitive>true</excludeTransitive>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project>
+

@@ -1,0 +1,43 @@
+#
+# Configuration file only for development
+#
+
+contentservices:
+  filesystem:
+    import-location: ${BACKBASE_HOME}/contentservices/import
+    export-location: ${BACKBASE_HOME}/contentservices/export
+  extension-points:
+    enabled: true
+  auditing:
+    enabled: true
+  provisioning:
+    enabled: true
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/cs_draft?useSSL=false
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+
+space-controller:
+  enabled: true
+  datasource:
+    strategy: SWITCH_DATASOURCE
+  space-filter:
+    should-not-filter-paths: /actuator/**
+  spaces:
+    - id: draft
+      datasource:
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/cs_draft?useSSL=false
+        type: com.zaxxer.hikari.HikariDataSource
+        username: root
+        password: root
+    - id: final
+      datasource:
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/cs_final?useSSL=false
+        type: com.zaxxer.hikari.HikariDataSource
+        username: root
+        password: root

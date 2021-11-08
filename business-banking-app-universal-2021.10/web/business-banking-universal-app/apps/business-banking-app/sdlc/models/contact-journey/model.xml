@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<catalog>
+  <widget>
+    <name>bb-contact-journey-bundle-ang</name>
+    <properties>
+      <property name="classId">
+        <value>ContactJourneyBundleModule</value>
+      </property>
+      <property name="src">
+        <value>$(itemRoot)/index.html</value>
+      </property>
+      <property name="render.requires">
+        <value>render-bb-widget-3</value>
+      </property>
+      <property name="title" label="Title" readonly="true" viewHint="admin,designModeOnly">
+        <value type="string">Contact Journey Bundle</value>
+      </property>
+      <property name="thumbnailUrl">
+        <value>$(itemRoot)/icon.png</value>
+      </property>
+      <property name="notificationDismissTime" label="Milliseconds to dismiss any notification message" viewHint="text-input,admin,designModeOnly">
+        <value type="long">5000</value>
+      </property>
+      <property name="contactAccessContextScope" label="Access Context Scope" viewHint="select-one,admin,designModeOnly">
+        <value type="string">SA</value>
+      </property>
+      <property name="pageSize" label="Number of batches per page" viewHint="text-input,admin,designModeOnly">
+        <value type="long">50</value>
+      </property>
+      <property name="maxNavPages" label="Max. number of navigation pages" viewHint="text-input,admin,designModeOnly">
+        <value type="long">3</value>
+      </property>
+      <property name="loadMoreMethod" label="Select the method for loading more batches" viewHint="select-one,admin,designModeOnly">
+        <value type="string">pagination</value>
+      </property>
+      <property label="Time between each search requests (in milliseconds)" name="debounceTime" viewHint="text-input,admin,designModeOnly">
+        <value type="long">300</value>
+      </property>
+    </properties>
+  </widget>
+</catalog>

@@ -1,0 +1,24 @@
+#
+# Configuration file only for development
+#
+spring:
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/space_controller?useSSL=false
+    username: root
+    password: root
+
+logging:
+  level:
+    org:
+      springframework: INFO
+
+space-controller:
+  transitions:
+    four-eyes-enabled: false
+  scheduling:
+    initial-delay: 0

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- omni payments -->
+    <string name="intracompany">Intracompany</string>
+    <string name="intracompany_desc">Transfer between your accounts</string>
+    <string name="from_account">From account</string>
+    <string name="to_account">To account</string>
+    <string name="payment_details">Payment Details</string>
+    <string name="available_funds">Available Funds: %s</string>
+    <string name="amount">Amount</string>
+    <string name="amount_hint">0.00</string>
+    <string name="amount_blank">Please enter payment amount</string>
+    <string name="payment_reference">Payment reference</string>
+    <string name="payment_reference_hint">Required: Enter reference</string>
+    <string name="payment_description">Please enter payment reference</string>
+    <string name="input_title">Reference</string>
+    <string name="input_desc">Enter payment reference</string>
+    <string name="input_allowed_char_desc">Only alphanumeric and special characters like =:;-/().&amp;@,*#\'? are allowed</string>
+    <string name="input_forbidden_char_desc">Special characters like %1$s are not allowed</string>
+    <string name="payment_desc">Payment description</string>
+    <string name="payment_optional">Optional</string>
+    <string name="payment_input_title">Description</string>
+    <string name="payment_input_desc">Enter payment description</string>
+    <string name="payment_forbidden_chars">Special characters like %1$s are not allowed</string>
+    <string name="review_payment">Review payment</string>
+    <string name="from_label">From</string>
+    <string name="to_label">To</string>
+    <string name="no_amount">No amount given</string>
+    <string name="execution_date">Execution date</string>
+    <string name="once">Once</string>
+    <string name="daily">Daily</string>
+    <string name="weekly">Weekly</string>
+    <string name="biweekly">Bi Weekly</string>
+    <string name="monthly">Monthly</string>
+    <string name="quarterly">Quarterly</string>
+    <string name="yearly">Yearly</string>
+    <string name="payment_reference_sc">Payment Reference</string>
+    <string name="payment_desc_sc">Payment Description</string>
+    <string name="transfer_fee">Transfer fee</string>
+    <string name="urgent_amount">ZAR 10.00 (Urgent)</string>
+    <string name="empty_message">No data found to display</string>
+
+    <string name="next_review_payment">Next: Review Payment</string>
+    <string name="today">Today</string>
+    <string name="submit">Submit</string>
+
+    <string name="domestic">Domestic</string>
+    <string name="domestic_desc">Make local payments</string>
+    <string name="transfer_to">Transfer to</string>
+    <string name="add_beneficiary">New beneficiary</string>
+    <string name="beneficiaries_search">Search Beneficiaries</string>
+    <string name="custom_next_review_payment">Next: Review Payment</string>
+    <string name="custom_next_payment_details">Next: Payment Details</string>
+    <string name="shared_empty_message">No data found to display</string>
+    <string name="custom_today">Today</string>
+    <string name="custom_submit">Submit</string>
+
+    <string name="sepa_desc">Make local transfers</string>
+    <string name="sepa">Domestic • SEPA</string>
+    <string name="sepa_beneficiary_name_label">Beneficiary name</string>
+    <string name="sepa_beneficiary_account_label">IBAN</string>
+    <string name="save_new_recipient">Save as a new contact</string>
+    <string name="error_beneficiary_empty">Please enter beneficiary name</string>
+    <string name="sepa_error_invalid_iban">Please enter IBAN</string>
+
+    <string name="international">International</string>
+    <string name="international_desc">Transfer money to other countries</string>
+    <string name="review_payment_and_submit">Review &amp; Submit</string>
+    <string name="country_label">Country</string>
+    <string name="select_currency">Select currency</string>
+    <string name="continue_label">Continue</string>
+    <string name="country_required">Country is required</string>
+    <string name="search_currencies">Search currencies</string>
+    <string name="amount_to_transfer">Amount to transfer</string>
+    <string name="you_pay">You pay</string>
+    <string name="transfer_fee_label">Transfer fee (charged separately)</string>
+    <string name="international_beneficiary_address_new">Add beneficiary address</string>
+    <string name="international_beneficiary_address_edit">Beneficiary address</string>
+    <string name="international_bank_name">Bank name</string>
+    <string name="international_bank_address_new">Add bank address</string>
+    <string name="international_bank_address_edit">Bank address</string>
+    <string name="international_how_fees_are_paid">How fees are paid</string>
+    <string name="international_charge_bearer_hint">- select -</string>
+    <string name="international_transfer_fee">Transaction fee</string>
+    <string name="international_exchange_rate_label">Exchange rate:</string>
+    <string name="international_correspondent_bank">Correspondent bank</string>
+    <string name="international_intermediary_bank">Intermediary bank</string>
+    <string name="international_swift_bic_label">SWIFT/BIC code:</string>
+    <string name="international_you_pay">You pay</string>
+    <string name="international_charge_bearer_validation_error">How fees are paid are required</string>
+    <string name="international_charge_bearer_our_title">I pay all fees (OUR)</string>
+    <string name="international_charge_bearer_our_desc">The beneficiary receives the payment amount in full. You pay the fees charged by our bank initially (fees will be charged separately). You will also pay the fees charged by the payee’s bank, including any correspondent/intermediary fees (this could be days or weeks after you have made the payment).</string>
+    <string name="international_charge_bearer_ben_title">Beneficiary pays all fees (BEN)</string>
+    <string name="international_charge_bearer_ben_desc">The beneficiary pays any fees charged by our bank and/or the recipient bank (including any correspondent /intermediary fees). The beneficiary will typically receive the payment minus the transfer charges.</string>
+    <string name="international_charge_bearer_sha_title">Fees are shared (SHA)</string>
+    <string name="international_charge_bearer_sha_desc">You pay the fees charged by our bank (fees will be charged separately). The beneficiary will pay all fees charged by their bank, including any correspondent /intermediary fees.</string>
+    <string name="international_delivery_options_error">Select delivery option.</string>
+    <string name="international_priority_title_norm">Standard</string>
+    <string name="international_priority_title_high">Urgent</string>
+    <string name="international_priority_title">%1$s • %2$s • %3$s</string>
+    <plurals name="international_priority_unit_hour">
+        <item quantity="one">hour</item>
+        <item quantity="other">hours</item>
+    </plurals>
+    <plurals name="international_priority_unit_business_days">
+        <item quantity="one">business day</item>
+        <item quantity="other">business days</item>
+    </plurals>
+    <plurals name="international_priority_unit_calendar_days">
+        <item quantity="one">calendar day</item>
+        <item quantity="other">calendar days</item>
+    </plurals>
+    <string name="international_priority_subtitle_max">Up to %1$d %2$s</string>
+    <string name="international_priority_subtitle_max_cutoff">Up to %1$d %2$s if received before %3$s</string>
+    <string name="international_priority_subtitle_min_max">%1$d-%2$d %3$s</string>
+    <string name="international_priority_subtitle_min_max_cutoff">%1$d-%2$d %3$s if received before %4$s</string>
+
+    <string name="us_domestic_wire">Domestic • Wire</string>
+    <string name="us_domestic_wire_desc">Make local transfers in US</string>
+    <string name="us_domestic_wire_payee_address_new">Add payee address</string>
+    <string name="us_domestic_wire_payee_address_edit">Payee address</string>
+    <string name="us_domestic_wire_routing_transit_number">Routing transit number (ABA)</string>
+    <string name="us_domestic_wire_name">Name</string>
+    <string name="add_payee">New payee</string>
+    <string name="message_to_payee">Message to payee</string>
+    <string name="message_to_payee_input_desc">Enter message to payee</string>
+    <string name="message_to_payee_bank">Message to payee bank</string>
+    <string name="message_to_payee_bank_input_desc">Enter message to payee bank</string>
+    <string name="transfer_routing">Transfer routing</string>
+    <string name="us_domestic_wire_payment_routing_subtitle">This option allows you to route a transfer via third party bank in case your bank doesn’t support Domestic Wire transfers.</string>
+</resources>

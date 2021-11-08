@@ -1,0 +1,7 @@
+backbase:
+  approval:
+    validation:
+      enabled: true
+    level:
+      enabled: true
+      

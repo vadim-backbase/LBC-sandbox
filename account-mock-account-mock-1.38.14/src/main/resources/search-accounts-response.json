@@ -1,0 +1,15 @@
+{
+    "externalId": "external account id {number}",
+    "name": "Account name {number}",
+    "IBAN": "GB29NWBK6016133192{number}",
+    "BBAN": "BBAN {number}",
+    "BIC": "BIC {number}",
+    "currency": "EUR",
+    "externalTransferAllowed": true,
+    "urgentTransferAllowed": false,
+    "number": "1213{number}1",
+    "bankBranchCode": "Branch Code{number}",
+    "accountHolderNames": "Holder {number}1, Holder {number}2",
+    "creditAccount": true,
+    "debitAccount": true
+}

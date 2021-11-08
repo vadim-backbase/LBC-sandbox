@@ -1,0 +1,38 @@
+---
+### workaround for an issue in 2.18.0 release. Remove after 2.18.1
+spring:
+  profiles:
+    active: live
+
+---
+### Live profile
+spring:
+  profiles: live
+  liquibase:
+    enabled: false
+  datasource:
+    driver-class-name: ${spring.datasource.driver-class-name}
+    username: ${spring.datasource.username.accounting-integration-service}
+    password: ${spring.datasource.password.accounting-integration-service}
+    url: ${spring.datasource.url.accounting-integration-service}
+codat:
+  api-key:
+  host: https://api-uat.codat.io
+  timeoutInMillis: 30000
+integration:
+  quickbooks-logo-url: https://quickbooks.intuit.com/content/dam/intuit/quickbooks/common/qb_thumb.png
+backbase:
+  cashflow:
+    task-executor:
+      core-pool-size: 32
+      max-pool-size: 1024
+      keep-alive-seconds: 8
+      queue-capacity: 60
+      allow-core-thread-time-out: false
+    sync:
+      interval: 600
+      fetch-timeout: 1800
+      fetch-timeout-job-interval: 60
+      request-job-interval: 30
+      status-update-job-interval: 10
+      fetch-job-interval: 20

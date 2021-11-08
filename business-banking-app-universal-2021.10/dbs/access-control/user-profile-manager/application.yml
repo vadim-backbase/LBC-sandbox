@@ -1,0 +1,13 @@
+---
+### Live profile
+spring:
+  profiles: live
+  datasource:
+    driver-class-name: ${spring.datasource.driver-class-name}
+    username: ${spring.datasource.username.user-profile-manager}
+    password: ${spring.datasource.password.user-profile-manager}
+    url: ${spring.datasource.url.user-profile-manager}
+scim:
+  client:
+    resource-type: Users
+    server-uri: http://localhost:8086/user-profile-core-mock/

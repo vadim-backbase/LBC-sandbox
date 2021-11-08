@@ -1,0 +1,594 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		28654A59240D678600D4FB51 /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = 28654A25240D678500D4FB51 /* config.json */; };
+		2871763E27219223009348D0 /* BankCodeLabelUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2871763D27219223009348D0 /* BankCodeLabelUtil.swift */; };
+		2871764027219BCD009348D0 /* PaymentWizard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2871763F27219BCD009348D0 /* PaymentWizard.swift */; };
+		288998C026DE2DC400D5CE97 /* SepaPayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288998BA26DE2DC400D5CE97 /* SepaPayment.swift */; };
+		288998C126DE2DC400D5CE97 /* InternationalPaymentReviewStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288998BB26DE2DC400D5CE97 /* InternationalPaymentReviewStep.swift */; };
+		288998C226DE2DC400D5CE97 /* InternationalPayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288998BC26DE2DC400D5CE97 /* InternationalPayment.swift */; };
+		288998C326DE2DC400D5CE97 /* JourneysConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288998BD26DE2DC400D5CE97 /* JourneysConfiguration.swift */; };
+		288998C426DE2DC400D5CE97 /* OmnipaymentsConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288998BE26DE2DC400D5CE97 /* OmnipaymentsConfiguration.swift */; };
+		288998C526DE2DC400D5CE97 /* ResourceLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288998BF26DE2DC400D5CE97 /* ResourceLoader.swift */; };
+		B90CCF5C23D732CA00CC45F8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90CCF5B23D732CA00CC45F8 /* AppDelegate.swift */; };
+		B90CCF6323D732CA00CC45F8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B90CCF6123D732CA00CC45F8 /* Main.storyboard */; };
+		B90CCF6523D732CB00CC45F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B90CCF6423D732CB00CC45F8 /* Assets.xcassets */; };
+		B90CCF6823D732CB00CC45F8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B90CCF6623D732CB00CC45F8 /* LaunchScreen.storyboard */; };
+		EC5197D86D0AB45A73414BE8 /* Pods_BBKickstarter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED6AD7D2334398E4DDD9595A /* Pods_BBKickstarter.framework */; };
+		F3878FD825641A85004271A1 /* Security.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3878FD725641A85004271A1 /* Security.swift */; };
+		F3878FDF25642256004271A1 /* jb_protect.c in Sources */ = {isa = PBXBuildFile; fileRef = F3878FDE25642256004271A1 /* jb_protect.c */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		28654A25240D678500D4FB51 /* config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
+		2871763D27219223009348D0 /* BankCodeLabelUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankCodeLabelUtil.swift; sourceTree = "<group>"; };
+		2871763F27219BCD009348D0 /* PaymentWizard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentWizard.swift; sourceTree = "<group>"; };
+		288998BA26DE2DC400D5CE97 /* SepaPayment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SepaPayment.swift; sourceTree = "<group>"; };
+		288998BB26DE2DC400D5CE97 /* InternationalPaymentReviewStep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternationalPaymentReviewStep.swift; sourceTree = "<group>"; };
+		288998BC26DE2DC400D5CE97 /* InternationalPayment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternationalPayment.swift; sourceTree = "<group>"; };
+		288998BD26DE2DC400D5CE97 /* JourneysConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JourneysConfiguration.swift; sourceTree = "<group>"; };
+		288998BE26DE2DC400D5CE97 /* OmnipaymentsConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OmnipaymentsConfiguration.swift; sourceTree = "<group>"; };
+		288998BF26DE2DC400D5CE97 /* ResourceLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceLoader.swift; sourceTree = "<group>"; };
+		723444D3DDC15C7F9E239175 /* Pods-BBKickstarter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BBKickstarter.debug.xcconfig"; path = "Target Support Files/Pods-BBKickstarter/Pods-BBKickstarter.debug.xcconfig"; sourceTree = "<group>"; };
+		76F34473975C2A1838A1E134 /* Pods-BBKickstarter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BBKickstarter.release.xcconfig"; path = "Target Support Files/Pods-BBKickstarter/Pods-BBKickstarter.release.xcconfig"; sourceTree = "<group>"; };
+		B90CCF5823D732CA00CC45F8 /* BBKickstarter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BBKickstarter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B90CCF5B23D732CA00CC45F8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B90CCF6223D732CA00CC45F8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B90CCF6423D732CB00CC45F8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B90CCF6723D732CB00CC45F8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B90CCF6923D732CB00CC45F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ED6AD7D2334398E4DDD9595A /* Pods_BBKickstarter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BBKickstarter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F3878FD725641A85004271A1 /* Security.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Security.swift; sourceTree = "<group>"; };
+		F3878FDE25642256004271A1 /* jb_protect.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = jb_protect.c; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B90CCF5523D732CA00CC45F8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC5197D86D0AB45A73414BE8 /* Pods_BBKickstarter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		28654A24240D678500D4FB51 /* MobileSDK */ = {
+			isa = PBXGroup;
+			children = (
+				28654A25240D678500D4FB51 /* config.json */,
+			);
+			path = MobileSDK;
+			sourceTree = "<group>";
+		};
+		2871763C27219208009348D0 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				2871763D27219223009348D0 /* BankCodeLabelUtil.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		28E6DEE725DDD49F00001486 /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				288998BC26DE2DC400D5CE97 /* InternationalPayment.swift */,
+				288998BB26DE2DC400D5CE97 /* InternationalPaymentReviewStep.swift */,
+				288998BD26DE2DC400D5CE97 /* JourneysConfiguration.swift */,
+				288998BE26DE2DC400D5CE97 /* OmnipaymentsConfiguration.swift */,
+				2871763F27219BCD009348D0 /* PaymentWizard.swift */,
+				288998BF26DE2DC400D5CE97 /* ResourceLoader.swift */,
+				288998BA26DE2DC400D5CE97 /* SepaPayment.swift */,
+			);
+			path = Configurations;
+			sourceTree = "<group>";
+		};
+		A30FCD38016DF5D51A35F6CE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				723444D3DDC15C7F9E239175 /* Pods-BBKickstarter.debug.xcconfig */,
+				76F34473975C2A1838A1E134 /* Pods-BBKickstarter.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		B90CCF4F23D732C900CC45F8 = {
+			isa = PBXGroup;
+			children = (
+				B90CCF5A23D732CA00CC45F8 /* BBKickstarter */,
+				B90CCF5923D732CA00CC45F8 /* Products */,
+				A30FCD38016DF5D51A35F6CE /* Pods */,
+				EDE6CBE6C28F174388BE69B8 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		B90CCF5923D732CA00CC45F8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B90CCF5823D732CA00CC45F8 /* BBKickstarter.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B90CCF5A23D732CA00CC45F8 /* BBKickstarter */ = {
+			isa = PBXGroup;
+			children = (
+				28654A24240D678500D4FB51 /* MobileSDK */,
+				B90CCF5B23D732CA00CC45F8 /* AppDelegate.swift */,
+				2871763C27219208009348D0 /* Utils */,
+				28E6DEE725DDD49F00001486 /* Configurations */,
+				B90CCF6123D732CA00CC45F8 /* Main.storyboard */,
+				B90CCF6423D732CB00CC45F8 /* Assets.xcassets */,
+				B90CCF6623D732CB00CC45F8 /* LaunchScreen.storyboard */,
+				B90CCF6923D732CB00CC45F8 /* Info.plist */,
+				F3878FD725641A85004271A1 /* Security.swift */,
+				F3878FDE25642256004271A1 /* jb_protect.c */,
+			);
+			path = BBKickstarter;
+			sourceTree = "<group>";
+		};
+		EDE6CBE6C28F174388BE69B8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ED6AD7D2334398E4DDD9595A /* Pods_BBKickstarter.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B90CCF5723D732CA00CC45F8 /* BBKickstarter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B90CCF6C23D732CB00CC45F8 /* Build configuration list for PBXNativeTarget "BBKickstarter" */;
+			buildPhases = (
+				CB428894A166EC3B2FDB6259 /* [CP] Check Pods Manifest.lock */,
+				B90CCF5423D732CA00CC45F8 /* Sources */,
+				B90CCF5523D732CA00CC45F8 /* Frameworks */,
+				B90CCF5623D732CA00CC45F8 /* Resources */,
+				F335706E2574D83600E1C471 /* Encrypt Configuration */,
+				1279A48403DA5A68D4AAA927 /* [CP] Embed Pods Frameworks */,
+				EBFADC5FDFDD376B4CDEC3C5 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BBKickstarter;
+			productName = BBKickstarter;
+			productReference = B90CCF5823D732CA00CC45F8 /* BBKickstarter.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B90CCF5023D732C900CC45F8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1130;
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = Backbase;
+				TargetAttributes = {
+					B90CCF5723D732CA00CC45F8 = {
+						CreatedOnToolsVersion = 11.3;
+						LastSwiftMigration = 1210;
+					};
+				};
+			};
+			buildConfigurationList = B90CCF5323D732C900CC45F8 /* Build configuration list for PBXProject "BBKickstarter" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B90CCF4F23D732C900CC45F8;
+			productRefGroup = B90CCF5923D732CA00CC45F8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B90CCF5723D732CA00CC45F8 /* BBKickstarter */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B90CCF5623D732CA00CC45F8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B90CCF6823D732CB00CC45F8 /* LaunchScreen.storyboard in Resources */,
+				28654A59240D678600D4FB51 /* config.json in Resources */,
+				B90CCF6523D732CB00CC45F8 /* Assets.xcassets in Resources */,
+				B90CCF6323D732CA00CC45F8 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1279A48403DA5A68D4AAA927 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BBKickstarter/Pods-BBKickstarter-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BBKickstarter/Pods-BBKickstarter-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BBKickstarter/Pods-BBKickstarter-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CB428894A166EC3B2FDB6259 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BBKickstarter-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EBFADC5FDFDD376B4CDEC3C5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BBKickstarter/Pods-BBKickstarter-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BBKickstarter/Pods-BBKickstarter-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BBKickstarter/Pods-BBKickstarter-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F335706E2574D83600E1C471 /* Encrypt Configuration */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Encrypt Configuration";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "npx bb-mobile encrypt ios config.json\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B90CCF5423D732CA00CC45F8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F3878FDF25642256004271A1 /* jb_protect.c in Sources */,
+				288998C126DE2DC400D5CE97 /* InternationalPaymentReviewStep.swift in Sources */,
+				288998C326DE2DC400D5CE97 /* JourneysConfiguration.swift in Sources */,
+				B90CCF5C23D732CA00CC45F8 /* AppDelegate.swift in Sources */,
+				F3878FD825641A85004271A1 /* Security.swift in Sources */,
+				2871764027219BCD009348D0 /* PaymentWizard.swift in Sources */,
+				288998C026DE2DC400D5CE97 /* SepaPayment.swift in Sources */,
+				288998C426DE2DC400D5CE97 /* OmnipaymentsConfiguration.swift in Sources */,
+				288998C226DE2DC400D5CE97 /* InternationalPayment.swift in Sources */,
+				288998C526DE2DC400D5CE97 /* ResourceLoader.swift in Sources */,
+				2871763E27219223009348D0 /* BankCodeLabelUtil.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		B90CCF6123D732CA00CC45F8 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B90CCF6223D732CA00CC45F8 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		B90CCF6623D732CB00CC45F8 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B90CCF6723D732CB00CC45F8 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B90CCF6A23D732CB00CC45F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		B90CCF6B23D732CB00CC45F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B90CCF6D23D732CB00CC45F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 723444D3DDC15C7F9E239175 /* Pods-BBKickstarter.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = BBKickstarter/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = "2021.10-universal";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"c++\"",
+					"-l\"sqlite3\"",
+					"-l\"z\"",
+					"-framework",
+					"\"Backbase\"",
+					"-framework",
+					"\"BackbaseIdentity\"",
+					"-framework",
+					"\"BusinessManagePaymentsJourney\"",
+					"-framework",
+					"\"Charts\"",
+					"-framework",
+					"\"PureLayout\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Resolver\"",
+					"-framework",
+					"\"RxCocoa\"",
+					"-framework",
+					"\"RxRelay\"",
+					"-framework",
+					"\"RxSwift\"",
+					"-framework",
+					"\"Shimmer\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"UIScrollView_InfiniteScroll\"",
+					"-framework",
+					"\"VGParallaxHeader\"",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.backbase.business.external202110;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B90CCF6E23D732CB00CC45F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 76F34473975C2A1838A1E134 /* Pods-BBKickstarter.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = BBKickstarter/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = "2021.10-universal";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"c++\"",
+					"-l\"sqlite3\"",
+					"-l\"z\"",
+					"-framework",
+					"\"Backbase\"",
+					"-framework",
+					"\"BackbaseIdentity\"",
+					"-framework",
+					"\"BusinessManagePaymentsJourney\"",
+					"-framework",
+					"\"Charts\"",
+					"-framework",
+					"\"PureLayout\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Resolver\"",
+					"-framework",
+					"\"RxCocoa\"",
+					"-framework",
+					"\"RxRelay\"",
+					"-framework",
+					"\"RxSwift\"",
+					"-framework",
+					"\"Shimmer\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"UIScrollView_InfiniteScroll\"",
+					"-framework",
+					"\"VGParallaxHeader\"",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.backbase.business.external202110;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B90CCF5323D732C900CC45F8 /* Build configuration list for PBXProject "BBKickstarter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B90CCF6A23D732CB00CC45F8 /* Debug */,
+				B90CCF6B23D732CB00CC45F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B90CCF6C23D732CB00CC45F8 /* Build configuration list for PBXNativeTarget "BBKickstarter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B90CCF6D23D732CB00CC45F8 /* Debug */,
+				B90CCF6E23D732CB00CC45F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B90CCF5023D732C900CC45F8 /* Project object */;
+}

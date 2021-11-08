@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<catalog>
+  <widget>
+    <name>bb-universal-transfer-wizard-widget-ang</name>
+    <properties>
+      <property name="classId">
+        <value>UniversalTransferWizardWidgetAngComponent</value>
+      </property>
+      <property name="src">
+        <value>$(itemRoot)/index.html</value>
+      </property>
+      <property name="render.requires">
+        <value>render-bb-widget-3</value>
+      </property>
+      <property name="title" label="Title" readonly="true" viewHint="admin,designModeOnly">
+        <value type="string">UniversalTransferWizardWidgetAng Widget</value>
+      </property>
+      <property name="thumbnailUrl">
+        <value>$(itemRoot)/icon.png</value>
+      </property>
+      <property name="label">
+        <value>Angular UniversalTransferWizardWidgetAng Widget</value>
+      </property>
+      <property
+        name="input.selectedPaymentTemplate"
+        label="Takes routing metadata"
+        viewHint="text-input,admin,designModeOnly">
+        <value>memory</value>
+      </property>
+      <property name="defaultCountry" label="Default Country ISO code" viewHint="admin,designModeOnly">
+        <value type="string">US</value>
+      </property>
+      <property name="enableApprovals" label="Enable payment approval" viewHint="checkbox,admin">
+        <value type="boolean">true</value>
+      </property>
+      <property name="accessContextScope" label="Access Context Scope" viewHint="select-one,admin">
+        <value type="string">SA</value>
+      </property>
+      <property name="enableSavePaymentAsTemplate" label="Enable save payment as a template" viewHint="checkbox,admin">
+        <value type="boolean">true</value>
+      </property>
+      <property name="enablePaymentTemplateSelector" label="Enable payment template selector" viewHint="checkbox,admin">
+        <value type="boolean">true</value>
+      </property>
+      <property name="isErrorTitleDisplayed" label="Enable show error title" viewHint="checkbox,admin">
+        <value type="boolean">true</value>
+      </property>
+      <property name="checkClosedPaymentsAccess" label="Check closed payments access" type="boolean" viewHint="checkbox,admin">
+        <value>false</value>
+      </property>
+      <property name="pageSize" label="Number of arrangements loaded for originating and counterparty account selector" type="long" viewHint="admin,designModeOnly">
+        <value>50</value>
+      </property>
+    </properties>
+  </widget>
+</catalog>

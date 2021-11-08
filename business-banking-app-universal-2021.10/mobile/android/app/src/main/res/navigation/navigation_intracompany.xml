@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/omnipayments_intracompany_journey"
+    app:startDestination="@id/fromAccount">
+
+    <!-- Choosing originator account -->
+    <fragment
+        android:id="@+id/fromAccount"
+        android:name="com.backbase.android.business.journey.omnipayments.view.PaymentStepFragment"
+        android:label="PaymentStepFragment" >
+        <action
+            android:id="@+id/action_fromAccount_to_transferTo"
+            app:destination="@id/transferTo" />
+        <argument
+            android:name="stepIndex"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+
+    <!-- Choosing destination account -->
+    <fragment
+        android:id="@+id/transferTo"
+        android:name="com.backbase.android.business.journey.omnipayments.view.PaymentStepFragment"
+        android:label="PaymentStepFragment" >
+        <argument
+            android:name="stepIndex"
+            app:argType="integer"
+            android:defaultValue="1" />
+        <action
+            android:id="@+id/action_transferTo_to_paymentDetails"
+            app:destination="@id/paymentDetails" />
+    </fragment>
+
+    <!-- Entering payment details -->
+    <fragment
+        android:id="@+id/paymentDetails"
+        android:name="com.backbase.android.business.journey.omnipayments.view.PaymentStepFragment"
+        android:label="PaymentStepFragment" >
+        <argument
+            android:name="stepIndex"
+            app:argType="integer"
+            android:defaultValue="2" />
+        <action
+            android:id="@+id/action_paymentDetails_to_review"
+            app:destination="@id/review" />
+    </fragment>
+
+    <!-- Reviewing payment information -->
+    <fragment
+        android:id="@+id/review"
+        android:name="com.backbase.android.business.journey.omnipayments.view.PaymentStepFragment"
+        android:label="PaymentStepFragment" >
+        <argument
+            android:name="stepIndex"
+            app:argType="integer"
+            android:defaultValue="3" />
+        <action
+            android:id="@+id/action_review_to_result"
+            app:destination="@id/resultFragment"/>
+    </fragment>
+
+    <!-- Payment sucess or failure screen -->
+    <fragment
+        android:id="@+id/resultFragment"
+        android:name="com.backbase.android.business.journey.omnipayments.view.PaymentResultFragment"
+        android:label="PaymentResultFragment"/>
+
+</navigation>
