@@ -15,19 +15,19 @@ export const environment: Environment = {
     pageModel,
     services,
   },
-  mockProviders: [
+  /*mockProviders: [
     ...mockProviders,
     {
       provide: PORTAL_CONTENT,
       useValue: PortalContentServiceMockProvider,
     },
-  ],
+  ],*/
 };
 
 //TODO: remove this hack when real data modules are created for every widget
-if (window.localStorage.getItem('enableMocks') === null) {
+/*if (window.localStorage.getItem('enableMocks') === null) {
   window.localStorage.setItem('enableMocks', 'true');
-}
+}*/
 
 /*
  * In development mode, to ignore zone related error stack frames such as

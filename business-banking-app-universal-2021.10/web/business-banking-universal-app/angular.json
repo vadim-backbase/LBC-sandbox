@@ -115,14 +115,16 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "business-banking-app:build"
+            "browserTarget": "business-banking-app:build",
+            "proxyConfig": "apps/business-banking-app/src/proxy.conf.json"
           },
           "configurations": {
             "production": {
               "browserTarget": "business-banking-app:build:production"
             },
             "en-GB": {
-              "browserTarget": "business-banking-app:build:en-GB"
+              "browserTarget": "business-banking-app:build:en-GB",
+              "proxyConfig": "apps/business-banking-app/src/proxy.conf.json"
             }
           }
         },

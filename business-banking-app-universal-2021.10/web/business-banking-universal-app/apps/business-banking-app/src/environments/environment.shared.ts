@@ -4,6 +4,6 @@ import { Environment } from './type';
 export const environment: Environment = {
   production: false,
   animation: true,
-  assetsStaticItemName: 'bb-business-banking-app-ang',
-  mockProviders,
+  assetsStaticItemName: 'bb-business-banking-app-ang'/*,
+  mockProviders,*/
 };

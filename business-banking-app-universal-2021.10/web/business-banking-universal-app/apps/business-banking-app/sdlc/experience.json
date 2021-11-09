@@ -23,16 +23,16 @@
   "environments": {
     "default": {
       "authorization": {
-      
+
         "authUrl":"http://localhost:8180/auth",
         "clientId": "bb-web-client",
         "scope": "openid",
         "kind": "hybrid",
-        "realm": "backbase",
+        "realm": "LaurentianBank",
         "landingPageUrl": "business-banking-app/select-context",
         "loginPageUrl": "business-banking-app/redirect",
         "maxInactivityDuration": 300
-      
+
       },
       "provisioning": {
         "type": "cx",
@@ -64,7 +64,7 @@
         "type": "nginx",
         "outputDir": "dist/experiences/business-banking-app/docker",
         "baseHref": "http://localhost:8080/business-banking-app",
-        "apiRoot": "https://localhost/api"
+        "apiRoot": "http://localhost:7777/api"
       },
       "entitlements": {
         "enable": true,
@@ -72,9 +72,9 @@
       },
       "authorization": {
         "kind": "hybrid",
-        "authUrl": "https://localhost/auth",
+        "authUrl": "https://localhost:8180/auth",
         "clientId": "bb-web-client",
-        "realm": "backbase",
+        "realm": "LaurentianBank",
         "scope": "openid",
         "landingPageUrl": "select-context",
         "loginPageUrl": "redirect"

@@ -6,3 +6,9 @@ identity:
     password: admin
     clientId: admin-cli
   enableUser: true
+
+
+
+logging:
+  level:
+    root: DEBUG

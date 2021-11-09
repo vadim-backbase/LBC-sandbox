@@ -13,7 +13,7 @@
     "postpackage:apps": "bb-ang create-provisioning-package",
     "package:libs": "bb-ang package-libs",
     "prestart": "bb-ang copy-assets",
-    "start": "cross-env NODE_OPTIONS=--max_old_space_size=4096 ng serve",
+    "start": "cross-env NODE_OPTIONS=--max_old_space_size=4096 ng serve --port 4300",
     "test": "ng test",
     "update": "ng update @bb-cli/schematics@^5 @backbase/foundation-ang@^6 @backbase/banking-schematics@^1",
     "xi18n:business-banking-app": "cross-env NODE_OPTIONS=--max_old_space_size=4096 ng extract-i18n business-banking-app --output-path=apps/business-banking-app/src/locale && xliffmerge --profile apps/business-banking-app/src/xliffmerge.json en-GB",

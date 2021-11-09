@@ -25,3 +25,10 @@ services:
       - ./backbase-identity/themes:/themes
       - ./backbase-identity/providers:/providers
       - ./backbase-identity/json:/tmp/keycloak-export
+
+
+  maildev:
+    image: maildev/maildev
+    ports:
+      - '25:25'
+      - '1081:80'
