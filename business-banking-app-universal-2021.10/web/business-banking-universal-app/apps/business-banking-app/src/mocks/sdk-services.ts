@@ -45,7 +45,7 @@ export const services: ExternalServices = {
     };
     return events;
   },
-  pageConfig() {
+/*  pageConfig() {
     return {
       version: '6',
       apiRoot: '/api',
@@ -56,8 +56,8 @@ export const services: ExternalServices = {
       currentLink: '',
       assetsRoot: '',
     };
-  },
-  auth() {
+  },*/
+/*  auth() {
     return {
       login: () => Promise.resolve(),
       logout: () => Promise.resolve(),
@@ -68,7 +68,7 @@ export const services: ExternalServices = {
       reauthenticate,
       initToken: ['token'],
     };
-  },
+  },*/
   navigation() {
     return {
       getBreadcrumbs: (uuid: string, depth: number) => {

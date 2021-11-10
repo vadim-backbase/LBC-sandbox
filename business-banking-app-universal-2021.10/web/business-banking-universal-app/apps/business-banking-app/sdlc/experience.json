@@ -23,7 +23,6 @@
   "environments": {
     "default": {
       "authorization": {
-
         "authUrl":"http://localhost:8180/auth",
         "clientId": "bb-web-client",
         "scope": "openid",

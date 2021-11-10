@@ -1233,7 +1233,7 @@ const navigation = {
         {
           type: 'alias',
           title: 'Inbox',
-          url: '#/inbox',
+          url: '#/messages',
           isCurrent: false,
           preferences: {
             sectionName: {
@@ -1270,7 +1270,7 @@ const navigation = {
             },
             Url: {
               name: 'Url',
-              value: '#/inbox',
+              value: '#/messages',
             },
             SecuritySameAsParent: {
               name: 'SecuritySameAsParent',

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -43,7 +43,8 @@ import { DeviceInformationWidgetModule } from '@backbase/identity-ang/devices';
 import { UserIdentitySecurityCenterWidgetModule } from '@backbase/business-ang/users';
 import { TransactionSigningWidgetModule, TransactionSigningModule } from '@backbase/identity-ang/transaction-signing';
 import { ImpersonationBannerWidgetModule } from '@backbase/identity-ang/impersonation';
-import { WebSdkApiModule, PAGE_CONFIG, PageConfig } from '@backbase/foundation-ang/web-sdk';
+import { WebSdkApiModule, WebSdkModule, PAGE_CONFIG, PageConfig } from '@backbase/foundation-ang/web-sdk';
+import { AuthInterceptor, AuthService } from '@backbase/foundation-ang/auth';
 import { FlowInteractionContainerModule, FlowInteractionCoreModule } from '@backbase/flow-interaction-sdk-ang/core';
 import { PlacesConfigProvider, AuthProvider, HttpXsrfProvider, AccountsDisplayingFormatProvider, AccountsAliasDisplayingLevelProvider } from './config.providers';
 import { CONTACT_MANAGER_BASE_PATH } from '@backbase/data-ang/contact-manager';
@@ -77,9 +78,22 @@ import { Payee, ElectronicPayee } from '@backbase/data-ang/billpay';
 import { bundlesDefinition } from './bundles-definition';
 import { CustomSessionTimeoutComponent } from './components/custom-session-timeout/session-timeout.component';
 import { StepUpConfig } from './components/step-up/step-up-config';
+import { tap } from 'rxjs/operators';
 
 export function getBasePath(servicePath: string) { return (config: PageConfig) => `${config.apiRoot}/${servicePath}`; }
-
+export function applicationAuthInitializer(authService: AuthService) {
+  return () => new Promise<void>(resolve => {
+    authService.isAuthenticated.pipe(
+      tap(isAuth => {
+        console.log('isAuth', isAuth);
+        if (!isAuth) {
+          authService.login({ redirectUri: window.location.href });
+        }
+        resolve();
+      })
+    ).subscribe();
+  }).then(() => console.log('init completed'));
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -194,6 +208,15 @@ export function getBasePath(servicePath: string) { return (config: PageConfig) =
     }),
     ImpersonationBannerWidgetModule,
     WebSdkApiModule,
+    WebSdkModule.forRoot({
+      apiRoot: '/api',
+      auth: {
+        authUrl: 'http://localhost:8180/auth',
+        clientId: 'bb-web-client',
+        realm: 'LaurentianBank',
+        scope: 'openid',
+      }
+    }),
     FlowInteractionContainerModule,
     FlowInteractionCoreModule
   ],
@@ -251,6 +274,11 @@ export function getBasePath(servicePath: string) { return (config: PageConfig) =
     provide: POSITIVE_PAY_ACH_BASE_PATH, useFactory: getBasePath('positive-pay-ach'), deps: [PAGE_CONFIG]
   }, {
     provide: LOANS_BASE_PATH, useFactory: getBasePath('loan'), deps: [PAGE_CONFIG]
+  }, {
+      provide: APP_INITIALIZER,
+      useFactory: applicationAuthInitializer,
+      multi: true,
+      deps: [AuthService],
   }],
   bootstrap: [AppComponent]
 })
