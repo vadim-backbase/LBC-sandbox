@@ -71,7 +71,7 @@ services:
       - "8761:8080"
 
   token-converter:
-    image: repo.backbase.com/backbase-docker-releases/oidc-token-converter-service:${BB_VERSION}
+    image: repo.backbase.com/backbase-docker-releases/bb-authentication-token-converter-service:${BB_VERSION}
     ports:
       - "7779:8080"
     environment:
