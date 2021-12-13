@@ -1,10 +1,10 @@
 # Setup
 ```
 export BB_VERSION=2021.07
-docker-compose up -d
-docker-compose down
-docker-compose restart
-docker-compose ps
+docker-compose -f <filename> up -d
+docker-compose -f <filename> down
+docker-compose -f <filename> restart
+docker-compose -f <filename> ps
 ```
 
 # Testing
@@ -27,5 +27,5 @@ http://localhost:9090/auth/admin
 # References
 https://hub.docker.com/r/rmohr/activemq/
 https://github.com/Backbase/docker-compose-examples
-
-
+https://docs.docker.com/compose/compose-file/compose-file-v3/
+https://docs.docker.com/engine/reference/commandline/build/

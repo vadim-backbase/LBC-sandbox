@@ -90,5 +90,14 @@ services:
       - registry
       - message-broker
 
+  legalentity-integration-external-mock:
+    image: legalentity-integration-external-mock:local
+    ports:
+      - "8186:8186"
+    environment:
+      <<: *common-variables
+    links:
+      - registry
+
 volumes:
   demo_mysql_data:
