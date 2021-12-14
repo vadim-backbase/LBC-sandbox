@@ -1,0 +1,2 @@
+GET /client-api/v2/permissions/data-item?businessFunction=bf&privilege=pl&dataType=dt&dataItemId=di
+Host: localhost:8186
