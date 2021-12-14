@@ -12,7 +12,7 @@
   <groupId>com.backbase.dbs.legalentity</groupId>
   <artifactId>legalentity-integration-external-mock</artifactId>
   <version>1.51.2.1</version>
-  <packaging>war</packaging>
+  <packaging>jar</packaging>
 
   <scm>
     <developerConnection>scm:git:ssh://git@stash.backbase.com:7999/le/legalentity-integration-external-mock.git</developerConnection>
@@ -110,10 +110,29 @@
       <groupId>org.openapitools</groupId>
       <artifactId>jackson-databind-nullable</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-tomcat</artifactId>
+    </dependency>
   </dependencies>
 
   <build>
     <plugins>
+      <plugin>
+        <groupId>com.google.cloud.tools</groupId>
+        <artifactId>jib-maven-plugin</artifactId>
+        <version>2.5.0</version>
+        <configuration>
+            <to>
+                <image>legalentity-integration-external-mock:local</image>
+            </to>
+            <container>
+                <ports>
+                    <port>8186</port>
+                </ports>
+            </container>
+        </configuration>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>

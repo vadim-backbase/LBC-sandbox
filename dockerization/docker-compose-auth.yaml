@@ -93,9 +93,20 @@ services:
   legalentity-integration-external-mock:
     image: legalentity-integration-external-mock:local
     ports:
-      - "8186:8080"
+      - "8186:8186"
     environment:
       <<: *common-variables
+      <<: *message-broker-variables
+    links:
+      - registry
+
+  account-mock:
+    image: account-mock:local
+    ports:
+      - "8187:8187"
+    environment:
+      <<: *common-variables
+      <<: *message-broker-variables
     links:
       - registry
 
