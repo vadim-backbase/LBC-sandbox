@@ -24,6 +24,10 @@ http://localhost:8080/api/auth/login
 * test identity
 http://localhost:9090/auth/admin
 
+
+* test mock
+http://localhost:8186/client-api/v2/permissions/data-item?businessFunction=bf&privilege=pl&dataType=dt&dataItemId=di
+
 # References
 https://hub.docker.com/r/rmohr/activemq/
 https://github.com/Backbase/docker-compose-examples
