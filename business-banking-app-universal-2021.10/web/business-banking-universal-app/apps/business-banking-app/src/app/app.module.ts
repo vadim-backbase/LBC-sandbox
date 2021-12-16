@@ -214,7 +214,7 @@ export function applicationAuthInitializer(authService: AuthService) {
         authUrl: 'http://localhost:8180/auth',
         clientId: 'bb-web-client',
         realm: 'LaurentianBank',
-        scope: 'openid',
+        scope: 'openid'
       }
     }),
     FlowInteractionContainerModule,

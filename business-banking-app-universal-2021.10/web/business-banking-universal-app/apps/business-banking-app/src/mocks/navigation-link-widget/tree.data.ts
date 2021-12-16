@@ -384,12 +384,12 @@ const navigation = {
         {
           type: 'alias',
           title: 'Transfers',
-          url: '#/transfers',
+          url: '#/payments',
           isCurrent: false,
           preferences: {
             sectionName: {
               name: 'sectionName',
-              value: 'transfers',
+              value: 'payments',
             },
             itemType: {
               name: 'itemType',
@@ -401,7 +401,7 @@ const navigation = {
             },
             generatedUrl: {
               name: 'generatedUrl',
-              value: 'business-banking-app/move-money/transfers',
+              value: 'business-banking-app/move-money/payments',
             },
             menuIcon: {
               name: 'menuIcon',
@@ -421,7 +421,7 @@ const navigation = {
             },
             Url: {
               name: 'Url',
-              value: '#/transfers',
+              value: '#/payments',
             },
             SecuritySameAsParent: {
               name: 'SecuritySameAsParent',

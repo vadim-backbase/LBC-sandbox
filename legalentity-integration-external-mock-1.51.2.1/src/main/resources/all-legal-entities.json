@@ -145,6 +145,14 @@
     }
   },
   {
+    "externalId": "Summit Company",
+    "name": "Summit Company",
+    "additions": {
+      "cif": "777",
+      "address": "Same Street"
+    }
+  },
+  {
     "externalId": "Real Estate",
     "name": "A. Krämer"
   },
@@ -172,5 +180,21 @@
     "externalId": "Company3",
     "name": "Company 3"
   }
-
+,
+  {
+    "externalId": "MyNewUserLE",
+    "name": "My New user LE"
+  },
+  {
+    "externalId": "lisaID",
+    "name": "Lisa"
+  },
+  {
+    "externalId": "mathewID",
+    "name": "Mathew"
+  },
+  {
+    "externalId": "ericID",
+    "name": "Eric"
+  }
 ]
