@@ -35,4 +35,7 @@ https://hub.docker.com/r/rmohr/activemq/
 https://github.com/Backbase/docker-compose-examples
 https://docs.docker.com/compose/compose-file/compose-file-v3/
 https://docs.docker.com/engine/reference/commandline/build/
-https://www.baeldung.com/jib-dockerizing
+https://community.backbase.com/documentation/ServiceSDK/latest/generate_jib_images
+https://repo.backbase.com/ui/native/backbase-docker-releases/
+
+

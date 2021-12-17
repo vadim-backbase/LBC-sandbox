@@ -91,7 +91,7 @@ services:
       - message-broker
 
   legalentity-integration-external-mock:
-    image: legalentity-integration-external-mock:local
+    image: 197569887140.dkr.ecr.ca-central-1.amazonaws.com/lbc/legalentity-integration-external-mock:1.51.2.1
     ports:
       - "8186:8186"
     environment:
