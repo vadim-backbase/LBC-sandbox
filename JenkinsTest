@@ -19,7 +19,10 @@ pipeline {
       steps {
         container('maven') {
           checkout scm
-          sh 'mvn -version'
+          sh '''
+            cd legalentity-integration-external-mock-1.51.2.1
+            mvn clean package jib:dockerBuild
+          '''
         }
       }
     }
