@@ -20,7 +20,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <dockerfile-maven-version>1.4.9</dockerfile-maven-version>
-        <mysql-connector.version>5.1.41</mysql-connector.version>
+        <mysql-connector.version>8.0.27</mysql-connector.version>
 
         <port>9080</port>
         <sig.secret.key>JWTSecretKeyDontUseInProduction!</sig.secret.key>
@@ -300,4 +300,3 @@
     </profiles>
 
 </project>
-

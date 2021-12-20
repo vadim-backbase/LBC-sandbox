@@ -168,7 +168,7 @@
                             <dependency>
                                 <groupId>mysql</groupId>
                                 <artifactId>mysql-connector-java</artifactId>
-                                <version>5.1.41</version>
+                                <version>8.0.27</version>
                             </dependency>
                         </dependencies>
                     </plugin>
@@ -213,7 +213,114 @@
                             <dependency>
                                 <groupId>mysql</groupId>
                                 <artifactId>mysql-connector-java</artifactId>
-                                <version>5.1.41</version>
+                                <version>8.0.27</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>clean-database-cd</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>sql-maven-plugin</artifactId>
+                        <inherited>false</inherited>
+                        <version>1.5</version>
+                        <configuration>
+                            <printResultSet>true</printResultSet>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>drop-db</id>
+                                <phase>clean</phase>
+                                <goals>
+                                    <goal>execute</goal>
+                                </goals>
+                                <configuration>
+                                    <driver>com.mysql.jdbc.Driver</driver>
+                                    <url>jdbc:mysql://${env.CI_DB_HOST}:${env.CI_DB_PORT}?useSSL=${env.CI_DB_USE_SSL}</url>
+                                    <username>${env.CI_DB_USER_NAME}</username>
+                                    <password>${env.CI_DB_PASSWORD}</password>
+                                    <forceMojoExecution>true</forceMojoExecution>
+                                    <sqlCommand>
+                                        DROP DATABASE IF EXISTS arrangement_manager;
+                                    </sqlCommand>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>create-db-arrangement-manager</id>
+                                <phase>clean</phase>
+                                <goals>
+                                    <goal>execute</goal>
+                                </goals>
+                                <configuration>
+                                    <driver>com.mysql.jdbc.Driver</driver>
+                                    <url>jdbc:mysql://localhost:3306/arrangement_manager?useSSL=false&amp;createDatabaseIfNotExist=true</url>
+                                    <username>root</username>
+                                    <password>root</password>
+                                    <forceMojoExecution>true</forceMojoExecution>
+                                    <fileset>
+                                        <basedir>${project.build.directory}/sql/arrangement-manager/mysql</basedir>
+                                        <includes>
+                                            <include>create/*.sql</include>
+                                        </includes>
+                                    </fileset>
+                                </configuration>
+                            </execution>
+                        </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>mysql</groupId>
+                                <artifactId>mysql-connector-java</artifactId>
+                                <version>8.0.27</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>init-database-cd</id>
+            <properties>
+                <liquibase.enabled>true</liquibase.enabled>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>sql-maven-plugin</artifactId>
+                        <inherited>false</inherited>
+                        <version>1.5</version>
+                        <configuration>
+                            <printResultSet>false</printResultSet>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>create-db-arrangement-manager</id>
+                                <phase>initialize</phase>
+                                <goals>
+                                    <goal>execute</goal>
+                                </goals>
+                                <configuration>
+                                    <driver>com.mysql.jdbc.Driver</driver>
+                                    <url>jdbc:mysql://${env.CI_DB_HOST}:${env.CI_DB_PORT}?useSSL=${env.CI_DB_USE_SSL}</url>
+                                    <username>${env.CI_DB_USER_NAME}</username>
+                                    <password>${env.CI_DB_PASSWORD}</password>
+                                    <forceMojoExecution>true</forceMojoExecution>
+                                    <sqlCommand>
+                                        CREATE DATABASE IF NOT EXISTS arrangement_manager;
+                                    </sqlCommand>
+                                </configuration>
+                            </execution>
+                        </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>mysql</groupId>
+                                <artifactId>mysql-connector-java</artifactId>
+                                <version>8.0.27</version>
                             </dependency>
                         </dependencies>
                     </plugin>
