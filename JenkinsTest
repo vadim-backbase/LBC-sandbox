@@ -22,6 +22,7 @@ pipeline {
           sh '''
             cd legalentity-integration-external-mock-1.51.2.1
             mvn package -Pdocker-image
+
           '''
         }
       }
