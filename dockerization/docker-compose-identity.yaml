@@ -57,7 +57,7 @@ services:
       <<: *common-variables
       gateway.actuator.user: admin
       gateway.actuator.password: admin
-    links:
+    depends_on:
       - registry
       - token-converter
 
@@ -72,7 +72,7 @@ services:
       - "7779:8080"
     environment:
       <<: *common-variables
-    links:
+    depends_on:
       - registry
 
   identity:
@@ -100,29 +100,30 @@ services:
       # KEYCLOAK_BACKBASE_EVENT_LISTENERS_AUDIT_INTEGRATIONSERVICEURL: "http://dbs-audit-auditintegrationservice:8080/"
       KEYCLOAK_BACKBASE_OIDC_TOKEN_CONVERTER_URL: "http://token-converter:8080"
       JAVA_TOOL_OPTIONS: "-Dkeycloak.migration.action=import -Dkeycloak.profile.feature.upload_scripts=enabled"
-    links:
+    depends_on:
       - mysql
       - token-converter
     volumes:
       - ./json:/tmp/keycloak-export
 
   legalentity-integration-external-mock:
-    image: legalentity-integration-external-mock:local
+    image: 197569887140.dkr.ecr.ca-central-1.amazonaws.com/lbc/legalentity-integration-external-mock:1.51.2.1
     ports:
       - "8186:8186"
     environment:
       <<: *common-variables
       <<: *message-broker-variables
-    links:
+    depends_on:
       - registry
 
   account-mock:
-    image: account-mock:local
+    image: 197569887140.dkr.ecr.ca-central-1.amazonaws.com/lbc/account-mock:1.38.14
     ports:
       - "8187:8187"
     environment:
       <<: *common-variables
-    links:
+      <<: *message-broker-variables
+    depends_on:
       - registry
       
 volumes:
