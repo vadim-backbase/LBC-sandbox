@@ -61,7 +61,7 @@ services:
       <<: *common-variables
       gateway.actuator.user: admin
       gateway.actuator.password: admin
-    links:
+    depends_on:
       - registry
       - token-converter
 
@@ -76,7 +76,7 @@ services:
       - "7779:8080"
     environment:
       <<: *common-variables
-    links:
+    depends_on:
       - registry
 
   auth:
@@ -86,7 +86,7 @@ services:
     environment:
       <<: *common-variables
       <<: *message-broker-variables
-    links:
+    depends_on:
       - registry
       - message-broker
 
@@ -97,17 +97,17 @@ services:
     environment:
       <<: *common-variables
       <<: *message-broker-variables
-    links:
+    depends_on:
       - registry
 
   account-mock:
-    image: account-mock:local
+    image: 197569887140.dkr.ecr.ca-central-1.amazonaws.com/lbc/account-mock:1.38.14
     ports:
       - "8187:8187"
     environment:
       <<: *common-variables
       <<: *message-broker-variables
-    links:
+    depends_on:
       - registry
 
 volumes:

@@ -1,6 +1,8 @@
 # Setup
 ```
 export BB_VERSION=2021.07
+aws ecr get-login-password --region ca-central-1 --profile lbc | docker login --username AWS --password-stdin 197569887140.dkr.ecr.ca-central-1.amazonaws.com
+
 docker-compose -f <filename> up -d
 docker-compose -f <filename> down
 docker-compose -f <filename> restart
