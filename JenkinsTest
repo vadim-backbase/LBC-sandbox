@@ -14,6 +14,11 @@ pipeline {
         '''
     }
   }
+  environment {
+    DATE = new Date().format('yy.M')
+    TAG = "${DATE}.${BUILD_NUMBER}"
+  }
+
   stages {
     stage('mvn Build legalentity') {
       steps {
@@ -21,7 +26,8 @@ pipeline {
           checkout scm
           sh '''
             cd legalentity-integration-external-mock-1.51.2.1
-            mvn package -Pdocker-image
+            mvn clean package
+            mvn package -Pdocker-image || True
 
           '''
         }
