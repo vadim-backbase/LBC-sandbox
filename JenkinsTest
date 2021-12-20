@@ -21,7 +21,7 @@ pipeline {
           checkout scm
           sh '''
             cd legalentity-integration-external-mock-1.51.2.1
-            mvn clean package jib:dockerBuild
+            mvn package -Pdocker-image
           '''
         }
       }
