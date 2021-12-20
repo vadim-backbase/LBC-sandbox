@@ -15,7 +15,7 @@ pipeline {
     }
   }
   stages {
-    stage('Mvn Build legalentity') {
+    stage('mvn Build legalentity') {
       steps {
         container('maven') {
           checkout scm
