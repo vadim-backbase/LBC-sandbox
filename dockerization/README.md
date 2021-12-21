@@ -16,7 +16,9 @@ export CD_DB_PORT=3306
 export CD_DB_USE_SSL=false
 export CD_DB_USER_NAME=root
 export CD_DB_PASSWORD=root
-export CD_DB_PASSWORD=root
+
+find . -name pom.xml -exec mvn clean -Pclean-database-cd -f '{}' \;
+find . -name pom.xml -exec mvn clean -Pinit-database-cd -f '{}' \;
 
 # Testing
 
