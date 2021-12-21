@@ -151,9 +151,9 @@
                 </goals>
                 <configuration>
                   <driver>com.mysql.jdbc.Driver</driver>
-                  <url>jdbc:mysql://${env.CI_DB_HOST}:${env.CI_DB_PORT}?useSSL=${env.CI_DB_USE_SSL}</url>
-                  <username>${env.CI_DB_USER_NAME}</username>
-                  <password>${env.CI_DB_PASSWORD}</password>
+                  <url>jdbc:mysql://${env.CD_DB_HOST}:${env.CD_DB_PORT}?useSSL=${env.CD_DB_USE_SSL}</url>
+                  <username>${env.CD_DB_USER_NAME}</username>
+                  <password>${env.CD_DB_PASSWORD}</password>
                   <forceMojoExecution>true</forceMojoExecution>
                   <sqlCommand>
                     DROP DATABASE IF EXISTS device_management;
@@ -169,7 +169,7 @@
                 </goals>
                 <configuration>
                   <driver>com.mysql.jdbc.Driver</driver>
-                  <url>jdbc:mysql://localhost:3306/device_management?useSSL=false&amp;createDatabaseIfNotExist=true</url>
+                  <url>jdbc:mysql://${env.CD_DB_HOST}:${env.CD_DB_PORT}/device_management?useSSL=${env.CD_DB_USE_SSL}&amp;createDatabaseIfNotExist=true</url>
                   <username>root</username>
                   <password>root</password>
                   <forceMojoExecution>true</forceMojoExecution>

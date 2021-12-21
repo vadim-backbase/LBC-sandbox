@@ -11,12 +11,12 @@ docker-compose -f <filename> ps
 
 # Database creation
 
-export CI_DB_HOST=localhost
-export CI_DB_PORT=3306
-export CI_DB_USE_SSL=false
-export CI_DB_USER_NAME=root
-export CI_DB_PASSWORD=root
-export CI_DB_PASSWORD=root
+export CD_DB_HOST=localhost
+export CD_DB_PORT=3306
+export CD_DB_USE_SSL=false
+export CD_DB_USER_NAME=root
+export CD_DB_PASSWORD=root
+export CD_DB_PASSWORD=root
 
 # Testing
 

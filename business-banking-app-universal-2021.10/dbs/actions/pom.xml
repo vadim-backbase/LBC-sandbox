@@ -239,9 +239,9 @@
                                 </goals>
                                 <configuration>
                                     <driver>com.mysql.jdbc.Driver</driver>
-                                    <url>jdbc:mysql://${env.CI_DB_HOST}:${env.CI_DB_PORT}?useSSL=${env.CI_DB_USE_SSL}</url>
-                                    <username>${env.CI_DB_USER_NAME}</username>
-                                    <password>${env.CI_DB_PASSWORD}</password>
+                                    <url>jdbc:mysql://${env.CD_DB_HOST}:${env.CD_DB_PORT}?useSSL=${env.CD_DB_USE_SSL}</url>
+                                    <username>${env.CD_DB_USER_NAME}</username>
+                                    <password>${env.CD_DB_PASSWORD}</password>
                                     <forceMojoExecution>true</forceMojoExecution>
                                     <sqlCommand>
                                         DROP DATABASE IF EXISTS action_service;
@@ -256,9 +256,9 @@
                                 </goals>
                                 <configuration>
                                     <driver>com.mysql.jdbc.Driver</driver>
-                                    <url>jdbc:mysql://localhost:3306/action_service?useSSL=false&amp;createDatabaseIfNotExist=true</url>
-                                    <username>root</username>
-                                    <password>root</password>
+                                    <url>jdbc:mysql://${env.CD_DB_HOST}:${env.CD_DB_PORT}/action_service?useSSL=${env.CD_DB_USE_SSL}&amp;createDatabaseIfNotExist=true</url>
+                                    <username>${env.CD_DB_USER_NAME}</username>
+                                    <password>${env.CD_DB_PASSWORD}</password>
                                     <forceMojoExecution>true</forceMojoExecution>
                                     <fileset>
                                         <basedir>${project.build.directory}/sql/action-service/mysql</basedir>
@@ -304,9 +304,9 @@
                                 </goals>
                                 <configuration>
                                     <driver>com.mysql.jdbc.Driver</driver>
-                                    <url>jdbc:mysql://${env.CI_DB_HOST}:${env.CI_DB_PORT}?useSSL=${env.CI_DB_USE_SSL}</url>
-                                    <username>${env.CI_DB_USER_NAME}</username>
-                                    <password>${env.CI_DB_PASSWORD}</password>
+                                    <url>jdbc:mysql://${env.CD_DB_HOST}:${env.CD_DB_PORT}?useSSL=${env.CD_DB_USE_SSL}</url>
+                                    <username>${env.CD_DB_USER_NAME}</username>
+                                    <password>${env.CD_DB_PASSWORD}</password>
                                     <forceMojoExecution>true</forceMojoExecution>
                                     <sqlCommand>
                                         CREATE DATABASE IF NOT EXISTS action_service;
