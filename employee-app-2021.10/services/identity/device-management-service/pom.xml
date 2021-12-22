@@ -175,7 +175,6 @@
                   <forceMojoExecution>true</forceMojoExecution>
                   <fileset>
                     <basedir>target/sql/device-management-service/mysql</basedir>
-                    <basedir>${project.build.directory}/sql/confirmation/mysql</basedir>
                     <includes>
                       <include>create/*.sql</include>
                     </includes>
