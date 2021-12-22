@@ -174,7 +174,7 @@
                   <password>root</password>
                   <forceMojoExecution>true</forceMojoExecution>
                   <fileset>
-                    <basedir>device-management-service/mysql</basedir>
+                    <basedir>sql/device-management-service/mysql</basedir>
                     <includes>
                       <include>create/*.sql</include>
                     </includes>
