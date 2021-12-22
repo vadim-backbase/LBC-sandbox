@@ -174,7 +174,7 @@
                   <password>${env.CD_DB_PASSWORD}</password>
                   <forceMojoExecution>true</forceMojoExecution>
                   <fileset>
-                    <basedir>target/sql/device-management-service/mysql</basedir>
+                    <basedir>${project.build.directory}/sql/device-management-service/mysql</basedir>
                     <includes>
                       <include>create/*.sql</include>
                     </includes>
