@@ -9,6 +9,17 @@ docker-compose -f <filename> restart
 docker-compose -f <filename> ps
 ```
 
+# Database creation
+
+export CD_DB_HOST=localhost
+export CD_DB_PORT=3306
+export CD_DB_USE_SSL=false
+export CD_DB_USER_NAME=root
+export CD_DB_PASSWORD=root
+
+find . -name pom.xml -exec mvn clean -Pclean-database-cd -f '{}' \;
+find . -name pom.xml -exec mvn clean -Pinit-database-cd -f '{}' \;
+
 # Testing
 
 * test active mq

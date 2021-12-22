@@ -111,6 +111,64 @@
                 </plugins>
             </build>
         </profile>
+        <profile>
+            <id>clean-database-cd</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>sql-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>drop-db</id>
+                                <phase>clean</phase>
+                                <goals>
+                                    <goal>execute</goal>
+                                </goals>
+                                <configuration>
+                                    <driver>com.mysql.jdbc.Driver</driver>
+                                    <url>jdbc:mysql://${env.CD_DB_HOST}:${env.CD_DB_PORT}?useSSL=${env.CD_DB_USE_SSL}</url>
+                                    <username>${env.CD_DB_USER_NAME}</username>
+                                    <password>${env.CD_DB_PASSWORD}</password>
+                                    <forceMojoExecution>true</forceMojoExecution>
+                                    <sqlCommand>
+                                        DROP DATABASE IF EXISTS space_controller;
+                                    </sqlCommand>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>create-db-space-controller</id>
+                                <phase>clean</phase>
+                                <goals>
+                                    <goal>execute</goal>
+                                </goals>
+                                <configuration>
+                                    <driver>com.mysql.jdbc.Driver</driver>
+                                    <url>jdbc:mysql://${env.CD_DB_HOST}:${env.CD_DB_PORT}/space_controller?useSSL=${env.CD_DB_USE_SSL}&amp;createDatabaseIfNotExist=true</url>
+                                    <username>${env.CD_DB_USER_NAME}</username>
+                                    <password>${env.CD_DB_PASSWORD}</password>
+                                    <forceMojoExecution>true</forceMojoExecution>
+                                    <fileset>
+                                        <basedir>${project.build.directory}/sql/space-controller/mysql</basedir>
+                                        <includes>
+                                            <include>create/*.sql</include>
+                                        </includes>
+                                    </fileset>
+                                </configuration>
+                            </execution>
+                        </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>mysql</groupId>
+                                <artifactId>mysql-connector-java</artifactId>
+                                <version>${mysql-connector.version}</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
     </profiles>
 
 </project>

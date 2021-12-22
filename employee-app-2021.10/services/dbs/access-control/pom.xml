@@ -260,7 +260,7 @@
                             <dependency>
                                 <groupId>mysql</groupId>
                                 <artifactId>mysql-connector-java</artifactId>
-                                <version>5.1.41</version>
+                                <version>8.0.27</version>
                             </dependency>
                         </dependencies>
                     </plugin>
@@ -307,7 +307,158 @@
                             <dependency>
                                 <groupId>mysql</groupId>
                                 <artifactId>mysql-connector-java</artifactId>
-                                <version>5.1.41</version>
+                                <version>8.0.27</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>clean-database-cd</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>sql-maven-plugin</artifactId>
+                        <inherited>false</inherited>
+                        <version>1.5</version>
+                        <configuration>
+                            <printResultSet>true</printResultSet>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>drop-db</id>
+                                <phase>clean</phase>
+                                <goals>
+                                    <goal>execute</goal>
+                                </goals>
+                                <configuration>
+                                    <driver>com.mysql.jdbc.Driver</driver>
+                                    <url>jdbc:mysql://${env.CD_DB_HOST}:${env.CD_DB_PORT}?useSSL=${env.CD_DB_USE_SSL}</url>
+                                    <username>${env.CD_DB_USER_NAME}</username>
+                                    <password>${env.CD_DB_PASSWORD}</password>
+                                    <forceMojoExecution>true</forceMojoExecution>
+                                    <sqlCommand>
+                                        DROP DATABASE IF EXISTS accesscontrol_pandp_service;
+                                        DROP DATABASE IF EXISTS user_manager;
+                                        DROP DATABASE IF EXISTS user_profile_manager;
+                                    </sqlCommand>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>create-db-accesscontrol-pandp-service</id>
+                                <phase>clean</phase>
+                                <goals>
+                                    <goal>execute</goal>
+                                </goals>
+                                <configuration>
+                                    <driver>com.mysql.jdbc.Driver</driver>
+                                    <url>jdbc:mysql://${env.CD_DB_HOST}:${env.CD_DB_PORT}/accesscontrol_pandp_service?useSSL=${env.CD_DB_USE_SSL}&amp;createDatabaseIfNotExist=true</url>
+                                    <username>${env.CD_DB_USER_NAME}</username>
+                                    <password>${env.CD_DB_PASSWORD}</password>
+                                    <forceMojoExecution>true</forceMojoExecution>
+                                    <fileset>
+                                        <basedir>${project.build.directory}/sql/access-control/mysql</basedir>
+                                        <includes>
+                                            <include>create/*.sql</include>
+                                        </includes>
+                                    </fileset>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>create-db-user-pandp-service</id>
+                                <phase>clean</phase>
+                                <goals>
+                                    <goal>execute</goal>
+                                </goals>
+                                <configuration>
+                                    <driver>com.mysql.jdbc.Driver</driver>
+                                    <url>jdbc:mysql://${env.CD_DB_HOST}:${env.CD_DB_PORT}/user_manager?useSSL=${env.CD_DB_USE_SSL}&amp;createDatabaseIfNotExist=true</url>
+                                    <username>${env.CD_DB_USER_NAME}</username>
+                                    <password>${env.CD_DB_PASSWORD}</password>
+                                    <forceMojoExecution>true</forceMojoExecution>
+                                    <fileset>
+                                        <basedir>${project.build.directory}/sql/user-manager/mysql</basedir>
+                                        <includes>
+                                            <include>create/*.sql</include>
+                                        </includes>
+                                    </fileset>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>create-db-user-profile-manager</id>
+                                <phase>clean</phase>
+                                <goals>
+                                    <goal>execute</goal>
+                                </goals>
+                                <configuration>
+                                    <driver>com.mysql.jdbc.Driver</driver>
+                                    <url>jdbc:mysql://${env.CD_DB_HOST}:${env.CD_DB_PORT}/user_profile_manager?useSSL=${env.CD_DB_USE_SSL}&amp;createDatabaseIfNotExist=true</url>
+                                    <username>${env.CD_DB_USER_NAME}</username>
+                                    <password>${env.CD_DB_PASSWORD}</password>
+                                    <forceMojoExecution>true</forceMojoExecution>
+                                    <fileset>
+                                        <basedir>${project.build.directory}/sql/user-profile-manager/mysql</basedir>
+                                        <includes>
+                                            <include>create/*.sql</include>
+                                        </includes>
+                                    </fileset>
+                                </configuration>
+                            </execution>
+                        </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>mysql</groupId>
+                                <artifactId>mysql-connector-java</artifactId>
+                                <version>8.0.27</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>init-database-cd</id>
+            <properties>
+                <liquibase.enabled>true</liquibase.enabled>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>sql-maven-plugin</artifactId>
+                        <inherited>false</inherited>
+                        <version>1.5</version>
+                        <configuration>
+                            <printResultSet>false</printResultSet>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>create-db-access-control</id>
+                                <phase>initialize</phase>
+                                <goals>
+                                    <goal>execute</goal>
+                                </goals>
+                                <configuration>
+                                    <driver>com.mysql.jdbc.Driver</driver>
+                                    <url>jdbc:mysql://${env.CD_DB_HOST}:${env.CD_DB_PORT}?useSSL=${env.CD_DB_USE_SSL}</url>
+                                    <username>${env.CD_DB_USER_NAME}</username>
+                                    <password>${env.CD_DB_PASSWORD}</password>
+                                    <forceMojoExecution>true</forceMojoExecution>
+                                    <sqlCommand>
+                                        CREATE DATABASE IF NOT EXISTS accesscontrol_pandp_service;
+                                        CREATE DATABASE IF NOT EXISTS user_manager;
+                                        CREATE DATABASE IF NOT EXISTS user_profile_manager;
+                                    </sqlCommand>
+                                </configuration>
+                            </execution>
+                        </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>mysql</groupId>
+                                <artifactId>mysql-connector-java</artifactId>
+                                <version>8.0.27</version>
                             </dependency>
                         </dependencies>
                     </plugin>
