@@ -170,11 +170,12 @@
                 <configuration>
                   <driver>com.mysql.jdbc.Driver</driver>
                   <url>jdbc:mysql://${env.CD_DB_HOST}:${env.CD_DB_PORT}/device_management?useSSL=${env.CD_DB_USE_SSL}&amp;createDatabaseIfNotExist=true</url>
-                  <username>root</username>
-                  <password>root</password>
+                  <username>${env.CD_DB_USER_NAME}</username>
+                  <password>${env.CD_DB_PASSWORD}</password>
                   <forceMojoExecution>true</forceMojoExecution>
                   <fileset>
                     <basedir>target/sql/device-management-service/mysql</basedir>
+                    <basedir>${project.build.directory}/sql/confirmation/mysql</basedir>
                     <includes>
                       <include>create/*.sql</include>
                     </includes>
