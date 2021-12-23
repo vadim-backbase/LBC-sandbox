@@ -168,7 +168,7 @@
                   <goal>execute</goal>
                 </goals>
                 <configuration>
-                  <driver>com.mysql.jdbc.Driver</driver>
+                  <driver>com.mysql.cj.jdbc.Driver</driver>
                   <url>jdbc:mysql://${env.CD_DB_HOST}:${env.CD_DB_PORT}/fido?useSSL=${env.CD_DB_USE_SSL}&amp;createDatabaseIfNotExist=true</url>
                   <username>${env.CD_DB_USER_NAME}</username>
                   <password>${env.CD_DB_PASSWORD}</password>
