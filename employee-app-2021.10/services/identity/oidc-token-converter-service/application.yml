@@ -1,6 +1,6 @@
-spring:
-  application:
-    name: oidc-token-converter-service
+eureka:
+  instance:
+    hostName: ${spring.application.name}
     
 backbase:
   basic-authentication:
