@@ -1,3 +1,7 @@
+spring:
+  application:
+    name: oidc-token-converter-service
+    
 backbase:
   basic-authentication:
     username: admin
