@@ -14,7 +14,7 @@ import { environmentBase } from './environment.base';
  * at runtime.
  */
 
-const apiRoot = '/api';
+const apiRoot = '${API_ROOT}';
 
 
 
@@ -29,10 +29,10 @@ export const environment: EmployeeWebAppEnvironmentProperties = {
   ],
   webSdkConfig: {
     auth: {
-      authUrl: 'http://localhost:8180/auth',
-      clientId: 'bb-web-client',
-      realm: 'LaurentianBank',
-      scope: 'openid',
+      authUrl: '${AUTH_URL}',
+      clientId: '${AUTH_CLIENT_ID}',
+      realm: '${AUTH_REALM}',
+      scope: '${AUTH_SCOPE}',
       maxInactivityDuration: 300,
       countdownDuration: 60,
     },
