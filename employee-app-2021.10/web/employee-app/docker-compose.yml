@@ -3,13 +3,21 @@ version: "3.1"
 
 services:
   employeeApp:
+    build:
+      context: .
     image: local-employee-app
     container_name: local-employee-app
     ports:
       - "8280:8080"
     environment:
-      - API_ROOT=/api
-      - AUTH_URL=http://localhost:8180/auth
-      - AUTH_CLIENT_ID=bb-web-client
-      - AUTH_REALM=LaurentianBank
-      - AUTH_SCOPE=openid
+      PROTOCOL: 'http:'
+      HOSTNAME: 0.0.0.0
+      PATHNAME: /
+      API_ROOT: /api
+      AUTH_URL: http://localhost:8180/auth
+      AUTH_SCOPE: openid
+      AUTH_REALM: LaurentianBank
+      AUTH_CLIENT_ID: bb-web-client
+      AUTH_LANDING_PAGE: transactions
+      AUTH_REDIRECT_PAGE: login
+      LOCALES: en,nl
